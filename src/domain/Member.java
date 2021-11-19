@@ -1,18 +1,24 @@
 package domain;
 
 public class Member {
+    private int memberId;
     private String firstName;
     private String lastName;
     private int age;
     private boolean activeStatus;
-    private String divisionType;
+    private String teamType;
 
-    public Member(String firstName,String lastName, int age, boolean activeStatus, String divisionType) {
+    public Member(int memberId, String firstName, String lastName, int age, boolean activeStatus, String teamType) {
+        this.memberId = memberId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.activeStatus = activeStatus;
-        this.divisionType = divisionType;
+        this.teamType = teamType;
+    }
+
+    public int getMemberId() {
+        return memberId;
     }
 
     public String getFirstName() {
@@ -31,17 +37,24 @@ public class Member {
         return activeStatus;
     }
 
-    public String getDivisionType() {
-        return divisionType;
+    public void setTeamType(String teamType) {
+        this.teamType = teamType;
+    }
+
+    public String getTeamType() {
+        return teamType;
     }
 
     public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
     }
 
-    public void setDivisionType(String divisionType) {
-        this.divisionType = divisionType;
+
+    public void paySubscription() {
+
     }
 
+    public void deleteAccount() {
 
+    }
 }

@@ -7,10 +7,14 @@ public class Coach {
     private String ageGroup;
 
 
-    public ArrayList top5FromDivision(Division division, String swimmingDiscipline) {
+    public ArrayList top5FromDivision(Team team, String swimmingDiscipline) {
+
+        // TODO: change to Array instead
         ArrayList<CompetitionMember> top5 = new ArrayList<>();
 
         return top5;
     }
+
+    private void addCompetitionMemberBestTime(CompetitionMember competitionMember){}
 
     }

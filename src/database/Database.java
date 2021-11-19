@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Database {
     FileHandler fileHandler = new FileHandler();
     ArrayList<Member> members = new ArrayList<> ();
-    ArrayList<Division> divisions = new ArrayList<>();
+    ArrayList<Team> teams = new ArrayList<>();
     
 
 

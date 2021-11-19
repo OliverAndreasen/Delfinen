@@ -20,4 +20,12 @@ public class Accounting {
 
         return -1;
     }
+
+    public void addMemberWithDebt(Member member) {
+        membersWithDebt.add(member);
+    }
+
+    public void removeMemberWithDebt(Member member){
+        membersWithDebt.remove(member);
+    }
  }
