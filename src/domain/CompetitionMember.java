@@ -12,8 +12,8 @@ public class CompetitionMember extends Member {
 
 
 
-    public CompetitionMember(int memberId, String firstName, String lastName, int age, boolean activeStatus, String teamType) {
-        super(memberId, firstName, lastName, age, activeStatus, teamType);
+    public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType) {
+        super(memberId, name, age, activeStatus, teamType);
     }
 
     public String bestTime() {
