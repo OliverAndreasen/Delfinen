@@ -27,7 +27,7 @@ public class Member {
         return age;
     }
 
-    public boolean isActiveStatus() {
+    public boolean getActiveStatus() {
         return activeStatus;
     }
 
