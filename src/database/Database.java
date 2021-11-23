@@ -10,6 +10,7 @@ public class Database {
     FileHandler fileHandler = new FileHandler();
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
+    public int lastId;
 
 
 
@@ -21,6 +22,7 @@ public class Database {
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
+            this.lastId = memberId;
             String name = sc.next();
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
@@ -62,6 +64,13 @@ public class Database {
     public ArrayList<Member> getAllMembers() {
         return members;
     }
+
+    public int nextId() {
+        return this.lastId + 1;
+    }
+
+
+
     //public Member findMember(String firstName, String lastName);
     //public ArrayList<Division> getAllDivisions();
     //public Division getDivision(String divisionName);
