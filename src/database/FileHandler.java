@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileHandler {
-    public BufferedWriter writer(String fileName) throws IOException {
+    public BufferedWriter writer(String fileName, boolean b) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         return writer;
     }

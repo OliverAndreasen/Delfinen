@@ -14,10 +14,12 @@ public class Database {
 
 
     public void loadMembers() throws IOException {
+        members.clear();
         String fileName = "data/Members.txt";
-        Scanner sc = fileHandler.reader(fileName);
+        File file = new File(fileName);
+        Scanner sc = new Scanner(file);
         sc.useDelimiter(";");
-        while (sc.hasNextLine()) {
+        while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
             String name = sc.next();
             int age = Integer.parseInt(sc.next());
@@ -29,6 +31,7 @@ public class Database {
                 activeStatus = false;
             }
             String teamType = sc.next();
+            sc.nextLine();
 
             Member member = new Member(memberId, name, age, activeStatus, teamType);
             members.add(member);
@@ -36,28 +39,29 @@ public class Database {
     }
 
         public void saveMember(Member member) throws IOException {
-            BufferedWriter writer = fileHandler.writer("data/Members.txt");
-            for (int i = 0; i < members.size(); i++) {
-                String result = "";
-                result += members.get(i).getMemberId();
-                result += ";";
-                result += members.get(i).getName();
-                result += ";";
-                result += members.get(i).getAge();
-                result += ";";
-                result += members.get(i).getActiveStatus();
-                result += ";";
-                result += members.get(i).getTeamType();
-                result += ";";
-                writer.write(result);
-                writer.newLine();
-            }
+            BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
+            String result = "";
+            result += member.getMemberId();
+            result += ";";
+            result += member.getName();
+            result += ";";
+            result += member.getAge();
+            result += ";";
+            result += member.getActiveStatus();
+            result += ";";
+            result += member.getTeamType();
+            result += ";";
+
+            writer.write(result);
+            writer.newLine();
             writer.close();
             System.out.println("Saved");
         }
 
 
-    //public ArrayList<Member> getAllMembers() {}
+    public ArrayList<Member> getAllMembers() {
+        return members;
+    }
     //public Member findMember(String firstName, String lastName);
     //public ArrayList<Division> getAllDivisions();
     //public Division getDivision(String divisionName);
