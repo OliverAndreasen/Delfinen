@@ -1,0 +1,3 @@
+1;Mikkel Vester;21;true;Motionist;
+2:Gurli Gris;10;true;Junior;
+2:Peter Plys;59;true;Senior;

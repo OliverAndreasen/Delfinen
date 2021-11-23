@@ -51,7 +51,6 @@ public class Accounting {
     }
 
     public int projectedSubscriptionTotal() {
-
         return -1;
     }
 

@@ -1,5 +1,7 @@
 package database;
 
+import domain.Member;
+
 import java.io.*;
 import java.util.Scanner;
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Team {
     private String swimStyle;
-    private AgeGroup ageGroup;
     private ArrayList<CompetitionMember> teamMembers = new ArrayList<>();
 
 
