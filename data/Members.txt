@@ -1,4 +1,4 @@
 1;MikkelVester;21;true;Motionist;
-4;GurliGris;10;true;Junior;
+2;GurliGris;10;true;Junior;
 3;PeterPlys;59;true;Senior;
-5;Peter Pedal;99;true;Motionist;
+4;Peter Pedal;99;true;Motionist;
