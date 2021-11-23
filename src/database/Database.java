@@ -2,8 +2,7 @@ package database;
 
 import domain.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +11,9 @@ public class Database {
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
 
-    public void loadMembers() throws FileNotFoundException {
+
+
+    public void loadMembers() throws IOException {
         String fileName = "data/Members.txt";
         Scanner sc = fileHandler.reader(fileName);
         sc.useDelimiter(";");
@@ -33,9 +34,27 @@ public class Database {
             members.add(member);
         }
     }
-    
 
-
+        public void saveMember(Member member) throws IOException {
+            BufferedWriter writer = fileHandler.writer("data/Members.txt");
+            for (int i = 0; i < members.size(); i++) {
+                String result = "";
+                result += members.get(i).getMemberId();
+                result += ";";
+                result += members.get(i).getName();
+                result += ";";
+                result += members.get(i).getAge();
+                result += ";";
+                result += members.get(i).getActiveStatus();
+                result += ";";
+                result += members.get(i).getTeamType();
+                result += ";";
+                writer.write(result);
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("Saved");
+        }
 
 
     //public ArrayList<Member> getAllMembers() {}
@@ -44,4 +63,4 @@ public class Database {
     //public Division getDivision(String divisionName);
 
 
-}
+    }

@@ -47,4 +47,15 @@ public class Member {
 
     public void deleteAccount() {}
 
+    public String toString() {
+        String result = "";
+        result += "Medlemsid: " + getMemberId() + "\n";
+        result += "Navn: " + getName() + "\n";
+        result += "Alder: " + getAge() + "\n";
+        result += "Aktiv status: " + getActiveStatus() + "\n";
+        result += "Hold type: " + getTeamType() + "\n\n";
+        return result;
+    }
+
+
 }
