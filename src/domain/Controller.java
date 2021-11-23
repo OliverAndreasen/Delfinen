@@ -156,6 +156,8 @@ public class Controller {
     }
 
     public Member createMember() {
+        int nextId = db.nextId();
+
         String name = userInput();
         /*String name = "Kristian Hadberg";*/
         System.out.println("name: " + name);
@@ -177,9 +179,7 @@ public class Controller {
             }
         }
 
-        Member member = new Member(5, name, age, true, teamType);
-
-        return member;
+        return new Member(nextId, name, age, true, teamType);
     }
 
 
