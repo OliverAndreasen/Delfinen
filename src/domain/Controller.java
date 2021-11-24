@@ -26,6 +26,13 @@ public class Controller {
     public void start(){
         ui.start();
 
+        // Fetch members from database
+        try {
+            db.loadMembers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
@@ -113,6 +120,7 @@ public class Controller {
             switch (userInputNumber()) {
                 case 1 -> {
                     // TODO Tjek forventet kontingent indkomst.
+                    calculateTotalSubscription();
                 }
 
                 case 2 -> {
@@ -157,29 +165,25 @@ public class Controller {
 
     public Member createMember() {
         int nextId = db.nextId();
-
         String name = userInput();
-        /*String name = "Kristian Hadberg";*/
-        System.out.println("name: " + name);
-
         int age = userInputNumber();
-        System.out.println("age: " + age);
 
         String teamType = "";
         ui.chooseTeamType();
         switch (userInputNumber()) {
-            case 1 -> {
-                teamType = "Junior";
-            }
-            case 2 -> {
-                teamType = "Senior";
-            }
-            case 3 -> {
-                teamType = "Motionist";
-            }
+            case 1 -> {teamType = "Junior";}
+            case 2 -> {teamType = "Senior";}
+            case 3 -> {teamType = "Motionist";}
         }
+        return new Member(nextId, name, age, true, teamType);
+    }
 
-        return new Member(nextId, name, age, true, teamType, true);
+
+    /***** Accountant methods *****/
+    public void calculateTotalSubscription() {
+        Accounting accounting = new Accounting();
+        int total = accounting.projectedSubscriptionTotal(db.getAllMembers());
+        ui.printTotalSubscription(total);
     }
 
 
