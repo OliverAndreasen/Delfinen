@@ -6,13 +6,15 @@ public class Member {
     private int age;
     private boolean activeStatus;
     private String teamType;
+    private boolean paidThisYear;
 
-    public Member(int memberId, String name, int age, boolean activeStatus, String teamType) {
+    public Member(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
         this.memberId = memberId;
         this.name = name;
         this.age = age;
         this.activeStatus = activeStatus;
         this.teamType = teamType;
+        this.paidThisYear = paidThisYear;
     }
 
     public int getMemberId() {

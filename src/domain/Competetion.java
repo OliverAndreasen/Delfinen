@@ -1,20 +1,29 @@
 package domain;
-import java.util.HashMap;
+
+import java.time.LocalDateTime;
 
 public class Competetion {
+    private int CompetitionID;
     private String name;
-    private HashMap<Integer, Integer> competetors = new HashMap<>();
+    private LocalDateTime date;
+    private boolean paidThisYear;
+
+    public Competetion(int competitionID, String name, LocalDateTime date) {
+        CompetitionID = competitionID;
+        this.name = name;
+        this.date = date;
+    }
+
+
+    public int getCompetitionID() {
+        return CompetitionID;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public HashMap<Integer, Integer> getCompetetors() {
-        return competetors;
-    }
-
-    // CompetitionMemberID & Time
-    public void setCompetetors(HashMap<Integer, Integer> competetors) {
-        this.competetors = competetors;
     }
 }

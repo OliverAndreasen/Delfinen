@@ -10,10 +10,8 @@ public class CompetitionMember extends Member {
     private String swimmingDiscipline;
     private ArrayList<Competetion> competetions = new ArrayList<>();
 
-
-
-    public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType) {
-        super(memberId, name, age, activeStatus, teamType);
+    public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
+        super(memberId, name, age, activeStatus, teamType, paidThisYear);
     }
 
     public String bestTime() {
