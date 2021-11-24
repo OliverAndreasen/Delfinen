@@ -3,6 +3,7 @@ package database;
 import domain.*;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,9 +15,6 @@ public class Database {
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
     public int lastId;
-
-
-
 
     public void loadMembers() throws IOException {
         members.clear();
@@ -69,18 +67,34 @@ public class Database {
 
             if(member instanceof CompetitionMember) {
                 Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
-                LocalDateTime[] bestTrainingTime = ((CompetitionMember) member).getBestTrainingTime();
                 String[] swimmingDisciplines = ((CompetitionMember) member).getSwimmingDisciplines();
 
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-                String resultBestTrainingTimeDate;
-                String resultBestTrainingTime;
-                String resultSwimmingDiscipline;
+                Date date = new Date();
+
+                String strDate = formatter.format(date);
+                System.out.println(strDate);
+
+                bestTrainingTimeDate[0] = date;
+                bestTrainingTimeDate[1] = date;
+                bestTrainingTimeDate[2] = date;
+                bestTrainingTimeDate[3] = date;
+
+                String resultBestTrainingTimeDate = "";
+                String resultSwimmingDiscipline = "";
                 for (int i = 0; i < 4; i++) {
-                    resultBestTrainingTimeDate = formatter.format(bestTrainingTimeDate[0]) + ",";
-
+                    swimmingDisciplines[i] = "crawl";
+                    if (i == 3) {
+                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
+                        resultSwimmingDiscipline += swimmingDisciplines[i];
+                    } else {
+                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
+                        resultSwimmingDiscipline += swimmingDisciplines[i] + ",";
+                    }
                 }
+                result += resultBestTrainingTimeDate;
+                result += resultSwimmingDiscipline;
             }
 
             writer.write(result);
