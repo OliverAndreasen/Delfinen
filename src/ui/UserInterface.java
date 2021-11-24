@@ -57,8 +57,28 @@ public class UserInterface {
                 4. Slet medlem.
                 """);
         }
+
+
+    public void printChairManAddMember() {
+        System.out.println("""
+                Tilføj nyt medlem.
+                    Indtast navn:
+                    Indtast alder:
+                    Vælg status:
+                    Vælg hold:
+                """);
     }
 
+    public void chooseTeamType() {
+        System.out.println("""
+                \tVælg hold:
+                    1. Junior
+                    2. Senior
+                    3. Motionist
+                """);
+    }
+
+}
 
 
 

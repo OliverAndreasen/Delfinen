@@ -3,6 +3,7 @@ package domain;
 import database.Database;
 import ui.UserInterface;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Controller {
@@ -11,12 +12,15 @@ public class Controller {
     private boolean programIsRunning = true;
 
     Scanner scanner = new Scanner(System.in);
+
     public String userInput(){
         return scanner.nextLine();
     }
 
     public int userInputNumber(){
-        return scanner.nextInt();
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
     }
 
     public void start(){
@@ -59,6 +63,9 @@ public class Controller {
             switch (userInputNumber()) {
                 case 1 -> {
                     // TODO Tilføj nyt medlem.
+                    ui.printChairManAddMember();
+                    addMember();
+
                 }
 
                 case 2 -> {
@@ -134,6 +141,45 @@ public class Controller {
             }
         }
 
+    }
+
+    /***** Chair man methods. ******/
+    public void addMember() {
+        Member member = createMember();
+
+        try {
+            db.saveMember(member);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Member createMember() {
+        int nextId = db.nextId();
+
+        String name = userInput();
+        /*String name = "Kristian Hadberg";*/
+        System.out.println("name: " + name);
+
+        int age = userInputNumber();
+        System.out.println("age: " + age);
+
+        String teamType = "";
+        ui.chooseTeamType();
+        switch (userInputNumber()) {
+            case 1 -> {
+                teamType = "Junior";
+            }
+            case 2 -> {
+                teamType = "Senior";
+            }
+            case 3 -> {
+                teamType = "Motionist";
+            }
+        }
+
+        return new Member(nextId, name, age, true, teamType);
     }
 
 
