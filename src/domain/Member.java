@@ -17,6 +17,10 @@ public class Member {
         this.paidThisYear = paidThisYear;
     }
 
+    public boolean getPaidThisYear() {
+        return paidThisYear;
+    }
+
     public int getMemberId() {
         return memberId;
     }

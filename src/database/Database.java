@@ -3,7 +3,10 @@ package database;
 import domain.*;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Database {
@@ -61,6 +64,24 @@ public class Database {
             result += ";";
             result += member.getTeamType();
             result += ";";
+            result += member.getPaidThisYear();
+            result += ";";
+
+            if(member instanceof CompetitionMember) {
+                Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
+                LocalDateTime[] bestTrainingTime = ((CompetitionMember) member).getBestTrainingTime();
+                String[] swimmingDisciplines = ((CompetitionMember) member).getSwimmingDisciplines();
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+                String resultBestTrainingTimeDate;
+                String resultBestTrainingTime;
+                String resultSwimmingDiscipline;
+                for (int i = 0; i < 4; i++) {
+                    resultBestTrainingTimeDate = formatter.format(bestTrainingTimeDate[0]) + ",";
+
+                }
+            }
 
             writer.write(result);
             writer.newLine();

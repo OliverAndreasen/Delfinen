@@ -179,7 +179,7 @@ public class Controller {
             }
         }
 
-        return new Member(nextId, name, age, true, teamType);
+        return new Member(nextId, name, age, true, teamType, true);
     }
 
 
