@@ -50,7 +50,7 @@ public class UserInterface {
     }
 
     public void printTotalSubscription(int total) {
-        System.out.printf("Den forventede indkomst af alle kontigenter er: %d" , total);
+        System.out.printf("Den forventede indkomst af alle kontigenter er: %d.-" , total);
     }
 
 
@@ -66,6 +66,13 @@ public class UserInterface {
 
 
     public void printChairManAddMember() {
+        // noget test
+/*      String[] arr = {"Indtast navn:", "Indtast alder:", "Vælg status:", "Vælg hold:"};
+
+        for (String str : arr) {
+            System.out.println(str);
+        }*/
+
         System.out.println("""
                 Tilføj nyt medlem.
                     Indtast navn:

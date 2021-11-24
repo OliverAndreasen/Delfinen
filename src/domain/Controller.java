@@ -10,8 +10,8 @@ public class Controller {
     private UserInterface ui = new UserInterface();
     private Database db = new Database();
     private boolean programIsRunning = true;
-
-    Scanner scanner = new Scanner(System.in);
+    private Accounting accountant = new Accounting();
+    private Scanner scanner = new Scanner(System.in);
 
     public String userInput(){
         return scanner.nextLine();
@@ -32,7 +32,6 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
@@ -115,12 +114,11 @@ public class Controller {
     }
 
     public void accountantController() {
-
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
-                    // TODO Tjek forventet kontingent indkomst.
-                    calculateTotalSubscription();
+                    int total = calculateTotalSubscription();
+                    ui.printTotalSubscription(total);
                 }
 
                 case 2 -> {
@@ -129,7 +127,6 @@ public class Controller {
             }
         }
     }
-
 
     public void coachController() {
 
@@ -151,7 +148,7 @@ public class Controller {
 
     }
 
-    /***** Chair man methods. ******/
+    /***** Chairman methods. ******/
     public void addMember() {
         Member member = createMember();
 
@@ -175,15 +172,13 @@ public class Controller {
             case 2 -> {teamType = "Senior";}
             case 3 -> {teamType = "Motionist";}
         }
-        return new Member(nextId, name, age, true, teamType);
+        return new Member(nextId, name, age, true, teamType, true);
     }
 
 
     /***** Accountant methods *****/
-    public void calculateTotalSubscription() {
-        Accounting accounting = new Accounting();
-        int total = accounting.projectedSubscriptionTotal(db.getAllMembers());
-        ui.printTotalSubscription(total);
+    public int calculateTotalSubscription() {
+        return accountant.projectedSubscriptionTotal(db.getAllMembers());
     }
 
 
