@@ -14,6 +14,7 @@ public class Database {
 
 
 
+
     public void loadMembers() throws IOException {
         members.clear();
         String fileName = "data/Members.txt";
@@ -33,9 +34,16 @@ public class Database {
                 activeStatus = false;
             }
             String teamType = sc.next();
+            String paidThisYearString = sc.next();
+            boolean paidThisYear;
+            if (paidThisYearString.equals("true")) {
+                paidThisYear = true;
+            } else {
+                paidThisYear = false;
+            }
             sc.nextLine();
 
-            Member member = new Member(memberId, name, age, activeStatus, teamType);
+            Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
             members.add(member);
         }
     }
