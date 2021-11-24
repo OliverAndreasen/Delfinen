@@ -5,7 +5,6 @@ import domain.*;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -14,7 +13,8 @@ public class Database {
     FileHandler fileHandler = new FileHandler();
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
-    public int lastId;
+    public int lastIdMember;
+    public int lastIdCompetitionMember;
 
     public void loadMembers() throws IOException {
         members.clear();
@@ -24,7 +24,12 @@ public class Database {
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
-            this.lastId = memberId;
+            if(memberId < 100) {
+                this.lastIdMember = memberId;
+            }
+            else {
+                this.lastIdCompetitionMember = memberId;
+            }
             String name = sc.next();
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
@@ -67,7 +72,6 @@ public class Database {
 
             if(member instanceof CompetitionMember) {
                 Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
-                String[] swimmingDisciplines = ((CompetitionMember) member).getSwimmingDisciplines();
 
                 DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
@@ -82,19 +86,14 @@ public class Database {
                 bestTrainingTimeDate[3] = date;
 
                 String resultBestTrainingTimeDate = "";
-                String resultSwimmingDiscipline = "";
-                for (int i = 0; i < 4; i++) {
-                    swimmingDisciplines[i] = "crawl";
+                for (int i = 0; i < bestTrainingTimeDate.length; i++) {
                     if (i == 3) {
                         resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
-                        resultSwimmingDiscipline += swimmingDisciplines[i];
                     } else {
                         resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
-                        resultSwimmingDiscipline += swimmingDisciplines[i] + ",";
                     }
                 }
                 result += resultBestTrainingTimeDate;
-                result += resultSwimmingDiscipline;
             }
 
             writer.write(result);
@@ -102,7 +101,7 @@ public class Database {
             writer.close();
             System.out.println("Saved");
         }
-
+/*
         public void loadTeams() throws FileNotFoundException {
             teams.clear();
             String fileName = "data/Members.txt";
@@ -135,14 +134,19 @@ public class Database {
                 members.add(member);
             }
         }
+ */
 
 
     public ArrayList<Member> getAllMembers() {
         return members;
     }
 
-    public int nextId() {
-        return this.lastId + 1;
+    public int nextIdMember() {
+        return this.lastIdMember + 1;
+    }
+
+    public int nextIdCompetitionMember(){
+        return this.lastIdCompetitionMember + 1;
     }
 
 

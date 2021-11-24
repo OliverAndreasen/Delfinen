@@ -24,7 +24,7 @@ public class test {
         }
         */
 
-        System.out.println(db.nextId());
+        System.out.println(db.nextIdMember());
 
     }
 }

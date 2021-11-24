@@ -161,7 +161,7 @@ public class Controller {
     }
 
     public Member createMember() {
-        int nextId = db.nextId();
+        int nextId = db.nextIdMember();
         String name = userInput();
         int age = userInputNumber();
 
