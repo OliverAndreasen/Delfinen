@@ -49,6 +49,12 @@ public class UserInterface {
                 """);
     }
 
+    public void printTotalSubscription(int total) {
+        System.out.printf("Den forventede indkomst af alle kontigenter er: %d" , total);
+    }
+
+
+
     public void printChairmanMenu(){
             System.out.println("""
                 1. Tilføj nyt medlem.

@@ -50,8 +50,13 @@ public class Accounting {
         return result.toString();
     }
 
-    public int projectedSubscriptionTotal() {
-        return -1;
+    public int projectedSubscriptionTotal(ArrayList<Member> members) {
+        int total = 0;
+        for (Member member : members) {
+            total += calculateSubscriptionFee(member);
+        }
+
+        return total;
     }
 
     public void addMemberWithDebt(Member member) {
