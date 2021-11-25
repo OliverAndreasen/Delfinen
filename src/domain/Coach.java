@@ -15,7 +15,7 @@ public class Coach {
         ArrayList<CompetitionMember> competitionMembers = db.getAllCompetitionMembers();
         //ArrayList<CompetitionMember> top5 = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            competitionMembers.get(i).getBestTrainingTimes();
+            competitionMembers.get(i).getBestTrainingTimeDate();
         }
 
         return competitionMembers;
