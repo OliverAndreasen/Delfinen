@@ -217,12 +217,15 @@ public class Controller {
     }
 
     public void test() {
-
         for (Member member : db.getAllMembers()) {
             if (member instanceof CompetitionMember) {
+                if(((CompetitionMember) member).getBestTrainingTimeDate() != null){
+                    System.out.println(Arrays.toString(((CompetitionMember) member).bestTrainingTimeDateToString()));
+                    for (int i = 0; i < ((CompetitionMember) member).bestTrainingTimeDateToString().length; i++) {
+                        System.out.println(((CompetitionMember) member).getDateById(i));
 
-                System.out.println(Arrays.toString(((CompetitionMember) member).getBestTrainingTimeDate()));
-
+                    }
+               }
             }
             else {
                 System.out.println(member);
