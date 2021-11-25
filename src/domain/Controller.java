@@ -2,7 +2,6 @@ package domain;
 
 import database.Database;
 import ui.UserInterface;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,6 +11,8 @@ public class Controller {
     private boolean programIsRunning = true;
     private Accounting accountant = new Accounting();
     private Scanner scanner = new Scanner(System.in);
+
+    private Coach coach;
 
     public String userInput(){
         return scanner.nextLine();
@@ -23,7 +24,7 @@ public class Controller {
         return input;
     }
 
-    public void start(){
+    public void start() throws IOException {
         ui.start();
 
         // Fetch members from database
@@ -138,8 +139,7 @@ public class Controller {
         }
     }
 
-    public void coachController() {
-
+    public void coachController() throws IOException {
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
@@ -152,6 +152,7 @@ public class Controller {
 
                 case 3 -> {
                     // TODO Vis top 5.
+                    coach.top5FromDivision();
                 }
             }
         }
@@ -196,7 +197,6 @@ public class Controller {
         return null;
     }
 
-
     /***** Accountant methods *****/
     public int calculateTotalSubscription() {
         return accountant.projectedSubscriptionTotal(db.getAllMembers());
@@ -212,7 +212,6 @@ public class Controller {
 
         db.saveMemberToDebtList(member);
     }
-
 
     // can change member from competion member to member or the other way.
     public void changeMember(){}
