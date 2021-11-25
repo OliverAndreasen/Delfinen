@@ -3,23 +3,30 @@ package domain;
 import database.Database;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Coach {
     private String name;
     private String ageGroup;
     private CompetitionMember competitionMember;
-    private Database db;
+    private Database db = new Database();
+    ArrayList<Member> members = db.getAllMembers();
 
-    public ArrayList top5FromDivision() throws IOException {
+    public Coach () throws IOException {
         db.loadMembers();
-        ArrayList<CompetitionMember> competitionMembers = db.getAllCompetitionMembers();
-        //ArrayList<CompetitionMember> top5 = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            competitionMembers.get(i).getBestTrainingTimeDate();
-        }
-
-        return competitionMembers;
     }
+
+   /* public ArrayList top5FromDivision(String Division) throws IOException {
+        String [] bestTimes = new String[4];
+        for (Member member : members) {
+            if (member instanceof CompetitionMember){
+                bestTimes = ((CompetitionMember) member).getBestTrainingTimes();
+            }
+        }
+        System.out.println(Arrays.toString(bestTimes));
+
+        return ;
+    }*/
 
     private void addCompetitionMemberBestTime(CompetitionMember competitionMember){}
 

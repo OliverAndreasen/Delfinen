@@ -96,6 +96,9 @@ public class Controller {
 
                 case 2 -> {
                     // TODO Skift medlemsstatus.
+                    CompetitionMember member = new CompetitionMember(110, "Kristian", 69, true, "Konkurrencesvømmer", true);
+                    member.convertStringDateToDate(userInput());
+
                 }
 
                 case 3 -> {
