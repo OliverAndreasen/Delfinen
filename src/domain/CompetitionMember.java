@@ -39,10 +39,10 @@ public class CompetitionMember extends Member {
         String day = datesplit[0];
         String month = datesplit[1];
         String year = datesplit[2];
-        String mintues = datesplit[3];
-        String secounds = datesplit[4];
+        String minutes = datesplit[3];
+        String seconds = datesplit[4];
 
-        String result = day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + mintues + ":" + secounds;
+        String result = day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + minutes + ":" + seconds;
         return result;
     }
 

@@ -14,6 +14,7 @@ public class Database {
     FileHandler fileHandler = new FileHandler();
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Member> membersWithDebt = new ArrayList<>();
     public int lastIdMember;
     public int lastIdCompetitionMember;
 
@@ -32,7 +33,6 @@ public class Database {
                 this.lastIdCompetitionMember = memberId;
             }
             String name = sc.next();
-            System.out.println("name " + name);
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
             String activeStatusString = sc.next();
@@ -56,11 +56,8 @@ public class Database {
 
                 String[] test = dates.split(",");
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                    /*bestTrainingTimeDate[i] = dates.split(" ");*/
                     try {
                         bestTrainingTimeDate[i] = formatter.parse(test[i]);
-                        System.out.println(bestTrainingTimeDate[i]);
-
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -71,97 +68,61 @@ public class Database {
                 member.setBestTrainingTimeDate(bestTrainingTimeDate);
                 members.add(member);
             } else {
-
-            }
-
-                sc.nextLine();
-            Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
-            members.add(member);
-        }
-    }
-
-    public void saveMember(Member member) throws IOException {
-        BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
-        String result = "";
-        result += member.getMemberId();
-        result += ";";
-        result += member.getName();
-        result += ";";
-        result += member.getAge();
-        result += ";";
-        result += member.getActiveStatus();
-        result += ";";
-        result += member.getTeamType();
-        result += ";";
-        result += member.getPaidThisYear();
-        result += ";";
-
-        if(member instanceof CompetitionMember) {
-            Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
-
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-
-            Date date = new Date();
-            String strDate = formatter.format(date);
-            System.out.println(strDate);
-
-            bestTrainingTimeDate[0] = date;
-            bestTrainingTimeDate[1] = date;
-            bestTrainingTimeDate[2] = date;
-            bestTrainingTimeDate[3] = date;
-
-            String resultBestTrainingTimeDate = "";
-            for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                if (i == 3) {
-                    resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
-                } else {
-                    resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
-                }
-            }
-            result += resultBestTrainingTimeDate;
-            result += ";";
-        }
-
-        writer.write(result);
-        writer.newLine();
-        writer.close();
-        System.out.println("Saved");
-    }
-
-    /*
-        public void loadTeams() throws FileNotFoundException {
-            teams.clear();
-            String fileName = "data/Members.txt";
-            File file = new File(fileName);
-            Scanner sc = new Scanner(file);
-            sc.useDelimiter(";");
-            while (sc.hasNext()) {
-                int memberId = Integer.parseInt(sc.next());
-                this.lastId = memberId;
-                String name = sc.next();
-                int age = Integer.parseInt(sc.next());
-                boolean activeStatus;
-                String activeStatusString = sc.next();
-                if (activeStatusString.equals("true")) {
-                    activeStatus = true;
-                } else {
-                    activeStatus = false;
-                }
-                String teamType = sc.next();
-                String paidThisYearString = sc.next();
-                boolean paidThisYear;
-                if (paidThisYearString.equals("true")) {
-                    paidThisYear = true;
-                } else {
-                    paidThisYear = false;
-                }
-                sc.nextLine();
-
                 Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
                 members.add(member);
             }
+
+            sc.nextLine();
         }
- */
+    }
+
+        public void saveMember(Member member) throws IOException {
+            BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
+            String result = "";
+            result += member.getMemberId();
+            result += ";";
+            result += member.getName();
+            result += ";";
+            result += member.getAge();
+            result += ";";
+            result += member.getActiveStatus();
+            result += ";";
+            result += member.getTeamType();
+            result += ";";
+            result += member.getPaidThisYear();
+            result += ";";
+
+            if(member instanceof CompetitionMember) {
+                Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
+
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
+
+                Date date = new Date();
+                String strDate = formatter.format(date);
+                System.out.println(strDate);
+
+                bestTrainingTimeDate[0] = date;
+                bestTrainingTimeDate[1] = date;
+                bestTrainingTimeDate[2] = date;
+                bestTrainingTimeDate[3] = date;
+
+                String resultBestTrainingTimeDate = "";
+                for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+                    if (i == 3) {
+                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
+                    } else {
+                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
+                    }
+                }
+                result += resultBestTrainingTimeDate;
+                result += ";";
+            }
+
+            writer.write(result);
+            writer.newLine();
+            writer.close();
+            System.out.println("Saved");
+        }
 
     public ArrayList<Member> getAllMembers() {
         return members;
@@ -174,6 +135,8 @@ public class Database {
     public int nextIdCompetitionMember(){
         return this.lastIdCompetitionMember + 1;
     }
+
+
 
     public Member getMemberById(int memberId) {
         for (int i = 0; i < members.size(); i++) {
@@ -200,6 +163,15 @@ public class Database {
     }
 
     public void saveMemberToDebtList(Member member) {
+    }
+
+    public ArrayList<Member> setMembersWithDebt() {
+        for (int i = 0; i < members.size(); i++) {
+            if(!members.get(i).getPaidThisYear()) {
+                membersWithDebt.add(members.get(i));
+            }
+        }
+        return membersWithDebt;
     }
 
 
