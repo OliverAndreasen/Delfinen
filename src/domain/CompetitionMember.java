@@ -7,15 +7,15 @@ import java.util.Date;
 
 public class CompetitionMember extends Member {
 
-    private Date[] bestTrainingTimeDate = new Date[4];
+    private Date[] bestTrainingTimeDates = new Date[4];
     private String[] bestTrainingTimes = new String[4];
 
     public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
         super(memberId, name, age, activeStatus, teamType, paidThisYear);
 
 
-        for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-            if (bestTrainingTimeDate[i] != null) {
+        for (int i = 0; i < bestTrainingTimeDates.length; i++) {
+            if (bestTrainingTimeDates[i] != null) {
                 setBestTrainingTimes(i);
             }
 
@@ -27,7 +27,7 @@ public class CompetitionMember extends Member {
     }
 
     public void setBestTrainingTimes(int index) {
-        String swimmingDiscipline = bestTrainingTimeDateToString()[index];
+        String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
         String[] datesplit = swimmingDiscipline.split("/");
         String minutes = datesplit[3];
         String seconds = datesplit[4];
@@ -40,26 +40,26 @@ public class CompetitionMember extends Member {
         return "LOL";
     }
 
-    public Date[] getBestTrainingTimeDate() {
-        return bestTrainingTimeDate;
+    public Date[] getBestTrainingTimeDates() {
+        return bestTrainingTimeDates;
     }
 
-    public void setBestTrainingTimeDate(Date[] bestTrainingTimeDate) {
-        this.bestTrainingTimeDate = bestTrainingTimeDate;
+    public void setBestTrainingTimeDates(Date[] bestTrainingTimeDates) {
+        this.bestTrainingTimeDates = bestTrainingTimeDates;
     }
 
-    public String[] bestTrainingTimeDateToString() {
+    public String[] bestTrainingTimeDatesToString() {
         String[] datesToString = new String[4];
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-        for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-            datesToString[i] = formatter.format(bestTrainingTimeDate[i]);
+        for (int i = 0; i < bestTrainingTimeDates.length; i++) {
+            datesToString[i] = formatter.format(bestTrainingTimeDates[i]);
         }
 
         return datesToString;
     }
 
     public String getDateById(int index) {
-        String swimmingDiscipline = bestTrainingTimeDateToString()[index];
+        String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
         String[] datesplit = swimmingDiscipline.split("/");
         String day = datesplit[0];
         String month = datesplit[1];
@@ -106,6 +106,6 @@ public class CompetitionMember extends Member {
     }
 
     private void setDateById(int disciplineIndex, String bestTrainingTimeDateString) {
-        bestTrainingTimeDate[disciplineIndex] = convertStringDateToDate(bestTrainingTimeDateString);
+        bestTrainingTimeDates[disciplineIndex] = convertStringDateToDate(bestTrainingTimeDateString);
     }
 }

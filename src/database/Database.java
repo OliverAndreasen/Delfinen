@@ -73,7 +73,7 @@ public class Database {
                 }
 
                 CompetitionMember member = new CompetitionMember(memberId, name, age, activeStatus, teamType, paidThisYear);
-                member.setBestTrainingTimeDate(bestTrainingTimeDate);
+                member.setBestTrainingTimeDates(bestTrainingTimeDate);
                 members.add(member);
             } else {
                 Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
@@ -101,29 +101,29 @@ public class Database {
         result += ";";
 
         if (member instanceof CompetitionMember) {
-            Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
+            Date[] bestTrainingTimeDates = ((CompetitionMember) member).getBestTrainingTimeDates();
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
             Date date = new Date();
             String strDate = formatter.format(date);
             //System.out.println(strDate);
 
-            StringBuilder resultBestTrainingTimeDate = new StringBuilder();
-            for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+            StringBuilder resultBestTrainingTimeDates = new StringBuilder();
+            for (int i = 0; i < bestTrainingTimeDates.length; i++) {
                 if (i == 3) {
-                    if(bestTrainingTimeDate[i] == null)  {
-                        resultBestTrainingTimeDate.append(bestTrainingTimeDate[i]);
+                    if(bestTrainingTimeDates[i] == null)  {
+                        resultBestTrainingTimeDates.append(bestTrainingTimeDates[i]);
                     }else{
-                        resultBestTrainingTimeDate.append(formatter.format(bestTrainingTimeDate[i]));
+                        resultBestTrainingTimeDates.append(formatter.format(bestTrainingTimeDates[i]));
                     }
                 } else {
-                    if (bestTrainingTimeDate[i] == null){
-                        resultBestTrainingTimeDate.append(bestTrainingTimeDate[i]).append(",");
+                    if (bestTrainingTimeDates[i] == null){
+                        resultBestTrainingTimeDates.append(bestTrainingTimeDates[i]).append(",");
                     } else {
-                        resultBestTrainingTimeDate.append(formatter.format(bestTrainingTimeDate[i])).append(",");
+                        resultBestTrainingTimeDates.append(formatter.format(bestTrainingTimeDates[i])).append(",");
                     }
                 }
             }
-            result += resultBestTrainingTimeDate;
+            result += resultBestTrainingTimeDates;
             result += ";";
         }
 
