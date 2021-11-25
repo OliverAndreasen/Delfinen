@@ -23,19 +23,48 @@ public class CompetitionMember extends Member {
         return bestTrainingTimeDate;
     }
 
-    public String bestTrainingTimeDateToString() {
+    public String[] bestTrainingTimeDateToString() {
+        String[] datesToString = new String[4];
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-        return formatter.format(bestTrainingTimeDate);
+        for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+            datesToString[i] = formatter.format(bestTrainingTimeDate[i]);
+        }
+
+        return datesToString;
     }
 
+    public String getDateById(int index){
+        String swimmingDiscipline = bestTrainingTimeDateToString()[index];
+        String[] datesplit = swimmingDiscipline.split("/");
+        String day = datesplit[0];
+        String month = datesplit[1];
+        String year = datesplit[2];
+        String mintues = datesplit[3];
+        String secounds = datesplit[4];
 
+        String result = day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + mintues + ":" + secounds;
+        return result;
+    }
 
-    public String[] getBestTrainingTimes() {
-        for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-            DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-            this.bestTrainingTimes[i] = formatter.format(bestTrainingTimeDate[i]);
+    // smid i ui
+    public void getDateBySwimmingStyle(String swimmingStyle){
+        String result = "";
+        switch(swimmingStyle) {
+            case "butterfly":
+                getDateById(0);
+                break;
+            case "crawl":
+                getDateById(1);
+                break;
+            case "rygcrawl":
+                getDateById(2);
+                break;
+            case "brystsvømning":
+                getDateById(3);
+                break;
+            default:
+                // code block
         }
-        return bestTrainingTimes;
     }
 
     public void setBestTrainingTimeDate(Date[] bestTrainingTimeDate) {

@@ -54,13 +54,13 @@ public class Database {
                 Date bestTrainingTimeDate[] = new Date[4];
                 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
 
-
                 String[] test = dates.split(",");
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
                     /*bestTrainingTimeDate[i] = dates.split(" ");*/
                     try {
                         bestTrainingTimeDate[i] = formatter.parse(test[i]);
                         System.out.println(bestTrainingTimeDate[i]);
+
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -68,6 +68,7 @@ public class Database {
                 }
 
                 CompetitionMember member = new CompetitionMember(memberId, name, age, activeStatus, teamType, paidThisYear);
+                member.setBestTrainingTimeDate(bestTrainingTimeDate);
                 members.add(member);
             } else {
 
