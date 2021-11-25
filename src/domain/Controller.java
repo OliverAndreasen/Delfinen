@@ -123,13 +123,16 @@ public class Controller {
 
                 case 2 -> {
                     // TODO Tjek medlemmer i restance.
+                    ui.printDebtList(accountant.getMembersWithDebt());
                 }
 
                 case 3 -> {
-                    // TODO tilføj medlem til restance
-                    /*ui.accountantAddDebtPrint(db.getAllMembers());*/
-                    /*accountant.addMemberWithDebt(member);*/
+                    ui.addMemberIdToDebtPrint();
 
+                    Member memberToAddToDebt = getMemberToAddToDebt();
+                    addMemberToDebtList(memberToAddToDebt);
+
+                    ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
                 }
             }
         }
@@ -197,6 +200,17 @@ public class Controller {
     /***** Accountant methods *****/
     public int calculateTotalSubscription() {
         return accountant.projectedSubscriptionTotal(db.getAllMembers());
+    }
+
+    public Member getMemberToAddToDebt() {
+        int memberIdToGet = userInputNumber();
+        return db.getMemberById(memberIdToGet);
+    }
+
+    public void addMemberToDebtList(Member member) {
+        accountant.addMemberWithDebt(member);
+
+        db.saveMemberToDebtList(member);
     }
 
 

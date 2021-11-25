@@ -171,6 +171,13 @@ public class Database {
         return competitionMembers;
     }
 
+    /***** Load & Save from accounting *****/
+    public void loadMembersFromDebtList() {
+
+    }
+
+    public void saveMemberToDebtList(Member member) {
+    }
 
 
     //public Member findMember(String firstName, String lastName);
