@@ -1,5 +1,7 @@
 package ui;
 
+import domain.Member;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,6 +54,20 @@ public class UserInterface {
                 """);
     }
 
+    public void printDebtList(ArrayList<Member> membersWithDebt) {
+        for (Member member : membersWithDebt) {
+            System.out.println(member);
+        }
+    }
+
+    public void addMemberIdToDebtPrint() {
+        System.out.print("Hvilket medlem skal tilføjes til restance?: ");
+    }
+
+    public void memberAddedToDebtPrint(String name) {
+        System.out.printf("\t%s added to list of members with debt.\n", name);
+    }
+
 
     public void printTotalSubscription(int total) {
         System.out.printf("Den forventede indkomst af alle kontigenter er: %d.-" , total);
@@ -93,6 +109,7 @@ public class UserInterface {
                     3. Motionist
                 """);
     }
+
 
 }
 
