@@ -32,7 +32,7 @@ public class Database {
                 this.lastIdCompetitionMember = memberId;
             }
             String name = sc.next();
-            System.out.println("name" + name);
+            System.out.println("name " + name);
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
             String activeStatusString = sc.next();

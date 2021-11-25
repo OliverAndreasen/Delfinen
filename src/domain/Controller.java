@@ -155,6 +155,7 @@ public class Controller {
 
                 case 3 -> {
                     // TODO Vis top 5.
+                    //db.getAllCompetitionMembers();
                 }
             }
         }
