@@ -23,6 +23,13 @@ public class CompetitionMember extends Member {
         return bestTrainingTimeDate;
     }
 
+    public String bestTrainingTimeDateToString() {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
+        return formatter.format(bestTrainingTimeDate);
+    }
+
+
+
     public String[] getBestTrainingTimes() {
         for (int i = 0; i < bestTrainingTimeDate.length; i++) {
             DateFormat formatter = new SimpleDateFormat("HH:mm:ss");

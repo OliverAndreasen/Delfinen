@@ -4,6 +4,8 @@ import database.Database;
 import ui.UserInterface;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Controller {
@@ -68,7 +70,7 @@ public class Controller {
         while(programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
-                    // TODO Tilføj nyt medlem.
+                    // TODO optimer ux (print)
                     ui.printChairManAddMember();
                     addMember();
 
@@ -95,6 +97,7 @@ public class Controller {
             switch (userInputNumber()) {
                 case 1 -> {
                     // TODO Betal kontingent.
+                    test();
                 }
 
                 case 2 -> {
@@ -122,7 +125,7 @@ public class Controller {
                 }
 
                 case 2 -> {
-                    // TODO Tjek medlemmer i restance.
+                    // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
                     ui.printDebtList(accountant.getMembersWithDebt());
                 }
 
@@ -211,6 +214,20 @@ public class Controller {
         accountant.addMemberWithDebt(member);
 
         db.saveMemberToDebtList(member);
+    }
+
+    public void test() {
+
+        for (Member member : db.getAllMembers()) {
+            if (member instanceof CompetitionMember) {
+
+                System.out.println(Arrays.toString(((CompetitionMember) member).getBestTrainingTimeDate()));
+
+            }
+            else {
+                System.out.println(member);
+            }
+        }
     }
 
 
