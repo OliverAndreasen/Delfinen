@@ -61,54 +61,55 @@ public class Database {
         }
     }
 
-        public void saveMember(Member member) throws IOException {
-            BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
-            String result = "";
-            result += member.getMemberId();
-            result += ";";
-            result += member.getName();
-            result += ";";
-            result += member.getAge();
-            result += ";";
-            result += member.getActiveStatus();
-            result += ";";
-            result += member.getTeamType();
-            result += ";";
-            result += member.getPaidThisYear();
-            result += ";";
+    public void saveMember(Member member) throws IOException {
+        BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
+        String result = "";
+        result += member.getMemberId();
+        result += ";";
+        result += member.getName();
+        result += ";";
+        result += member.getAge();
+        result += ";";
+        result += member.getActiveStatus();
+        result += ";";
+        result += member.getTeamType();
+        result += ";";
+        result += member.getPaidThisYear();
+        result += ";";
 
-            if(member instanceof CompetitionMember) {
-                Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
+        if(member instanceof CompetitionMember) {
+            Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
 
-                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
 
-                Date date = new Date();
-                String strDate = formatter.format(date);
-                System.out.println(strDate);
+            Date date = new Date();
+            String strDate = formatter.format(date);
+            System.out.println(strDate);
 
-                bestTrainingTimeDate[0] = date;
-                bestTrainingTimeDate[1] = date;
-                bestTrainingTimeDate[2] = date;
-                bestTrainingTimeDate[3] = date;
+            bestTrainingTimeDate[0] = date;
+            bestTrainingTimeDate[1] = date;
+            bestTrainingTimeDate[2] = date;
+            bestTrainingTimeDate[3] = date;
 
-                String resultBestTrainingTimeDate = "";
-                for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                    if (i == 3) {
-                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
-                    } else {
-                        resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
-                    }
+            String resultBestTrainingTimeDate = "";
+            for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+                if (i == 3) {
+                    resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]);
+                } else {
+                    resultBestTrainingTimeDate += formatter.format(bestTrainingTimeDate[i]) + ",";
                 }
-                result += resultBestTrainingTimeDate;
-                result += ";";
             }
-
-            writer.write(result);
-            writer.newLine();
-            writer.close();
-            System.out.println("Saved");
+            result += resultBestTrainingTimeDate;
+            result += ";";
         }
-/*
+
+        writer.write(result);
+        writer.newLine();
+        writer.close();
+        System.out.println("Saved");
+    }
+
+    /*
         public void loadTeams() throws FileNotFoundException {
             teams.clear();
             String fileName = "data/Members.txt";
@@ -143,7 +144,6 @@ public class Database {
         }
  */
 
-
     public ArrayList<Member> getAllMembers() {
         return members;
     }
@@ -155,8 +155,6 @@ public class Database {
     public int nextIdCompetitionMember(){
         return this.lastIdCompetitionMember + 1;
     }
-
-
 
     public Member getMemberById(int memberId) {
         for (int i = 0; i < members.size(); i++) {

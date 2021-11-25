@@ -43,8 +43,7 @@ public class Accounting {
                 result.append(calculateSubscriptionFee(member));
                 result.append(" kr.\n");
             }
-        }
-        else {
+        } else {
             result = new StringBuilder("Ingen medlemmer med resistance");
         }
         return result.toString();
@@ -55,7 +54,6 @@ public class Accounting {
         for (Member member : members) {
             total += calculateSubscriptionFee(member);
         }
-
         return total;
     }
 

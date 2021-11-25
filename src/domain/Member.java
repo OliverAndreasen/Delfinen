@@ -49,9 +49,13 @@ public class Member {
         this.activeStatus = activeStatus;
     }
 
-    public void paySubscription() {}
+    public void paySubscription() {
 
-    public void deleteAccount() {}
+    }
+
+    public void deleteAccount() {
+
+    }
 
     public String toString() {
         String result = "";
