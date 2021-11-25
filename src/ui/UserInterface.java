@@ -29,8 +29,8 @@ public class UserInterface {
         System.out.println("""
                 Vælg en disciplin:
                     1. Butterfly
-                    2. Crawl, 
-                    3. Rygcrawl og 
+                    2. Crawl
+                    3. Rygcrawl
                     4. Brystsvømning
                 """);
     }
