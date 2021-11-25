@@ -5,8 +5,11 @@ import domain.*;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Database {
@@ -47,8 +50,12 @@ public class Database {
             } else {
                 paidThisYear = false;
             }
-            sc.nextLine();
+            if(memberId < 100) {
+                String dates = sc.next();
+                Date bestTrainingTimeDate[] = new Date[4];
+            }
 
+                sc.nextLine();
             Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
             members.add(member);
         }
@@ -73,10 +80,9 @@ public class Database {
             if(member instanceof CompetitionMember) {
                 Date[] bestTrainingTimeDate = ((CompetitionMember) member).getBestTrainingTimeDate();
 
-                DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
 
                 Date date = new Date();
-
                 String strDate = formatter.format(date);
                 System.out.println(strDate);
 

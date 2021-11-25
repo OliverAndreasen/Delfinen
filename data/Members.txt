@@ -2,6 +2,5 @@
 2;GurliGris;10;true;Junior;true;
 3;PeterPlys;59;true;Senior;true;
 4;Peter Pedal;99;true;Motionist;true;
-105;Abekat;10;true;KonkurrenceSvømmer;true;11/07/2021/,11/07/2021/,11/07/2021/,11/07/2021/;1:30:50,1:30:50,1:30:50,1:30:50;Butterfly,Crawl,Rygcrawl,Brystsvømning;
 5;Kristian;24;true;Senior;true;
-6;Alex;23;true;Junior;true;25.11.2021 10:35:47,25.11.2021 10:35:47,25.11.2021 10:35:47,25.11.2021 10:35:47;
+6;Alex;23;true;Junior;true;25/11/2021/35/47,25/11/2021/35/47,25/11/2021/35/47,25/11/2021/35/47;
