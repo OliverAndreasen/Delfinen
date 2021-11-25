@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class Team {
     private String swimStyle;
-    private ArrayList<CompetitionMember> teamMembers = new ArrayList<>();
+    private ArrayList<Integer> teamMembersId = new ArrayList<>();
 
-    public void addMemberToTeam(CompetitionMember member) {
-        teamMembers.add(member);
+   /* public void addMemberToTeam(int memberId) {
+        teamMembersId.add(member);
     }
 
     public void removeMemberFromTeam(CompetitionMember member) {
         teamMembers.remove(member);
     }
+    
+    */
 }

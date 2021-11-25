@@ -55,12 +55,16 @@ public class Database {
                 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
 
                 String[] test = dates.split(",");
+
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+                    System.out.println(test[i]);
+                    if(!test[i].equals("null")) {
                     try {
                         bestTrainingTimeDate[i] = formatter.parse(test[i]);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+                }
 
                 }
 
