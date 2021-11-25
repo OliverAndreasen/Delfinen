@@ -1,6 +1,7 @@
 package domain;
 
 import database.Database;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -24,6 +25,5 @@ public class test {
         */
 
         System.out.println(db.nextIdMember());
-
     }
 }

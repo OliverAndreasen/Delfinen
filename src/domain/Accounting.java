@@ -6,40 +6,37 @@ public class Accounting {
     private int subscriptionTotal;
     private ArrayList<Member> membersWithDebt;
 
-    public void setMembersWithDebt(ArrayList<Member> membersWithDebt) {
-        this.membersWithDebt = membersWithDebt;
-    }
-
     //@Author Oliver
     public int calculateSubscriptionFee(Member member) {
         int result;
-        if(member.getActiveStatus()){
-            if(member.getAge() <= 18) {
-                if(member.getAge() <= 60) {
+        if (member.getActiveStatus()) {
+            if (member.getAge() <= 18) {
+                if (member.getAge() <= 60) {
                     result = 1200;
-                }
-                else {
+                } else {
                     result = 1600;
                 }
-            }
-            else {
+            } else {
                 result = 1000;
             }
-        }
-        else {
+        } else {
             result = 500;
         }
         return result;
     }
 
-    public ArrayList getMembersWithDebt() {
+    public ArrayList<Member> getMembersWithDebt() {
         return membersWithDebt;
     }
 
+    public void setMembersWithDebt(ArrayList<Member> membersWithDebt) {
+        this.membersWithDebt = membersWithDebt;
+    }
+
     // @Author Oliver
-    public String getMembersWithDebtToString(){
+    public String getMembersWithDebtToString() {
         StringBuilder result = new StringBuilder();
-        if(!membersWithDebt.isEmpty()){
+        if (!membersWithDebt.isEmpty()) {
             for (Member member : membersWithDebt) {
                 result.append("Navn: ");
                 result.append(member.getName());

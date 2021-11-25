@@ -4,9 +4,7 @@ import database.Database;
 import ui.UserInterface;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Controller {
@@ -16,26 +14,19 @@ public class Controller {
     private Accounting accountant = new Accounting();
     private Scanner scanner = new Scanner(System.in);
 
-    public String userInput(){
+    public String userInput() {
         return scanner.nextLine();
     }
 
-    public int userInputNumber(){
+    public int userInputNumber() {
         int input = scanner.nextInt();
         scanner.nextLine();
         return input;
     }
 
-    public void start(){
+    public void start() {
         ui.start();
-
         // Fetch members from database
-        try {
-            db.loadMembers();
-            setMembersWithDebt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
@@ -55,7 +46,7 @@ public class Controller {
 
                 case 4 -> {
                     // TODO
-                    // competetition member?
+                    // competition member?
                 }
 
                 case 5 -> {
@@ -69,7 +60,7 @@ public class Controller {
 
     public void chairManController() {
 
-        while(programIsRunning) {
+        while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
                     // TODO optimer ux (print)
@@ -86,7 +77,6 @@ public class Controller {
     }
 
     public void memberController() {
-
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
@@ -102,7 +92,7 @@ public class Controller {
                 }
 
                 case 3 -> {
-                    // TODO Afslut medlemsskab.
+                    // TODO Afslut medlemskab.
                 }
 
                 case 4 -> {
@@ -172,27 +162,27 @@ public class Controller {
     }
 
     public Member createMember() {
-        int nextId = db.nextIdMember();
+        int nextId;
         String name = userInput();
         int age = userInputNumber();
 
         String teamType = "";
         ui.chooseTeamType();
         switch (userInputNumber()) {
-            case 1 -> {teamType = "Junior";}
-            case 2 -> {teamType = "Senior";}
-            case 3 -> {teamType = "Motionist";}
-            case 4 -> {teamType = "Konkurrencesvømmer";}
+            case 1 -> teamType = "Junior";
+            case 2 -> teamType = "Senior";
+            case 3 -> teamType = "Motionist";
+            case 4 -> teamType = "Konkurrencesvømmer";
         }
-
         // create regular or competition member
         if (teamType.equals("Konkurrencesvømmer")) {
+            nextId = db.nextIdCompetitionMember();
             return new CompetitionMember(nextId, name, age, true, teamType, true);
         } else {
+            nextId = db.nextIdMember();
             return new Member(nextId, name, age, true, teamType, true);
         }
     }
-
 
     /***** Accountant methods *****/
     public int calculateTotalSubscription() {
@@ -213,27 +203,26 @@ public class Controller {
     public void test() {
         for (Member member : db.getAllMembers()) {
             if (member instanceof CompetitionMember) {
-                if(((CompetitionMember) member).getBestTrainingTimeDate() != null){
+                if (((CompetitionMember) member).getBestTrainingTimeDate() != null) {
                     System.out.println(Arrays.toString(((CompetitionMember) member).bestTrainingTimeDateToString()));
                     for (int i = 0; i < ((CompetitionMember) member).bestTrainingTimeDateToString().length; i++) {
                         System.out.println(((CompetitionMember) member).getDateById(i));
 
                     }
-               }
-            }
-            else {
+                }
+            } else {
                 System.out.println(member);
             }
         }
     }
 
-    public void setMembersWithDebt(){
-      accountant.setMembersWithDebt(db.setMembersWithDebt());
+    public void setMembersWithDebt() {
+        accountant.setMembersWithDebt(db.setMembersWithDebt());
     }
 
-
     // can change member from competion member to member or the other way.
-    public void changeMember(){}
+    public void changeMember() {
+    }
 
 }
 

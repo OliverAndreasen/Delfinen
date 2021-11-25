@@ -1,9 +1,9 @@
 package domain;
 
 import database.Database;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Coach {
     private String name;
@@ -11,10 +11,6 @@ public class Coach {
     private CompetitionMember competitionMember;
     private Database db = new Database();
     ArrayList<Member> members = db.getAllMembers();
-
-    public Coach () throws IOException {
-        db.loadMembers();
-    }
 
    /* public ArrayList top5FromDivision(String Division) throws IOException {
         String [] bestTimes = new String[4];
@@ -28,6 +24,7 @@ public class Coach {
         return ;
     }*/
 
-    private void addCompetitionMemberBestTime(CompetitionMember competitionMember){}
-
+    private void addCompetitionMemberBestTime(CompetitionMember competitionMember) {
     }
+
+}
