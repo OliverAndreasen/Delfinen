@@ -4,13 +4,11 @@ import domain.*;
 
 import java.io.*;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Database {
     FileHandler fileHandler = new FileHandler();
@@ -34,6 +32,7 @@ public class Database {
                 this.lastIdCompetitionMember = memberId;
             }
             String name = sc.next();
+            System.out.println("name" + name);
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
             String activeStatusString = sc.next();
@@ -50,9 +49,28 @@ public class Database {
             } else {
                 paidThisYear = false;
             }
-            if(memberId < 100) {
+            if(memberId > 100) {
                 String dates = sc.next();
                 Date bestTrainingTimeDate[] = new Date[4];
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
+
+
+                String[] test = dates.split(",");
+                for (int i = 0; i < bestTrainingTimeDate.length; i++) {
+                    /*bestTrainingTimeDate[i] = dates.split(" ");*/
+                    try {
+                        bestTrainingTimeDate[i] = formatter.parse(test[i]);
+                        System.out.println(bestTrainingTimeDate[i]);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                CompetitionMember member = new CompetitionMember(memberId, name, age, activeStatus, teamType, paidThisYear);
+                members.add(member);
+            } else {
+
             }
 
                 sc.nextLine();
