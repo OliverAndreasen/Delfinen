@@ -1,5 +1,7 @@
 package ui;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -46,13 +48,14 @@ public class UserInterface {
         System.out.println("""
                 1. Tjek forventet kontingent indkomst.
                 2. Tjek medlemmer i restance.
+                3. Tilføj restance til medlem.
                 """);
     }
+
 
     public void printTotalSubscription(int total) {
         System.out.printf("Den forventede indkomst af alle kontigenter er: %d.-" , total);
     }
-
 
 
     public void printChairmanMenu(){
@@ -77,8 +80,8 @@ public class UserInterface {
                 Tilføj nyt medlem.
                     Indtast navn:
                     Indtast alder:
-                    Vælg status:
                     Vælg hold:
+                    Konkurrencemedlem? (y/n)
                 """);
     }
 

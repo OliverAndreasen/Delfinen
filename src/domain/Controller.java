@@ -124,6 +124,13 @@ public class Controller {
                 case 2 -> {
                     // TODO Tjek medlemmer i restance.
                 }
+
+                case 3 -> {
+                    // TODO tilføj medlem til restance
+                    /*ui.accountantAddDebtPrint(db.getAllMembers());*/
+                    /*accountant.addMemberWithDebt(member);*/
+
+                }
             }
         }
     }
@@ -172,7 +179,18 @@ public class Controller {
             case 2 -> {teamType = "Senior";}
             case 3 -> {teamType = "Motionist";}
         }
-        return new Member(nextId, name, age, true, teamType, true);
+
+        // choose between competition member & regular member.
+        String chooseMemberType = userInput();
+        switch (chooseMemberType) {
+            case "y" -> {
+                return new CompetitionMember(nextId, name, age, true, teamType, true);
+            }
+            case "n" -> {
+                return new Member(nextId, name, age, true, teamType, true);
+            }
+        }
+        return null;
     }
 
 

@@ -94,6 +94,7 @@ public class Database {
                     }
                 }
                 result += resultBestTrainingTimeDate;
+                result += ";";
             }
 
             writer.write(result);
