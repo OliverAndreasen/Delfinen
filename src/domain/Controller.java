@@ -4,6 +4,7 @@ import database.Database;
 import ui.UserInterface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class Controller {
         // Fetch members from database
         try {
             db.loadMembers();
+            setMembersWithDebt();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -219,6 +221,10 @@ public class Controller {
                 System.out.println(member);
             }
         }
+    }
+
+    public void setMembersWithDebt(){
+      accountant.setMembersWithDebt(db.setMembersWithDebt());
     }
 
 

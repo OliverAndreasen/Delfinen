@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class Accounting {
     private int subscriptionTotal;
-    private ArrayList<Member> membersWithDebt = new ArrayList<>();
+    private ArrayList<Member> membersWithDebt;
+
+    public void setMembersWithDebt(ArrayList<Member> membersWithDebt) {
+        this.membersWithDebt = membersWithDebt;
+    }
 
     //@Author Oliver
     public int calculateSubscriptionFee(Member member) {

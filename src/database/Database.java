@@ -14,6 +14,7 @@ public class Database {
     FileHandler fileHandler = new FileHandler();
     ArrayList<Member> members = new ArrayList<> ();
     ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Member> membersWithDebt = new ArrayList<>();
     public int lastIdMember;
     public int lastIdCompetitionMember;
 
@@ -122,41 +123,6 @@ public class Database {
             writer.close();
             System.out.println("Saved");
         }
-/*
-        public void loadTeams() throws FileNotFoundException {
-            teams.clear();
-            String fileName = "data/Members.txt";
-            File file = new File(fileName);
-            Scanner sc = new Scanner(file);
-            sc.useDelimiter(";");
-            while (sc.hasNext()) {
-                int memberId = Integer.parseInt(sc.next());
-                this.lastId = memberId;
-                String name = sc.next();
-                int age = Integer.parseInt(sc.next());
-                boolean activeStatus;
-                String activeStatusString = sc.next();
-                if (activeStatusString.equals("true")) {
-                    activeStatus = true;
-                } else {
-                    activeStatus = false;
-                }
-                String teamType = sc.next();
-                String paidThisYearString = sc.next();
-                boolean paidThisYear;
-                if (paidThisYearString.equals("true")) {
-                    paidThisYear = true;
-                } else {
-                    paidThisYear = false;
-                }
-                sc.nextLine();
-
-                Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
-                members.add(member);
-            }
-        }
- */
-
 
     public ArrayList<Member> getAllMembers() {
         return members;
@@ -197,6 +163,15 @@ public class Database {
     }
 
     public void saveMemberToDebtList(Member member) {
+    }
+
+    public ArrayList<Member> setMembersWithDebt() {
+        for (int i = 0; i < members.size(); i++) {
+            if(!members.get(i).getPaidThisYear()) {
+                membersWithDebt.add(members.get(i));
+            }
+        }
+        return membersWithDebt;
     }
 
 
