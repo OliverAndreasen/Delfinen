@@ -31,8 +31,8 @@ public class UserInterface {
         System.out.println("""
                 Vælg en disciplin:
                     1. Butterfly
-                    2. Crawl, 
-                    3. Rygcrawl og 
+                    2. Crawl
+                    3. Rygcrawl
                     4. Brystsvømning
                 """);
     }
@@ -77,9 +77,7 @@ public class UserInterface {
     public void printChairmanMenu(){
             System.out.println("""
                 1. Tilføj nyt medlem.
-                2. Skift medlems hold.
-                3. Skift medlemstype.
-                4. Slet medlem.
+                2. Slet medlem.
                 """);
         }
 
@@ -107,6 +105,7 @@ public class UserInterface {
                     1. Junior
                     2. Senior
                     3. Motionist
+                    4. Konkurrencesvømmer
                 """);
     }
 

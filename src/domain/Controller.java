@@ -77,14 +77,6 @@ public class Controller {
                 }
 
                 case 2 -> {
-                    // TODO Skift medlems hold.
-                }
-
-                case 3 -> {
-                    // TODO Skift medlemstype.
-                }
-
-                case 4 -> {
                     // TODO Slet medlem.
                 }
             }
@@ -184,19 +176,15 @@ public class Controller {
             case 1 -> {teamType = "Junior";}
             case 2 -> {teamType = "Senior";}
             case 3 -> {teamType = "Motionist";}
+            case 4 -> {teamType = "Konkurrencesvømmer";}
         }
 
-        // choose between competition member & regular member.
-        String chooseMemberType = userInput();
-        switch (chooseMemberType) {
-            case "y" -> {
-                return new CompetitionMember(nextId, name, age, true, teamType, true);
-            }
-            case "n" -> {
-                return new Member(nextId, name, age, true, teamType, true);
-            }
+        // create regular or competition member
+        if (teamType.equals("Konkurrencesvømmer")) {
+            return new CompetitionMember(nextId, name, age, true, teamType, true);
+        } else {
+            return new Member(nextId, name, age, true, teamType, true);
         }
-        return null;
     }
 
 

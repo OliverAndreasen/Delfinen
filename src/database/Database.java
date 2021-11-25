@@ -32,7 +32,6 @@ public class Database {
                 this.lastIdCompetitionMember = memberId;
             }
             String name = sc.next();
-            System.out.println("name" + name);
             int age = Integer.parseInt(sc.next());
             boolean activeStatus;
             String activeStatusString = sc.next();
@@ -56,11 +55,8 @@ public class Database {
 
                 String[] test = dates.split(",");
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                    /*bestTrainingTimeDate[i] = dates.split(" ");*/
                     try {
                         bestTrainingTimeDate[i] = formatter.parse(test[i]);
-                        System.out.println(bestTrainingTimeDate[i]);
-
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -71,12 +67,11 @@ public class Database {
                 member.setBestTrainingTimeDate(bestTrainingTimeDate);
                 members.add(member);
             } else {
-
+                Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
+                members.add(member);
             }
 
-                sc.nextLine();
-            Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
-            members.add(member);
+            sc.nextLine();
         }
     }
 
