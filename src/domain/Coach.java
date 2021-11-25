@@ -2,14 +2,13 @@ package domain;
 
 import database.Database;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Coach {
     private String name;
     private String ageGroup;
     private CompetitionMember competitionMember;
-    private Database db = new Database();
+    private final Database db = new Database();
     ArrayList<Member> members = db.getAllMembers();
 
    /* public ArrayList top5FromDivision(String Division) throws IOException {

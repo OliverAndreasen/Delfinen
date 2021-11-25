@@ -5,7 +5,6 @@ import domain.Member;
 import domain.Team;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,11 +14,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Database {
-    public int lastIdMember;
-    public int lastIdCompetitionMember;
+    private int lastIdMember;
+    private int lastIdCompetitionMember;
     FileHandler fileHandler = new FileHandler();
-    ArrayList<Member> members = new ArrayList<>();
-    ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Team> teams = new ArrayList<>();
     private ArrayList<Member> membersWithDebt = new ArrayList<>();
 
     public Database() {
@@ -33,9 +32,7 @@ public class Database {
 
     public void loadMembers() throws IOException {
         members.clear();
-        String fileName = "data/Members.txt";
-        File file = new File(fileName);
-        Scanner sc = new Scanner(file);
+        Scanner sc = fileHandler.reader("data/Members.txt");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
@@ -110,13 +107,13 @@ public class Database {
             StringBuilder resultBestTrainingTimeDates = new StringBuilder();
             for (int i = 0; i < bestTrainingTimeDates.length; i++) {
                 if (i == 3) {
-                    if(bestTrainingTimeDates[i] == null)  {
+                    if (bestTrainingTimeDates[i] == null) {
                         resultBestTrainingTimeDates.append(bestTrainingTimeDates[i]);
-                    }else{
+                    } else {
                         resultBestTrainingTimeDates.append(formatter.format(bestTrainingTimeDates[i]));
                     }
                 } else {
-                    if (bestTrainingTimeDates[i] == null){
+                    if (bestTrainingTimeDates[i] == null) {
                         resultBestTrainingTimeDates.append(bestTrainingTimeDates[i]).append(",");
                     } else {
                         resultBestTrainingTimeDates.append(formatter.format(bestTrainingTimeDates[i])).append(",");

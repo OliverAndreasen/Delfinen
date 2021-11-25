@@ -8,17 +8,15 @@ import java.util.Date;
 public class CompetitionMember extends Member {
 
     private Date[] bestTrainingTimeDates = new Date[4];
-    private String[] bestTrainingTimes = new String[4];
+    private final String[] bestTrainingTimes = new String[4];
 
     public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
         super(memberId, name, age, activeStatus, teamType, paidThisYear);
-
 
         for (int i = 0; i < bestTrainingTimeDates.length; i++) {
             if (bestTrainingTimeDates[i] != null) {
                 setBestTrainingTimes(i);
             }
-
         }
     }
 
@@ -95,13 +93,13 @@ public class CompetitionMember extends Member {
 
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
         Date date = new Date();
-            try {
-                //System.out.println("dato " + stringDate);
-                date = formatter.parse(stringDate);
-                //System.out.println("dato efter format " + date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        try {
+            //System.out.println("dato " + stringDate);
+            date = formatter.parse(stringDate);
+            //System.out.println("dato efter format " + date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return date;
     }
 
