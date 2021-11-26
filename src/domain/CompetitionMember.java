@@ -12,16 +12,33 @@ public class CompetitionMember extends Member {
 
     public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
         super(memberId, name, age, activeStatus, teamType, paidThisYear);
-
         for (int i = 0; i < bestTrainingTimeDates.length; i++) {
             if (bestTrainingTimeDates[i] != null) {
                 setBestTrainingTimes(i);
             }
         }
     }
-
+  
     public String[] getBestTrainingTimes() {
         return bestTrainingTimes;
+    }
+
+    public String getBestTrainingTimeByDiscipline(String disciplineName){
+        switch (disciplineName){
+            case "butterfly" -> {
+                return getBestTrainingTimes()[0];
+            }
+            case "crawl" -> {
+                return getBestTrainingTimes()[1];
+            }
+            case "rygcrawl" -> {
+                return getBestTrainingTimes()[2];
+            }
+            case "brystsvømning" -> {
+                return getBestTrainingTimes()[3];
+            }
+        }
+        return null;
     }
 
     public void setBestTrainingTimes(int index) {
@@ -29,7 +46,7 @@ public class CompetitionMember extends Member {
         String[] datesplit = swimmingDiscipline.split("/");
         String minutes = datesplit[3];
         String seconds = datesplit[4];
-        String result = minutes + ":" + seconds;
+        String result = minutes + seconds;
         bestTrainingTimes[index] = result;
     }
 

@@ -194,10 +194,8 @@ public class Controller {
 /* // Update this
     public void addMemberToDebtList(Member member) {
         accountant.addMemberWithDebt(member);
-
         db.saveMemberToDebtList(member);
     }
-
  */
 
     public void test() {
@@ -250,8 +248,6 @@ public class Controller {
         }
         return result;
     }
-
-
 
 
 

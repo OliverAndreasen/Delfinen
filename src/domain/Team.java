@@ -3,16 +3,28 @@ package domain;
 import java.util.ArrayList;
 
 public class Team {
-    private String swimStyle;
-    private ArrayList<Integer> teamMembersId = new ArrayList<>();
+    private String teamName;
+    private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
 
-   /* public void addMemberToTeam(int memberId) {
-        teamMembersId.add(member);
+    public Team(String teamName) {
+        this.teamName = teamName;
     }
 
-    public void removeMemberFromTeam(CompetitionMember member) {
-        teamMembers.remove(member);
+    public ArrayList<Integer> getTeamMembersIds() {
+        return competitionMemberIds;
     }
-    
-    */
+
+    public void addTeamMember(int competitionMemberId) {
+        competitionMemberIds.add(competitionMemberId);
+    }
+
+    public void removeTeamMember(int competitionMemberId) {
+        competitionMemberIds.remove(competitionMemberId);
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
 }
+
+
