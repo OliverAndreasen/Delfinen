@@ -18,25 +18,17 @@ public class CompetitionMember extends Member {
             }
         }
     }
-  
+
     public String[] getBestTrainingTimes() {
         return bestTrainingTimes;
     }
 
-    public String getBestTrainingTimeByDiscipline(String disciplineName){
-        switch (disciplineName){
-            case "butterfly" -> {
-                return getBestTrainingTimes()[0];
-            }
-            case "crawl" -> {
-                return getBestTrainingTimes()[1];
-            }
-            case "rygcrawl" -> {
-                return getBestTrainingTimes()[2];
-            }
-            case "brystsvømning" -> {
-                return getBestTrainingTimes()[3];
-            }
+    public String getBestTrainingTimeByDiscipline(int index){
+        switch (index){
+            case 0: return getBestTrainingTimes()[0];
+            case 1: return getBestTrainingTimes()[1];
+            case 2:return getBestTrainingTimes()[2];
+            case 3: return getBestTrainingTimes()[3];
         }
         return null;
     }

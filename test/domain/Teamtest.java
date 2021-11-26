@@ -54,13 +54,12 @@ public class Teamtest {
             for (int i = 0; i < teamIds.size(); i++) {
                 System.out.println(team.getTeamName());
                 Member member = db.getMemberById(teamIds.get(i));
-                String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline("crawl");
+                String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(0);
                 System.out.println(memberBestTime);
-                System.out.println(Arrays.toString(((CompetitionMember) member).getBestTrainingTimes()));
                 if(memberBestTime != null) {
                     bestButterFlyTimes.add(memberBestTime);
                 }
-                System.out.println(member);
+                // System.out.println(member);
             }
             Collections.sort(bestButterFlyTimes);
 
