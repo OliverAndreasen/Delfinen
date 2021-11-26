@@ -69,6 +69,7 @@ public class UserInterface {
         }
     }
 
+
     public void addMemberIdToDebtPrint() {
         System.out.print("Hvilket medlem skal tilføjes til restance?: ");
     }

@@ -234,7 +234,7 @@ public class Controller {
         return db.getMemberById(memberId);
     }
 
-    public ArrayList<Member> getMembersWithDebt() throws IOException {
+    public ArrayList<Member> getMembersWithDebt() {
         ArrayList<Integer> memberIdsWithDebt = db.getMemberIdsWithDebt();
         ArrayList<Member> membersWithDebt = new ArrayList<>();
         for (int i = 0; i < memberIdsWithDebt.size(); i++) {
@@ -252,8 +252,14 @@ public class Controller {
         return accountant.getSubscriptionTotal();
     }
 
-    public void MembersWithDebtToString(){
 
+    public String membersWithDebtToString(){
+        String result = "";
+        for (Member member : db.getMembersWithDebt()) {
+            result +=  "Medlemsnavn: " + member.getName() + "\n";
+            result += "Resistance: " + accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()) + "\n";
+        }
+        return result;
     }
 
 
