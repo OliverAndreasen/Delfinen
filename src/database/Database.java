@@ -5,13 +5,13 @@ import domain.Member;
 import domain.Team;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -22,6 +22,8 @@ public class Database {
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Team> teams = new ArrayList<>();
     private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
+    private ArrayList<Integer> competitiveMemberIdsJunior = new ArrayList<>();
+    private ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
 
     public Database() {
         try {
@@ -30,6 +32,29 @@ public class Database {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadTeamMembers() throws FileNotFoundException {
+        competitiveMemberIdsJunior.clear();
+        competitiveMemberIdsSenior.clear();
+        Scanner sc = fileHandler.reader("data/Teams.txt");
+        sc.useDelimiter(";");
+        while (sc.hasNext()) {
+            String teamName = sc.next();
+            String[] competitiveIdsString = sc.next().split(",");
+            int[] competitiveIds = new int[competitiveIdsString.length];
+            for(int i = 0; i < competitiveIdsString.length; i++) {
+                competitiveIds[i] = Integer.parseInt(competitiveIdsString[i]);
+            }
+            for (int i = 0; i < competitiveIds.length; i++) {
+                if(teamName.equals("Junior")){
+                    competitiveMemberIdsJunior.add(competitiveIds[i]);
+                }else {
+                    competitiveMemberIdsSenior.add(competitiveIds[i]);
+                }
+            }
+        }
+
     }
 
     public void loadMembers() throws IOException {
@@ -148,7 +173,6 @@ public class Database {
         System.out.println("Saved");
     }
 
-
     public void saveMemberIdWithDebt(Integer memberId) throws IOException {
 
         BufferedWriter writer = fileHandler.writer("data/Accounting.txt", false);
@@ -193,19 +217,6 @@ public class Database {
     public void loadMembersFromDebtList() {
 
     }
-
-    public void deleteMember(Member member) {
-        members.remove(member);
-        fileHandler.overwriteFile(); //
-        for (Member m : members) {
-            try {
-                saveMember(m);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 
     public void setMembersWithDebt() {
         for (Member member : members) {
