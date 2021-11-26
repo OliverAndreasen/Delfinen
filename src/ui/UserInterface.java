@@ -3,6 +3,7 @@ package ui;
 import domain.Member;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
