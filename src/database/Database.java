@@ -22,15 +22,12 @@ public class Database {
     private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
 
     public Database() {
-        /*
         try {
-            //loadMembers();
-             //setMembersWithDebt();
+             loadMembers();
+             setMembersWithDebt();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-         */
     }
 
     public void loadMembers() throws IOException {
