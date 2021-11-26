@@ -19,7 +19,11 @@ public class Database {
     FileHandler fileHandler = new FileHandler();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Team> teams = new ArrayList<>();
-    private ArrayList<Member> membersWithDebt = new ArrayList<>();
+    private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
+
+    public ArrayList<Integer> getMemberIdsWithDebt() {
+        return memberIdsWithDebt;
+    }
 
     public Database() {
         try {
@@ -79,6 +83,25 @@ public class Database {
 
             sc.nextLine();
         }
+    }
+
+    public void saveMemberIdWithDebt(Integer memberId) throws IOException {
+        BufferedWriter writer = fileHandler.writer("data/Accounting.txt", true);
+        String result = memberId + ";";
+        writer.write(result);
+        writer.close();
+        System.out.println("Saved");
+    }
+
+    public ArrayList<Integer> loadMemberIdsWithDebt() throws IOException {
+        memberIdsWithDebt.clear();
+        Scanner sc = fileHandler.reader("data/Accounting.txt");
+        sc.useDelimiter(";");
+        while (sc.hasNext()) {
+            int memberId = Integer.parseInt(sc.next());
+            memberIdsWithDebt.add(memberId);
+        }
+        return memberIdsWithDebt;
     }
 
     public void saveMember(Member member) throws IOException {
@@ -170,13 +193,13 @@ public class Database {
     public void saveMemberToDebtList(Member member) {
     }
 
-    public ArrayList<Member> setMembersWithDebt() {
+    public ArrayList<Integer> setMembersWithDebt() {
         for (Member member : members) {
             if (!member.getPaidThisYear()) {
-                membersWithDebt.add(member);
+                memberIdsWithDebt.add(member.getMemberId());
             }
         }
-        return membersWithDebt;
+        return memberIdsWithDebt;
     }
 
     //public Member findMember(String firstName, String lastName);

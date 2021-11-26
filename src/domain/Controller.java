@@ -4,6 +4,7 @@ import database.Database;
 import ui.UserInterface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -107,22 +108,26 @@ public class Controller {
         while (programIsRunning) {
             switch (userInputNumber()) {
                 case 1 -> {
-                    int total = calculateTotalSubscription();
-                    ui.printTotalSubscription(total);
+                    // update this
+                    // int total = calculateTotalSubscription();
+                    //ui.printTotalSubscription(total);
                 }
 
                 case 2 -> {
                     // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
-                    ui.printDebtList(accountant.getMembersWithDebt());
+                    //ui.printDebtList(accountant.getMembersWithDebt());
                 }
 
                 case 3 -> {
+                    /*
                     ui.addMemberIdToDebtPrint();
 
                     Member memberToAddToDebt = getMemberToAddToDebt();
                     addMemberToDebtList(memberToAddToDebt);
 
                     ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
+
+                     */
                 }
             }
         }
@@ -185,20 +190,25 @@ public class Controller {
     }
 
     /***** Accountant methods *****/
+    /* Update this
     public int calculateTotalSubscription() {
         return accountant.projectedSubscriptionTotal(db.getAllMembers());
     }
+
+     */
 
     public Member getMemberToAddToDebt() {
         int memberIdToGet = userInputNumber();
         return db.getMemberById(memberIdToGet);
     }
-
+/* // Update this
     public void addMemberToDebtList(Member member) {
         accountant.addMemberWithDebt(member);
 
         db.saveMemberToDebtList(member);
     }
+
+ */
 
     public void test() {
         for (Member member : db.getAllMembers()) {
@@ -216,9 +226,35 @@ public class Controller {
         }
     }
 
-    public void setMembersWithDebt() {
-        accountant.setMembersWithDebt(db.setMembersWithDebt());
+    public void setMembersWithDebt() throws IOException {
+        accountant.setMemberIdsWithDebt(db.loadMemberIdsWithDebt());
     }
+
+    public Member getMemberById(int memberId) {
+        return db.getMemberById(memberId);
+    }
+
+    public ArrayList<Member> getMembersWithDebt(){
+        ArrayList<Integer> memberIdsWithDebt = db.getMemberIdsWithDebt();
+        ArrayList<Member> membersWithDebt = new ArrayList<>();
+        for (int i = 0; i < memberIdsWithDebt.size(); i++) {
+            membersWithDebt.add(getMemberById(memberIdsWithDebt.get(i)));
+        }
+        return membersWithDebt;
+    }
+
+    public int calculateSubscriptionFee(boolean activeStatus, int age){
+        return accountant.calculateSubscriptionFee(activeStatus, age);
+    }
+
+    public int addSubscriptionTotal(int memberFee) {
+        accountant.addSubscriptionTotal(memberFee);
+        return accountant.getSubscriptionTotal();
+    }
+
+
+
+
 
     // can change member from competion member to member or the other way.
     public void changeMember() {
