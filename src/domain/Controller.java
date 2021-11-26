@@ -14,17 +14,7 @@ public class Controller {
     private Database db = new Database();
     private boolean programIsRunning = true;
     private Accounting accountant = new Accounting();
-    private Scanner scanner = new Scanner(System.in);
 
-    public String userInput(){
-        return scanner.nextLine();
-    }
-
-    public int userInputNumber(){
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        return input;
-    }
 
     public void start(){
         ui.start();
@@ -37,7 +27,7 @@ public class Controller {
             e.printStackTrace();
         }
         while (programIsRunning) {
-            switch (userInputNumber()) {
+            switch (ui.userInputNumber()) {
                 case 1 -> {
                     ui.printChairmanMenu();
                     chairManController();
@@ -70,7 +60,7 @@ public class Controller {
     public void chairManController() {
 
         while(programIsRunning) {
-            switch (userInputNumber()) {
+            switch (ui.userInputNumber()) {
                 case 1 -> {
                     // TODO optimer ux (print)
                     ui.printChairManAddMember();
@@ -88,7 +78,7 @@ public class Controller {
     public void memberController() {
 
         while (programIsRunning) {
-            switch (userInputNumber()) {
+            switch (ui.userInputNumber()) {
                 case 1 -> {
                     // TODO Betal kontingent.
                     test();
@@ -112,7 +102,7 @@ public class Controller {
 
     public void accountantController() {
         while (programIsRunning) {
-            switch (userInputNumber()) {
+            switch (ui.userInputNumber()) {
                 case 1 -> {
                     int total = calculateTotalSubscription();
                     ui.printTotalSubscription(total);
@@ -138,7 +128,7 @@ public class Controller {
     public void coachController() {
 
         while (programIsRunning) {
-            switch (userInputNumber()) {
+            switch (ui.userInputNumber()) {
                 case 1 -> {
                     // TODO Tilføj konkurrencesvømmer til hold.
                 }
@@ -169,12 +159,12 @@ public class Controller {
 
     public Member createMember() {
         int nextId = db.nextIdMember();
-        String name = userInput();
-        int age = userInputNumber();
+        String name = ui.userInput();
+        int age = ui.userInputNumber();
 
         String teamType = "";
         ui.chooseTeamType();
-        switch (userInputNumber()) {
+        switch (ui.userInputNumber()) {
             case 1 -> {teamType = "Junior";}
             case 2 -> {teamType = "Senior";}
             case 3 -> {teamType = "Motionist";}
@@ -196,7 +186,7 @@ public class Controller {
     }
 
     public Member getMemberToAddToDebt() {
-        int memberIdToGet = userInputNumber();
+        int memberIdToGet = ui.userInputNumber();
         return db.getMemberById(memberIdToGet);
     }
 

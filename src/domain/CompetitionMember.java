@@ -29,7 +29,6 @@ public class CompetitionMember extends Member {
         for (int i = 0; i < bestTrainingTimeDate.length; i++) {
             datesToString[i] = formatter.format(bestTrainingTimeDate[i]);
         }
-
         return datesToString;
     }
 

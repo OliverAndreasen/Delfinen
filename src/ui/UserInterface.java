@@ -7,6 +7,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
+    private Scanner scanner = new Scanner(System.in);
+
+    public String userInput(){
+        return scanner.nextLine();
+    }
+
+    public int userInputNumber(){
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
+    }
 
     public void start() {
         System.out.println("""
@@ -95,7 +106,6 @@ public class UserInterface {
                     Indtast navn:
                     Indtast alder:
                     Vælg hold:
-                    Konkurrencemedlem? (y/n)
                 """);
     }
 
