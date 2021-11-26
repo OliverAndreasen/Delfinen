@@ -4,10 +4,12 @@ import database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class test {
     public static void main(String[] args) throws IOException {
         Database db = new Database();
+        Accounting accounting = new Accounting();
         db.loadMembers();
         ArrayList<CompetitionMember> competitionMembers = db.getAllCompetitionMembers();
 

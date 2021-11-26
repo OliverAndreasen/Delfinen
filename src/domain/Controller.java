@@ -234,7 +234,7 @@ public class Controller {
         return db.getMemberById(memberId);
     }
 
-    public ArrayList<Member> getMembersWithDebt(){
+    public ArrayList<Member> getMembersWithDebt() throws IOException {
         ArrayList<Integer> memberIdsWithDebt = db.getMemberIdsWithDebt();
         ArrayList<Member> membersWithDebt = new ArrayList<>();
         for (int i = 0; i < memberIdsWithDebt.size(); i++) {
@@ -250,6 +250,10 @@ public class Controller {
     public int addSubscriptionTotal(int memberFee) {
         accountant.addSubscriptionTotal(memberFee);
         return accountant.getSubscriptionTotal();
+    }
+
+    public void MembersWithDebtToString(){
+
     }
 
 
