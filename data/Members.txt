@@ -1,7 +1,7 @@
-1;MikkelVester;21;true;Motionist;true;
-2;GurliGris;10;true;Junior;true;
-3;PeterPlys;59;true;Senior;true;
-4;Peter Pedal;99;true;Motionist;true;
+1;MikkelVester;21;true;Motionist;false;
+2;GurliGris;10;true;Junior;false;
+3;PeterPlys;59;true;Senior;false;
+4;Peter Pedal;99;true;Motionist;false;
 5;Kristian;24;true;Senior;true;
 101;alex;23;true;Konkurrencesvømmer;true;null,null,null,null;
 102;mikkel;23;true;Konkurrencesvømmer;true;null,null,null,null;

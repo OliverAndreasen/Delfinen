@@ -21,17 +21,16 @@ public class Database {
     private ArrayList<Team> teams = new ArrayList<>();
     private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
 
-    public ArrayList<Integer> getMemberIdsWithDebt() {
-        return memberIdsWithDebt;
-    }
-
     public Database() {
+        /*
         try {
-            loadMembers();
-            setMembersWithDebt();
+            //loadMembers();
+             //setMembersWithDebt();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
     public void loadMembers() throws IOException {
@@ -85,12 +84,8 @@ public class Database {
         }
     }
 
-    public void saveMemberIdWithDebt(Integer memberId) throws IOException {
-        BufferedWriter writer = fileHandler.writer("data/Accounting.txt", true);
-        String result = memberId + ";";
-        writer.write(result);
-        writer.close();
-        System.out.println("Saved");
+    public ArrayList<Integer> getMemberIdsWithDebt(){
+        return memberIdsWithDebt;
     }
 
     public ArrayList<Integer> loadMemberIdsWithDebt() throws IOException {
@@ -154,6 +149,15 @@ public class Database {
         System.out.println("Saved");
     }
 
+    public void saveMemberIdWithDebt(Integer memberId) throws IOException {
+
+        BufferedWriter writer = fileHandler.writer("data/Accounting.txt", false);
+        String result = memberId + ";";
+        writer.write(result);
+        writer.close();
+        System.out.println("Saved");
+    }
+
     public ArrayList<Member> getAllMembers() {
         return members;
     }
@@ -190,16 +194,12 @@ public class Database {
 
     }
 
-    public void saveMemberToDebtList(Member member) {
-    }
-
-    public ArrayList<Integer> setMembersWithDebt() {
+    public void setMembersWithDebt() {
         for (Member member : members) {
             if (!member.getPaidThisYear()) {
                 memberIdsWithDebt.add(member.getMemberId());
             }
         }
-        return memberIdsWithDebt;
     }
 
     //public Member findMember(String firstName, String lastName);

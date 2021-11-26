@@ -4,6 +4,21 @@ import java.util.ArrayList;
 
 public class Accounting {
     private int subscriptionTotal;
+    private int totaltDebt;
+
+    public Accounting() {
+        this.subscriptionTotal = 0;
+        this.totaltDebt = 0;
+    }
+
+    public int getTotaltDebt() {
+        return totaltDebt;
+    }
+
+    public void addTotaltDebt(int addDebt) {
+        this.totaltDebt = getTotaltDebt()+addDebt;
+    }
+
     private ArrayList<Integer> memberIdsWithDebt;
 
     public int getSubscriptionTotal() {
@@ -22,8 +37,8 @@ public class Accounting {
     public int calculateSubscriptionFee(boolean activeStatus, int age) {
         int result;
         if (activeStatus) {
-            if (age <= 18) {
-                if (age <= 60) {
+            if (age >= 18) {
+                if (age >= 60) {
                     result = 1200;
                 } else {
                     result = 1600;
