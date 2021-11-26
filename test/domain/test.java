@@ -11,21 +11,36 @@ public class test {
         Database db = new Database();
         Accounting accounting = new Accounting();
         db.loadMembers();
-        ArrayList<CompetitionMember> competitionMembers = db.getAllCompetitionMembers();
-
-        for (int i = 0; i < 2; i++) {
-            System.out.println(competitionMembers.get(i).toString());
-        }
+        ArrayList<Member> members = db.getAllMembers();
+        db.setMembersWithDebt();
         /*
-        Member member = new Member(5,"Peter Pedal", 99, true, "Motionist");
-        db.saveMember(member);
-        db.loadMembers();
-
-        for (int i = 0; i < members.size(); i++) {
-            System.out.println(members.get(i).toString());
+        ArrayList<Integer> memberIdsWithDebt = db.getMemberIdsWithDebt();
+        for (int i = 0; i < memberIdsWithDebt.size(); i++) {
+            db.saveMemberIdWithDebt(memberIdsWithDebt.get(i));
         }
-        */
+         */
 
-        System.out.println(db.nextIdMember());
+        ArrayList<Integer> memberIdsWithDebt = db.loadMemberIdsWithDebt();
+
+        System.out.println(Arrays.toString(new ArrayList[]{memberIdsWithDebt}));
+        ArrayList<Member>getMembersWithDebt = new ArrayList<>();
+        for (int i = 0; i < memberIdsWithDebt.size(); i++) {
+            getMembersWithDebt.add(db.getMemberById(memberIdsWithDebt.get(i)));
+        }
+        System.out.println(Arrays.toString(new ArrayList[]{getMembersWithDebt}));
+
+
+        for (Member member : getMembersWithDebt) {
+            accounting.addTotaltDebt(accounting.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
+        }
+
+        /*for (Member member : getMembersWithDebt) {
+            System.out.println(member.getName());
+            System.out.println("Resistance: " + accounting.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
+        }*/
+
+        System.out.println("Total debt: " + accounting.getTotaltDebt());
     }
+
+
 }

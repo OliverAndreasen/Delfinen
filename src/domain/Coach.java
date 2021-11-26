@@ -10,6 +10,7 @@ public class Coach {
     private CompetitionMember competitionMember;
     private final Database db = new Database();
     ArrayList<Member> members = db.getAllMembers();
+    
 
    /* public ArrayList top5FromDivision(String Division) throws IOException {
         String [] bestTimes = new String[4];

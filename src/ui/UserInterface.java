@@ -39,10 +39,10 @@ public class UserInterface {
     public void printTop5Lists() {
         System.out.println("""
                 Vælg en disciplin:
-                    1. Butterfly
-                    2. Crawl
-                    3. Rygcrawl
-                    4. Brystsvømning
+                    1. Butterfly.
+                    2. Crawl.
+                    3. Rygcrawl.
+                    4. Brystsvømning.
                 """);
     }
 
@@ -61,6 +61,10 @@ public class UserInterface {
                 2. Tjek medlemmer i restance.
                 3. Tilføj restance til medlem.
                 """);
+    }
+
+    public void printMembersWithDebt(String membersWithDebt) {
+        System.out.println(membersWithDebt);
     }
 
     public void printDebtList(ArrayList<Member> membersWithDebt) {

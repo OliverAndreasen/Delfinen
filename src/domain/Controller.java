@@ -252,10 +252,9 @@ public class Controller {
         return accountant.getSubscriptionTotal();
     }
 
-
     public String membersWithDebtToString(){
         String result = "";
-        for (Member member : db.getMembersWithDebt()) {
+        for (Member member : getMembersWithDebt()) {
             result +=  "Medlemsnavn: " + member.getName() + "\n";
             result += "Resistance: " + accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()) + "\n";
         }
