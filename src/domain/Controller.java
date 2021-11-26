@@ -115,7 +115,7 @@ public class Controller {
 
                 case 2 -> {
                     // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
-                    //ui.printDebtList(accountant.getMembersWithDebt());
+                    ui.printMembersWithDebt(membersWithDebtToString());
                 }
 
                 case 3 -> {
