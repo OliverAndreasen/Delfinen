@@ -9,10 +9,10 @@ public class test {
     public static void main(String[] args) throws IOException {
         Database db = new Database();
         db.loadMembers();
-        ArrayList<Member> members = db.getAllMembers();
+        ArrayList<CompetitionMember> competitionMembers = db.getAllCompetitionMembers();
 
-        for (int i = 0; i < members.size(); i++) {
-            System.out.println(members.get(i).toString());
+        for (int i = 0; i < 2; i++) {
+            System.out.println(competitionMembers.get(i).toString());
         }
         /*
         Member member = new Member(5,"Peter Pedal", 99, true, "Motionist");
@@ -25,6 +25,5 @@ public class test {
         */
 
         System.out.println(db.nextIdMember());
-
     }
 }

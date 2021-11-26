@@ -3,4 +3,8 @@
 3;PeterPlys;59;true;Senior;true;
 4;Peter Pedal;99;true;Motionist;true;
 5;Kristian;24;true;Senior;true;
-106;Alex;23;true;Junior;true;25/11/2021/35/47,25/11/2021/35/47,25/11/2021/35/47,25/11/2021/35/47;
+101;alex;23;true;Konkurrencesvømmer;true;null,null,null,null;
+102;mikkel;23;true;Konkurrencesvømmer;true;null,null,null,null;
+103;oliver;23;true;Konkurrencesvømmer;true;null,null,null,null;
+104;kristian;23;true;Konkurrencesvømmer;true;null,null,null,null;
+105;Oliver;27;true;Konkurrencesvømmer;true;25/11/2021/07/47,25/11/2021/07/47,25/11/2021/07/47,25/11/2021/07/47;

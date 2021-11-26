@@ -37,21 +37,25 @@ public class Member {
         return activeStatus;
     }
 
-    public void setTeamType(String teamType) {
-        this.teamType = teamType;
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 
     public String getTeamType() {
         return teamType;
     }
 
-    public void setActiveStatus(boolean activeStatus) {
-        this.activeStatus = activeStatus;
+    public void setTeamType(String teamType) {
+        this.teamType = teamType;
     }
 
-    public void paySubscription() {}
+    public void paySubscription() {
 
-    public void deleteAccount() {}
+    }
+
+    public void deleteAccount() {
+
+    }
 
     public String toString() {
         String result = "";

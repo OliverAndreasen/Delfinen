@@ -4,9 +4,7 @@ import database.Database;
 import ui.UserInterface;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Controller {
@@ -14,20 +12,23 @@ public class Controller {
     private Database db = new Database();
     private boolean programIsRunning = true;
     private Accounting accountant = new Accounting();
+    private Scanner scanner = new Scanner(System.in);
 
+    public String userInput() {
+        return scanner.nextLine();
+    }
 
-    public void start(){
+    public int userInputNumber() {
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
+    }
+
+    public void start() {
         ui.start();
-
         // Fetch members from database
-        try {
-            db.loadMembers();
-            setMembersWithDebt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (programIsRunning) {
-            switch (ui.userInputNumber()) {
+            switch (userInputNumber()) {
                 case 1 -> {
                     ui.printChairmanMenu();
                     chairManController();
@@ -45,7 +46,7 @@ public class Controller {
 
                 case 4 -> {
                     // TODO
-                    // competetition member?
+                    // competition member?
                 }
 
                 case 5 -> {
@@ -59,8 +60,8 @@ public class Controller {
 
     public void chairManController() {
 
-        while(programIsRunning) {
-            switch (ui.userInputNumber()) {
+        while (programIsRunning) {
+            switch (userInputNumber()) {
                 case 1 -> {
                     // TODO optimer ux (print)
                     ui.printChairManAddMember();
@@ -76,9 +77,8 @@ public class Controller {
     }
 
     public void memberController() {
-
         while (programIsRunning) {
-            switch (ui.userInputNumber()) {
+            switch (userInputNumber()) {
                 case 1 -> {
                     // TODO Betal kontingent.
                     test();
@@ -86,10 +86,13 @@ public class Controller {
 
                 case 2 -> {
                     // TODO Skift medlemsstatus.
+                    CompetitionMember member = new CompetitionMember(110, "Kristian", 69, true, "Konkurrencesvømmer", true);
+                    member.convertStringDateToDate(userInput());
+
                 }
 
                 case 3 -> {
-                    // TODO Afslut medlemsskab.
+                    // TODO Afslut medlemskab.
                 }
 
                 case 4 -> {
@@ -102,7 +105,7 @@ public class Controller {
 
     public void accountantController() {
         while (programIsRunning) {
-            switch (ui.userInputNumber()) {
+            switch (userInputNumber()) {
                 case 1 -> {
                     int total = calculateTotalSubscription();
                     ui.printTotalSubscription(total);
@@ -128,7 +131,7 @@ public class Controller {
     public void coachController() {
 
         while (programIsRunning) {
-            switch (ui.userInputNumber()) {
+            switch (userInputNumber()) {
                 case 1 -> {
                     // TODO Tilføj konkurrencesvømmer til hold.
                 }
@@ -139,6 +142,7 @@ public class Controller {
 
                 case 3 -> {
                     // TODO Vis top 5.
+                    db.getAllCompetitionMembers();
                 }
             }
         }
@@ -158,27 +162,27 @@ public class Controller {
     }
 
     public Member createMember() {
-        int nextId = db.nextIdMember();
-        String name = ui.userInput();
-        int age = ui.userInputNumber();
+        int nextId;
+        String name = userInput();
+        int age = userInputNumber();
 
         String teamType = "";
         ui.chooseTeamType();
-        switch (ui.userInputNumber()) {
-            case 1 -> {teamType = "Junior";}
-            case 2 -> {teamType = "Senior";}
-            case 3 -> {teamType = "Motionist";}
-            case 4 -> {teamType = "Konkurrencesvømmer";}
+        switch (userInputNumber()) {
+            case 1 -> teamType = "Junior";
+            case 2 -> teamType = "Senior";
+            case 3 -> teamType = "Motionist";
+            case 4 -> teamType = "Konkurrencesvømmer";
         }
-
         // create regular or competition member
         if (teamType.equals("Konkurrencesvømmer")) {
+            nextId = db.nextIdCompetitionMember();
             return new CompetitionMember(nextId, name, age, true, teamType, true);
         } else {
+            nextId = db.nextIdMember();
             return new Member(nextId, name, age, true, teamType, true);
         }
     }
-
 
     /***** Accountant methods *****/
     public int calculateTotalSubscription() {
@@ -186,7 +190,7 @@ public class Controller {
     }
 
     public Member getMemberToAddToDebt() {
-        int memberIdToGet = ui.userInputNumber();
+        int memberIdToGet = userInputNumber();
         return db.getMemberById(memberIdToGet);
     }
 
@@ -199,27 +203,26 @@ public class Controller {
     public void test() {
         for (Member member : db.getAllMembers()) {
             if (member instanceof CompetitionMember) {
-                if(((CompetitionMember) member).getBestTrainingTimeDate() != null){
-                    System.out.println(Arrays.toString(((CompetitionMember) member).bestTrainingTimeDateToString()));
-                    for (int i = 0; i < ((CompetitionMember) member).bestTrainingTimeDateToString().length; i++) {
+                if (((CompetitionMember) member).getBestTrainingTimeDates() != null) {
+                    System.out.println(Arrays.toString(((CompetitionMember) member).bestTrainingTimeDatesToString()));
+                    for (int i = 0; i < ((CompetitionMember) member).bestTrainingTimeDatesToString().length; i++) {
                         System.out.println(((CompetitionMember) member).getDateById(i));
 
                     }
-               }
-            }
-            else {
+                }
+            } else {
                 System.out.println(member);
             }
         }
     }
 
-    public void setMembersWithDebt(){
-      accountant.setMembersWithDebt(db.setMembersWithDebt());
+    public void setMembersWithDebt() {
+        accountant.setMembersWithDebt(db.setMembersWithDebt());
     }
 
-
     // can change member from competion member to member or the other way.
-    public void changeMember(){}
+    public void changeMember() {
+    }
 
 }
 

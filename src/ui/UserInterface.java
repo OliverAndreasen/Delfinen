@@ -2,9 +2,7 @@ package ui;
 
 import domain.Member;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
@@ -38,7 +36,7 @@ public class UserInterface {
                 """);
     }
 
-    public void printTop5Lists(){
+    public void printTop5Lists() {
         System.out.println("""
                 Vælg en disciplin:
                     1. Butterfly
@@ -52,12 +50,12 @@ public class UserInterface {
         System.out.println("""
                 1. Betal kontingent.
                 2. Skift medlemsstatus.
-                3. Afslut medlemsskab.
+                3. Afslut medlemskab.
                 4. Tilmeld konkurrence.
                 """);
     }
 
-    public void printAccountantMenu(){
+    public void printAccountantMenu() {
         System.out.println("""
                 1. Tjek forventet kontingent indkomst.
                 2. Tjek medlemmer i restance.
@@ -81,16 +79,16 @@ public class UserInterface {
 
 
     public void printTotalSubscription(int total) {
-        System.out.printf("Den forventede indkomst af alle kontigenter er: %d.-" , total);
+        System.out.printf("Den forventede indkomst af alle kontingenter er: %d.-", total);
     }
 
 
-    public void printChairmanMenu(){
-            System.out.println("""
+    public void printChairmanMenu() {
+        System.out.println("""
                 1. Tilføj nyt medlem.
                 2. Slet medlem.
                 """);
-        }
+    }
 
 
     public void printChairManAddMember() {
