@@ -14,4 +14,12 @@ public class FileHandler {
         Scanner sc = new Scanner(file);
         return sc;
     }
+
+    public void overwriteFile() {
+        try {
+            FileWriter fileWriter = new FileWriter("data/Members.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

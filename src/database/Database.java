@@ -5,6 +5,8 @@ import domain.Member;
 import domain.Team;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -146,6 +148,7 @@ public class Database {
         System.out.println("Saved");
     }
 
+
     public void saveMemberIdWithDebt(Integer memberId) throws IOException {
 
         BufferedWriter writer = fileHandler.writer("data/Accounting.txt", false);
@@ -190,6 +193,19 @@ public class Database {
     public void loadMembersFromDebtList() {
 
     }
+
+    public void deleteMember(Member member) {
+        members.remove(member);
+        fileHandler.overwriteFile(); //
+        for (Member m : members) {
+            try {
+                saveMember(m);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public void setMembersWithDebt() {
         for (Member member : members) {

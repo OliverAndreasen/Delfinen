@@ -113,6 +113,14 @@ public class UserInterface {
                 """);
     }
 
+    public void printChairManDeleteMember() {
+        System.out.print("Slet medlem på medlemsID: ");
+    }
+
+    public void printMemberDeleted(String name) {
+        System.out.println(name + " deleted from the list of members.");
+    }
+
     public void chooseTeamType() {
         System.out.println("""
                 \tVælg hold:
@@ -122,7 +130,6 @@ public class UserInterface {
                     4. Konkurrencesvømmer
                 """);
     }
-
 
 }
 

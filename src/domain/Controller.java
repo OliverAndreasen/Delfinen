@@ -62,6 +62,13 @@ public class Controller {
 
                 case 2 -> {
                     // TODO Slet medlem.
+                    ui.printChairManDeleteMember();
+                    int memberId = ui.userInputNumber();
+                    Member memberExits = checkIfMemberExists(memberId);
+                    if (memberExits != null) {
+                        deleteMember(memberExits);
+                    }
+                    ui.printMemberDeleted(memberExits.getName());
                 }
             }
         }
@@ -179,6 +186,18 @@ public class Controller {
         }
     }
 
+    public void deleteMember(Member member) {
+        db.deleteMember(member);
+    }
+
+    public Member checkIfMemberExists(int memberId) {
+        for (Member member : db.getAllMembers()) {
+            if (memberId == member.getMemberId()) {
+                return member;
+            }
+        }
+        return null;
+    }
     /***** Accountant methods *****/
     /* Update this
     public int calculateTotalSubscription() {
