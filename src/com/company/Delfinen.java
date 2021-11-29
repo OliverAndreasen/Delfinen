@@ -1,6 +1,6 @@
 package com.company;
 
-import domain.Controller;
+import domain.controllers.Controller;
 
 public class Delfinen {
 
