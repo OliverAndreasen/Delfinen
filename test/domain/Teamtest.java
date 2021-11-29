@@ -17,8 +17,6 @@ public class Teamtest {
         ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
 
         db.loadMembers();
-
-
         Scanner sc = fileHandler.reader("data/Teams.txt");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
@@ -29,41 +27,41 @@ public class Teamtest {
             for (int i = 0; i < competitiveIdsString.length; i++) {
                 competitiveIds[i] = Integer.parseInt(competitiveIdsString[i]);
             }
-            for (int i = 0; i < competitiveIds.length; i++) {
+            for (int competitiveId : competitiveIds) {
                 if (teamName.equals("Junior")) {
-                    competitiveMemberIdsJunior.add(competitiveIds[i]);
+                    competitiveMemberIdsJunior.add(competitiveId);
                 } else {
-                    competitiveMemberIdsSenior.add(competitiveIds[i]);
+                    competitiveMemberIdsSenior.add(competitiveId);
                 }
             }
 
             Team team = new Team(teamName);
             if(team.getTeamName().equals("Junior"))       {
-                for (int i = 0; i < competitiveMemberIdsJunior.size(); i++) {
-                    team.addTeamMember(competitiveMemberIdsJunior.get(i));
+                for (Integer competitiveMemberIdJunior : competitiveMemberIdsJunior) {
+                    team.addTeamMember(competitiveMemberIdJunior);
                 }
             }else {
-                for (int i = 0; i < competitiveMemberIdsSenior.size(); i++) {
-                    team.addTeamMember(competitiveMemberIdsSenior.get(i));
+                for (Integer competitiveMemberIdSenior : competitiveMemberIdsSenior) {
+                    team.addTeamMember(competitiveMemberIdSenior);
                 }
             }
-
 
             ArrayList<Integer> teamIds = team.getTeamMembersIds();
             ArrayList<String> bestButterFlyTimes = new ArrayList<>();
-            for (int i = 0; i < teamIds.size(); i++) {
-                System.out.println(team.getTeamName());
-                Member member = db.getMemberById(teamIds.get(i));
-                String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline("crawl");
-                System.out.println(memberBestTime);
-                System.out.println(Arrays.toString(((CompetitionMember) member).getBestTrainingTimes()));
-                if(memberBestTime != null) {
+            for (Integer competitiveMemberId : teamIds) {
+                //System.out.println(team.getTeamName());
+                Member member = db.getMemberById(competitiveMemberId);
+                String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(1);
+                //System.out.println(member.getName());
+                //System.out.println(memberBestTime);
+                if (memberBestTime != null) {
                     bestButterFlyTimes.add(memberBestTime);
                 }
-                System.out.println(member);
             }
+            System.out.println("Before sorting");
+            System.out.println(bestButterFlyTimes);
             Collections.sort(bestButterFlyTimes);
-
+            System.out.println("After sorting");
             System.out.println(bestButterFlyTimes);
         }
 

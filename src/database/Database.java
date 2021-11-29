@@ -95,9 +95,9 @@ public class Database {
                     }
 
                 }
-
                 CompetitionMember member = new CompetitionMember(memberId, name, age, activeStatus, teamType, paidThisYear);
                 member.setBestTrainingTimeDates(bestTrainingTimeDate);
+                member.loadBestTraingTimes();
                 members.add(member);
             } else {
                 Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
