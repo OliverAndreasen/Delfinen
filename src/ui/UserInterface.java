@@ -24,8 +24,7 @@ public class UserInterface {
                     1. Formand
                     2. Kasserer
                     3. Medlemmer
-                    4. Konkurrencesvømmer
-                    5. Træner
+                    4. Træner
                 """);
     }
 
@@ -74,6 +73,9 @@ public class UserInterface {
         }
     }
 
+    public void printChangeActiveStatus() {
+        System.out.println("Skift mellem aktiv og passiv kontigent.");
+    }
 
     public void addMemberIdToDebtPrint() {
         System.out.print("Hvilket medlem skal tilføjes til restance?: ");
@@ -96,21 +98,13 @@ public class UserInterface {
                 """);
     }
 
+    public void printString(String str) {
+        System.out.print(str);
+    }
+
 
     public void printChairManAddMember() {
-        // noget test
-/*      String[] arr = {"Indtast navn:", "Indtast alder:", "Vælg status:", "Vælg hold:"};
-
-        for (String str : arr) {
-            System.out.println(str);
-        }*/
-
-        System.out.println("""
-                Tilføj nyt medlem.
-                    Indtast navn:
-                    Indtast alder:
-                    Vælg hold:
-                """);
+        System.out.println("Tilføj nyt medlem.");
     }
 
     public void printChairManDeleteMember() {
@@ -118,7 +112,7 @@ public class UserInterface {
     }
 
     public void printMemberDeleted(String name) {
-        System.out.println(name + " deleted from the list of members.");
+        System.out.printf("%s slettet ", name);
     }
 
     public void chooseTeamType() {
@@ -130,6 +124,11 @@ public class UserInterface {
                     4. Konkurrencesvømmer
                 """);
     }
+
+    public void printErrorMessage() {
+        System.out.println("Noget gik galt.");
+    }
+
 
 }
 

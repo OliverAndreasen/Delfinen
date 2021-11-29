@@ -170,7 +170,6 @@ public class Database {
         writer.write(result);
         writer.newLine();
         writer.close();
-        System.out.println("Saved");
     }
 
     public void saveMemberIdWithDebt(Integer memberId) throws IOException {
@@ -225,6 +224,26 @@ public class Database {
             }
         }
     }
+
+    // TODO - skal måske lige rettes/optimeres
+    public void deleteMember(Member member) {
+        members.remove(member);
+        overWriteAndSaveFile();
+
+    }
+
+    public void overWriteAndSaveFile() {
+        fileHandler.overwriteFile();
+
+        for (Member m : members) {
+            try {
+                saveMember(m);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     //public Member findMember(String firstName, String lastName);
     //public ArrayList<Division> getAllDivisions();

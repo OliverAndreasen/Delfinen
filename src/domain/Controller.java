@@ -6,7 +6,6 @@ import ui.UserInterface;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Controller {
     private UserInterface ui = new UserInterface();
@@ -36,11 +35,6 @@ public class Controller {
                 }
 
                 case 4 -> {
-                    // TODO
-                    // competition member?
-                }
-
-                case 5 -> {
                     ui.printCoachMenu();
                     coachController();
                 }
@@ -54,24 +48,37 @@ public class Controller {
         while (programIsRunning) {
             switch (ui.userInputNumber()) {
                 case 1 -> {
-                    // TODO optimer ux (print)
                     ui.printChairManAddMember();
-                    addMember();
-
+                    try {
+                        addMember();
+                        ui.printString("Medlem oprettet");
+                    } catch (Exception e) {
+                        ui.printErrorMessage();
+                    }
                 }
 
                 case 2 -> {
-                    // TODO Slet medlem.
                     ui.printChairManDeleteMember();
-                    int memberId = ui.userInputNumber();
-                    Member memberExits = checkIfMemberExists(memberId);
-                    if (memberExits != null) {
-                        deleteMember(memberExits);
+                    try {
+                        String nameToBeDeleted = findAndDeleteMember();
+                        ui.printMemberDeleted(nameToBeDeleted);
+                    } catch (Exception e) {
+                        ui.printErrorMessage();
                     }
-                    ui.printMemberDeleted(memberExits.getName());
                 }
             }
         }
+    }
+
+    private String findAndDeleteMember() {
+        int memberId = ui.userInputNumber();
+        Member memberExists = checkIfMemberExists(memberId);
+
+        if (memberExists != null) {
+            deleteMember(memberExists);
+            return memberExists.getName();
+        }
+        return null;
     }
 
     public void memberController() {
@@ -79,13 +86,24 @@ public class Controller {
             switch (ui.userInputNumber()) {
                 case 1 -> {
                     // TODO Betal kontingent.
-                    test();
+                    /*test();*/
                 }
 
                 case 2 -> {
                     // TODO Skift medlemsstatus.
-                    CompetitionMember member = new CompetitionMember(110, "Kristian", 69, true, "Konkurrencesvømmer", true);
-                    member.convertStringDateToDate(ui.userInput());
+                    ui.printChangeActiveStatus();
+                    ui.printString("MedlemsID: ");
+                    try {
+                        changeActiveStatus();
+                        ui.printString("Status ændret.");
+                    } catch (Exception e) {
+                        ui.printErrorMessage();
+                    }
+
+
+
+                    /*CompetitionMember member = new CompetitionMember(110, "Kristian", 69, true, "Konkurrencesvømmer", true);
+                    member.convertStringDateToDate(ui.userInput());*/
 
                 }
 
@@ -100,6 +118,8 @@ public class Controller {
             }
         }
     }
+
+
 
     public void accountantController() {
         while (programIsRunning) {
@@ -151,7 +171,7 @@ public class Controller {
 
     }
 
-    /***** Chairman methods. ******/
+    /*********** Chairman methods. **********/
     public void addMember() {
         Member member = createMember();
 
@@ -165,7 +185,11 @@ public class Controller {
 
     public Member createMember() {
         int nextId;
+
+        ui.printString("Name: ");
         String name = ui.userInput();
+
+        ui.printString("Age: ");
         int age = ui.userInputNumber();
 
         String teamType = "";
@@ -216,6 +240,23 @@ public class Controller {
         db.saveMemberToDebtList(member);
     }
  */
+
+    private void changeActiveStatus() {
+        int memberId = ui.userInputNumber();
+        Member member = db.getMemberById(memberId);
+
+        toggleMemberActiveStatus(member);
+        db.overWriteAndSaveFile();
+    }
+
+    private void toggleMemberActiveStatus(Member member) {
+        if (member.getActiveStatus()) {
+            member.setActiveStatus(false);
+        } else {
+            member.setActiveStatus(true);
+        }
+
+    }
 
     public void test() {
         for (Member member : db.getAllMembers()) {
