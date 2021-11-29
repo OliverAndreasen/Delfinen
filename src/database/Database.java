@@ -37,7 +37,7 @@ public class Database {
     public void loadTeamMembers() throws FileNotFoundException {
         competitiveMemberIdsJunior.clear();
         competitiveMemberIdsSenior.clear();
-        Scanner sc = fileHandler.reader("data/Teams.txt");
+        Scanner sc = fileHandler.reader("data/Teams.csv");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             String teamName = sc.next();
@@ -59,7 +59,7 @@ public class Database {
 
     public void loadMembers() throws IOException {
         members.clear();
-        Scanner sc = fileHandler.reader("data/Members.txt");
+        Scanner sc = fileHandler.reader("data/Members.csv");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
@@ -114,7 +114,7 @@ public class Database {
 
     public ArrayList<Integer> loadMemberIdsWithDebt() throws IOException {
         memberIdsWithDebt.clear();
-        Scanner sc = fileHandler.reader("data/Accounting.txt");
+        Scanner sc = fileHandler.reader("data/Accounting.csv");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             int memberId = Integer.parseInt(sc.next());
@@ -124,7 +124,7 @@ public class Database {
     }
 
     public void saveMember(Member member) throws IOException {
-        BufferedWriter writer = fileHandler.writer("data/Members.txt", true);
+        BufferedWriter writer = fileHandler.writer("data/Members.csv", true);
         String result = "";
         result += member.getMemberId();
         result += ";";
@@ -174,7 +174,7 @@ public class Database {
 
     public void saveMemberIdWithDebt(Integer memberId) throws IOException {
 
-        BufferedWriter writer = fileHandler.writer("data/Accounting.txt", false);
+        BufferedWriter writer = fileHandler.writer("data/Accounting.csv", false);
         String result = memberId + ";";
         writer.write(result);
         writer.close();

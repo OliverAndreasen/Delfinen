@@ -17,7 +17,7 @@ public class FileHandler {
 
     public void overwriteFile() {
         try {
-            FileWriter fileWriter = new FileWriter("data/Members.txt");
+            FileWriter fileWriter = new FileWriter("data/Members.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
