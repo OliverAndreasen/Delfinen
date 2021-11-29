@@ -311,7 +311,7 @@ public class Controller {
 
 
 
-    // can change member from competion member to member or the other way.
+    /// can change member from competion member to member or the other way.
     public void changeMember() {
     }
 
