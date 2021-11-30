@@ -35,15 +35,15 @@ public class Team {
     }
 
     public void addBestCrawlTime(Integer competitionMemberIds, String bestTime){
-        allCrawlTimes.put(competitionMemberIds, bestTime);
+        allCrawlTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
     public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime){
-        allBackStrokeTimes.put(competitionMemberIds, bestTime);
+        allBackStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
     public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime){
-        allBreastStrokeTimes.put(competitionMemberIds, bestTime);
+        allBreastStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
     public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {

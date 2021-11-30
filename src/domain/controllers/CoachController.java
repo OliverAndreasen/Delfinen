@@ -1,10 +1,7 @@
 package domain.controllers;
 
 import database.Database;
-import domain.Coach;
-import domain.CompetitionMember;
-import domain.Member;
-import domain.Team;
+import domain.*;
 import ui.UserInterface;
 
 import java.util.ArrayList;
@@ -98,7 +95,7 @@ public class CoachController {
         }
     }
 
-    public HashMap<Integer, String> chooseBestDisciplineTimes(Team team){
+    public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team){
 
         switch (ui.userInputNumber()){
             case 1 ->{

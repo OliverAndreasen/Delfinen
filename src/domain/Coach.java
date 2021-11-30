@@ -24,7 +24,7 @@ public class Coach {
         ArrayList<TrainingResult> top5FromDisicpline = new ArrayList<>();
         for (int i = 0; i < bestDisciplineTimes.size(); i++) {
             if(top5FromDisicpline.size() < 5){
-                top5FromDisicpline.put((Integer) bestTime.getKey(), (String)bestTime.getValue());
+                top5FromDisicpline.add((bestDisciplineTimes.get(i)));
             }
             else {
                 return top5FromDisicpline;
