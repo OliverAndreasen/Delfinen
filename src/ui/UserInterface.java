@@ -93,11 +93,9 @@ public class UserInterface {
         System.out.printf("\t%s added to list of members with debt.\n", name);
     }
 
-
     public void printTotalSubscription(int total) {
         System.out.printf("Den forventede indkomst af alle kontingenter er: %d.-", total);
     }
-
 
     public void printChairmanMenu() {
         System.out.println("""
@@ -109,7 +107,6 @@ public class UserInterface {
     public void printString(String str) {
         System.out.print(str);
     }
-
 
     public void printChairManAddMember() {
         System.out.println("Tilføj nyt medlem.");
@@ -136,7 +133,6 @@ public class UserInterface {
     public void printErrorMessage() {
         System.out.println("Noget gik galt.");
     }
-
 
 }
 

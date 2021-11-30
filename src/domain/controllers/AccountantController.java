@@ -19,21 +19,26 @@ public class AccountantController {
         this.db = db;
         this.accountant = accountant;
         this.programIsRunning = programIsRunning;
+        calculateSubscriptionTotal();
     }
+    public void calculateSubscriptionTotal() {
+        ArrayList<Member> allMembers = db.getAllMembers();
+        for (Member member : allMembers) {
+            addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
 
-    public void start() {
+        }
+    }
+    public void start() throws IOException {
         while (programIsRunning) {
             int input = ui.userInputNumber();
             switch (input) {
                 case 1 -> {
-                    // update this
-                    // int total = calculateTotalSubscription();
-                    //ui.printTotalSubscription(total);
+                    // TODO: Fix bliver printet før menuen kommer ud.
+                    ui.printString("Forventet kontigent indkomst: ");
+                    ui.printString(accountant.getSubscriptionTotal() + " kr.\n\n");
                     break;
                 }
-
                 case 2 -> {
-                    // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
                     ui.printMembersWithDebt(membersWithDebtToString());
                     break;
                 }
@@ -41,18 +46,13 @@ public class AccountantController {
                 case 3 -> {
                     /*
                     ui.addMemberIdToDebtPrint();
-
                     Member memberToAddToDebt = getMemberToAddToDebt();
                     addMemberToDebtList(memberToAddToDebt);
-
                     ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
-
                      */
                 }
-
             }
             ui.printAccountantMenu();
-
         }
     }
 
@@ -60,7 +60,7 @@ public class AccountantController {
         StringBuilder result = new StringBuilder();
         for (Member member : getMembersWithDebt()) {
             result.append("Medlemsnavn: ").append(member.getName()).append("\n");
-            result.append("Resistance: ").append(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge())).append("\n");
+            result.append("Resistance: ").append(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge())).append(" kr.\n");
         }
         return result.toString();
     }

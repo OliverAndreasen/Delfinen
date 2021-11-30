@@ -6,6 +6,7 @@ import domain.CompetitionMember;
 import domain.Member;
 import ui.UserInterface;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Controller {
@@ -27,7 +28,11 @@ public class Controller {
                 case 2 -> {
                     ui.printAccountantMenu();
                     AccountantController accountantController = new AccountantController(ui, db, accountant, programIsRunning);
-                    accountantController.start();
+                    try{
+                        accountantController.start();
+                    } catch (IOException error){
+                        System.out.println("error");
+                    }
                 }
                 case 3 -> {
                     ui.printMemberMenu();

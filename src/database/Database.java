@@ -49,6 +49,7 @@ public class Database {
         Scanner sc = fileHandler.reader("data/Teams.csv");
         sc.useDelimiter(";");
         while (sc.hasNext()) {
+
             String teamName = sc.next();
             //System.out.println(teamName);
             String[] competitiveIdsString = sc.next().split(",");
