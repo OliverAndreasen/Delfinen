@@ -7,6 +7,7 @@ import domain.Member;
 import domain.Team;
 import ui.UserInterface;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -77,18 +78,20 @@ public class CoachController {
             case 1 ->{
                 ui.printTop5Lists();
                 Team team = getJunior();
+                team.sortBestTrainingTimes();
                 Coach coach = getCoachJunior();
                 chooseBestDisciplineTimes(team);
             }
             case 2 ->{
                 ui.printTop5Lists();
                 Team team = getSenior();
+                team.sortBestTrainingTimes();
                 Coach coach = getCoachSenior();
-                HashMap<Integer, String> disciplineBestTimes = chooseBestDisciplineTimes(team);
-                HashMap<Integer, String> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
-                for (Map.Entry mememberBestTime : top5FromDiscipline.entrySet()) {
-                    Member member = db.getMemberById((Integer) mememberBestTime.getKey());
-                    System.out.println(coach.getTop5FromDisciplineToString(member.getName(), (String) mememberBestTime.getValue()));
+                ArrayList<TrainingResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
+                ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
+                for (int i = 0; i < top5FromDiscipline.size(); i++) {
+                    Member member = db.getMemberById(top5FromDiscipline.get(i).getMemberId());
+                    System.out.println(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
                 }
 
             }

@@ -9,13 +9,29 @@ import java.util.Map;
 public class Team {
     private String teamName;
     private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
-    HashMap<Integer, String> allButterFlyTimes = new HashMap<Integer, String>();
-    HashMap<Integer, String> allCrawlTimes = new HashMap<Integer, String>();
-    HashMap<Integer, String> allBackStrokeTimes = new HashMap<Integer, String>();
-    HashMap<Integer, String> allBreastStrokeTimes = new HashMap<Integer, String>();
+    ArrayList<TrainingResult> allButterFlyTimes = new ArrayList<>();
+    ArrayList<TrainingResult> allCrawlTimes = new ArrayList<>();
+    ArrayList<TrainingResult> allBackStrokeTimes = new ArrayList<>();
+    ArrayList<TrainingResult> allBreastStrokeTimes = new ArrayList<>();
 
-    public void addBestButterFlyTime(Integer competitionMemberIds, String bestTime){
-        allButterFlyTimes.put(competitionMemberIds, bestTime);
+    public ArrayList<TrainingResult> getAllButterFlyTimes() {
+        return allButterFlyTimes;
+    }
+
+    public ArrayList<TrainingResult> getAllCrawlTimes() {
+        return allCrawlTimes;
+    }
+
+    public ArrayList<TrainingResult> getAllBackStrokeTimes() {
+        return allBackStrokeTimes;
+    }
+
+    public ArrayList<TrainingResult> getAllBreastStrokeTimes() {
+        return allBreastStrokeTimes;
+    }
+
+    public void addBestButterFlyTime(Integer competitionMemberId, String bestTime){
+        allButterFlyTimes.add(new TrainingResult(competitionMemberId, bestTime));
     }
 
     public void addBestCrawlTime(Integer competitionMemberIds, String bestTime){
@@ -33,24 +49,6 @@ public class Team {
     public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {
         this.competitionMemberIds = competitionMemberIds;
     }
-
-    public HashMap<Integer, String> getAllButterFlyTimes() {
-        return allButterFlyTimes;
-    }
-
-    public HashMap<Integer, String> getAllCrawlTimes() {
-        return allCrawlTimes;
-    }
-
-    public HashMap<Integer, String> getAllBackStrokeTimes() {
-        return allBackStrokeTimes;
-    }
-
-    public HashMap<Integer, String> getAllBreastStrokeTimes() {
-        return allBreastStrokeTimes;
-    }
-
-
 
     public Team(String teamName) {
         this.teamName = teamName;
@@ -87,11 +85,10 @@ public class Team {
     }*/
 
     public void sortBestTrainingTimes(){
-        HashMap<Integer, String> allButterFlyTimes = new HashMap<Integer, String>();
-        HashMap<Integer, String> allCrawlTimes = new HashMap<Integer, String>();
-        HashMap<Integer, String> allBackStrokeTimes = new HashMap<Integer, String>();
-        HashMap<Integer, String> allBreastStrokeTimes = new HashMap<Integer, String>();
-
+        Collections.sort(allButterFlyTimes);
+        Collections.sort(allCrawlTimes);
+        Collections.sort(allBackStrokeTimes);
+        Collections.sort(allBreastStrokeTimes);
     }
 
 }
