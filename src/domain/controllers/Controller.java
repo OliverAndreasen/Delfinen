@@ -55,7 +55,6 @@ public class Controller {
                     System.out.println(Arrays.toString(((CompetitionMember) member).bestTrainingTimeDatesToString()));
                     for (int i = 0; i < ((CompetitionMember) member).bestTrainingTimeDatesToString().length; i++) {
                         System.out.println(((CompetitionMember) member).getDateById(i));
-
                     }
                 }
             } else {
