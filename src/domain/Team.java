@@ -71,6 +71,29 @@ public class Team {
     public String getTeamName() {
         return teamName;
     }
+
+   /* public void setAllTimes() {
+        for (Integer competitiveMemberId : competitionMemberIds) {
+            //System.out.println(team.getTeamName());
+            Member member = db.getMemberById(competitiveMemberId);
+            String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(1);
+            //System.out.println(member.getName());
+            //System.out.println(memberBestTime);
+            if (memberBestTime != null) {
+                bestButterFlyTimes.add(memberBestTime);
+            }
+        }
+
+    }*/
+
+    public void sortBestTrainingTimes(){
+        HashMap<Integer, String> allButterFlyTimes = new HashMap<Integer, String>();
+        HashMap<Integer, String> allCrawlTimes = new HashMap<Integer, String>();
+        HashMap<Integer, String> allBackStrokeTimes = new HashMap<Integer, String>();
+        HashMap<Integer, String> allBreastStrokeTimes = new HashMap<Integer, String>();
+
+    }
+
 }
 
 

@@ -128,6 +128,8 @@ public class Database {
         }
     }
 
+
+
     public ArrayList<Integer> getMemberIdsWithDebt(){
         return memberIdsWithDebt;
     }
