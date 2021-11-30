@@ -77,23 +77,27 @@ public class CoachController {
                 Team team = getJunior();
                 team.sortBestTrainingTimes();
                 Coach coach = getCoachJunior();
-                chooseBestDisciplineTimes(team);
+                printOutTop5(team, coach);
             }
             case 2 ->{
                 ui.printTop5Lists();
                 Team team = getSenior();
                 team.sortBestTrainingTimes();
                 Coach coach = getCoachSenior();
-                ArrayList<TrainingResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
-                ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
-                for (int i = 0; i < top5FromDiscipline.size(); i++) {
-                    Member member = db.getMemberById(top5FromDiscipline.get(i).getMemberId());
-                    System.out.println(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
-                }
-
+                printOutTop5(team, coach);
             }
         }
     }
+
+    public void printOutTop5(Team team, Coach coach) {
+        ArrayList<TrainingResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
+        ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
+        for (int i = 0; i < top5FromDiscipline.size(); i++) {
+            Member member = db.getMemberById(top5FromDiscipline.get(i).getMemberId());
+            System.out.println(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
+        }
+    }
+
 
     public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team){
 
@@ -130,8 +134,10 @@ public class CoachController {
             Integer competitiveId = team.getTeamMembersIds().get(i);
             Member member = db.getMemberById(competitiveId);
             for (int j = 0; j < 4; j++) {
-                String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(j);
-                setBestTrainingTimesByDiscipline(team, competitiveId, memberBestTime, j);
+                if(member != null) {
+                    String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(j);
+                    setBestTrainingTimesByDiscipline(team, competitiveId, memberBestTime, j);
+                }
             }
         }
     }
