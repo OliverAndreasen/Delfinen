@@ -94,7 +94,7 @@ public class CoachController {
         ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
         for (int i = 0; i < top5FromDiscipline.size(); i++) {
             Member member = db.getMemberById(top5FromDiscipline.get(i).getMemberId());
-            System.out.println(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
+            ui.printString(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
         }
     }
 

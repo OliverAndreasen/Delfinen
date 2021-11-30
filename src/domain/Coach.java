@@ -34,7 +34,7 @@ public class Coach {
     }
 
     public String getTop5FromDisciplineToString(String memberName, String bestTime){
-        return "Konkurrencesvømmer " + memberName + " bedste tid: " + bestTime;
+        return "Konkurrencesvømmer " + memberName + " bedste tid: " + bestTime + "\n";
     }
 
 }
