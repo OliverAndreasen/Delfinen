@@ -3,7 +3,6 @@ package domain.controllers;
 import database.Database;
 import domain.*;
 import ui.UserInterface;
-
 import java.util.ArrayList;
 
 
@@ -94,7 +93,6 @@ public class CoachController {
     }
 
     public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team) {
-
         switch (ui.userInputNumber()) {
             case 1 -> {
                 return team.getAllButterFlyTimes();
@@ -113,7 +111,6 @@ public class CoachController {
     }
 
     public void createTeams() {
-
         Team junior = new Team("Junior");
         setJunior(junior);
         Team senior = new Team("Senior");
@@ -122,11 +119,9 @@ public class CoachController {
         senior.setCompetitionMemberIds(db.getCompetitiveMemberIdsSenior());
         setTeamBestTimes(junior);
         setTeamBestTimes(senior);
-
     }
 
     public void setTeamBestTimes(Team team) {
-
         for (int i = 0; i < team.getTeamMembersIds().size(); i++) {
             Integer competitiveId = team.getTeamMembersIds().get(i);
             Member member = db.getMemberById(competitiveId);

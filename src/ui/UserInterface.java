@@ -82,19 +82,19 @@ public class UserInterface {
     }
 
     public void printChangeActiveStatus() {
-        System.out.println("Skift mellem aktiv og passiv kontigent.");
+        System.out.println("Skift mellem aktiv og passiv kontingent.");
     }
 
     public void addMemberIdToDebtPrint() {
-        System.out.print("Hvilket medlem skal tilføjes til restance?: ");
+        System.out.print("Hvilket medlem skal tilføjes til resistance?: ");
     }
 
     public void memberAddedToDebtPrint(String name) {
-        System.out.printf("\t%s added to list of members with debt.\n", name);
+        System.out.printf("\t%s tilføjet til medlemmer med resistance.\n", name);
     }
 
     public void printTotalSubscription(int total) {
-        System.out.printf("Den forventede indkomst af alle kontingenter er: %d.-", total);
+        System.out.printf("Den forventede indkomst af alle kontingenter er: %d,-\n", total);
     }
 
     public void printChairmanMenu() {

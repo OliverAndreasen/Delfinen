@@ -83,10 +83,8 @@ public class CompetitionMember extends Member {
         String year = datesplit[2];
         String minutes = datesplit[3];
         String seconds = datesplit[4];
-
         return day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + minutes + ":" + seconds;
     }
-
     // smid i ui
     public void setDateBySwimmingStyle(String swimmingStyle) {
         String result = "";
@@ -109,7 +107,6 @@ public class CompetitionMember extends Member {
     }
 
     public Date convertStringDateToDate(String stringDate) {
-
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
         Date date = new Date();
         try {

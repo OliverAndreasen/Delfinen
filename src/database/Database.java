@@ -102,7 +102,6 @@ public class Database {
                 String dates = sc.next();
                 Date[] bestTrainingTimeDate = new Date[4];
                 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-
                 String[] test = dates.split(",");
 
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {

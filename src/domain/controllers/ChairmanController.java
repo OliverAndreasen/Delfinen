@@ -19,7 +19,6 @@ public class ChairmanController {
     }
 
     public void start() {
-
         while (programIsRunning) {
             switch (ui.userInputNumber()) {
                 case 1 -> {
@@ -31,7 +30,6 @@ public class ChairmanController {
                         ui.printErrorMessage();
                     }
                 }
-
                 case 2 -> {
                     ui.printChairManDeleteMember();
                     try {
@@ -48,7 +46,6 @@ public class ChairmanController {
     private String findAndDeleteMember() {
         int memberId = ui.userInputNumber();
         Member memberExists = checkIfMemberExists(memberId);
-
         if (memberExists != null) {
             deleteMember(memberExists);
             return memberExists.getName();
@@ -58,24 +55,19 @@ public class ChairmanController {
 
     public void addMember() {
         Member member = createMember();
-
         try {
             db.saveMember(member);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public Member createMember() {
         int nextId;
-
         ui.printString("Name: ");
         String name = ui.userInput();
-
         ui.printString("Age: ");
         int age = ui.userInputNumber();
-
         String teamType = "";
         ui.chooseTeamType();
         switch (ui.userInputNumber()) {
@@ -84,7 +76,6 @@ public class ChairmanController {
             case 3 -> teamType = "Motionist";
             case 4 -> teamType = "Konkurrencesvømmer";
         }
-
         // create regular or competition member
         if (teamType.equals("Konkurrencesvømmer")) {
             nextId = db.nextIdCompetitionMember();

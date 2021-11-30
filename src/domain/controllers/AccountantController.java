@@ -34,15 +34,13 @@ public class AccountantController {
             switch (input) {
                 case 1 -> {
                     // TODO: Fix bliver printet før menuen kommer ud.
-                    ui.printString("Forventet kontigent indkomst: ");
-                    ui.printString(accountant.getSubscriptionTotal() + " kr.\n\n");
+                    ui.printTotalSubscription(accountant.getSubscriptionTotal());
                     break;
                 }
                 case 2 -> {
                     ui.printMembersWithDebt(membersWithDebtToString());
                     break;
                 }
-
                 case 3 -> {
                     /*
                     ui.addMemberIdToDebtPrint();
