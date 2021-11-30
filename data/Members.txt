@@ -21,5 +21,5 @@
 118;Ole;23;true;Konkurrencesvømmer;true;25/11/2021/03/39,25/11/2021/03/22,null,null;
 119;Bobby;27;true;Konkurrencesvømmer;true;25/11/2021/03/15,25/11/2021/03/15,null,null;
 120;BobTheBuilder;23;true;Konkurrencesvømmer;true;25/11/2021/02/43,25/11/2021/03/42,null,null;
-121;Mikkel;69;true;Konkurrencesvømmer;true;null,null,null,null;
+121;Mikkel;69;true;Konkurrencesvømmer;true;null,null,null,25/11/2021/01/01;
 6;Kristian;24;true;Junior;true;

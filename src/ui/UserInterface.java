@@ -36,6 +36,14 @@ public class UserInterface {
                 """);
     }
 
+    public void printChoseAgeGroup(){
+        System.out.println("""
+                vælg alders gruppe:
+                    1. Junior
+                    2. Senior
+                    """);
+    }
+
     public void printTop5Lists() {
         System.out.println("""
                 Vælg en disciplin:
