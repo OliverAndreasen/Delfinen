@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Accounting {
     private int subscriptionTotal;
     private int totaltDebt;
+    private ArrayList<Integer> memberIdsWithDebt;
 
     public Accounting() {
         this.subscriptionTotal = 0;
@@ -16,21 +17,19 @@ public class Accounting {
     }
 
     public void addTotaltDebt(int addDebt) {
-        this.totaltDebt = getTotaltDebt()+addDebt;
+        this.totaltDebt = getTotaltDebt() + addDebt;
     }
-
-    private ArrayList<Integer> memberIdsWithDebt;
 
     public int getSubscriptionTotal() {
         return subscriptionTotal;
     }
 
-    public void addSubscriptionTotal(int memberFee){
-        this.subscriptionTotal = subscriptionTotal+memberFee;
+    public void addSubscriptionTotal(int memberFee) {
+        this.subscriptionTotal = subscriptionTotal + memberFee;
     }
 
-    public void subtractSubscriptionTotal(int memberFee){
-        this.subscriptionTotal = subscriptionTotal-memberFee;
+    public void subtractSubscriptionTotal(int memberFee) {
+        this.subscriptionTotal = subscriptionTotal - memberFee;
     }
 
     //@Author Oliver

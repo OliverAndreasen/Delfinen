@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class CompetitionMember extends Member {
 
-    private Date[] bestTrainingTimeDates = new Date[4];
     private final String[] bestTrainingTimes = new String[4];
+    private Date[] bestTrainingTimeDates = new Date[4];
 
     public CompetitionMember(int memberId, String name, int age, boolean activeStatus, String teamType, boolean paidThisYear) {
         super(memberId, name, age, activeStatus, teamType, paidThisYear);
@@ -18,34 +18,37 @@ public class CompetitionMember extends Member {
         return bestTrainingTimes;
     }
 
-
-    public void loadBestTraingTimes(){
-        for (int i = 0; i < bestTrainingTimeDates.length; i++) {
-                setBestTrainingTimes(i);                        
-        }                                                       
-    }
-
-    public String getBestTrainingTimeByDiscipline(int index){
-        switch (index){
-            case 0: return getBestTrainingTimes()[0];
-            case 1: return getBestTrainingTimes()[1];
-            case 2:return getBestTrainingTimes()[2];
-            case 3: return getBestTrainingTimes()[3];
-        }
-        return null;
-    }
-
     public void setBestTrainingTimes(int index) {
-        if(bestTrainingTimeDatesToString()[index] != null) {
+        if (bestTrainingTimeDatesToString()[index] != null) {
             String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
             String[] datesplit = swimmingDiscipline.split("/");
             for (int i = 0; i < datesplit.length; i++) {
-                    String minutes = datesplit[3];
-                    String seconds = datesplit[4];
-                    String result = minutes + seconds;
-                    bestTrainingTimes[index] = result;
+                String minutes = datesplit[3];
+                String seconds = datesplit[4];
+                String result = minutes + seconds;
+                bestTrainingTimes[index] = result;
             }
         }
+    }
+
+    public void loadBestTraingTimes() {
+        for (int i = 0; i < bestTrainingTimeDates.length; i++) {
+            setBestTrainingTimes(i);
+        }
+    }
+
+    public String getBestTrainingTimeByDiscipline(int index) {
+        switch (index) {
+            case 0:
+                return getBestTrainingTimes()[0];
+            case 1:
+                return getBestTrainingTimes()[1];
+            case 2:
+                return getBestTrainingTimes()[2];
+            case 3:
+                return getBestTrainingTimes()[3];
+        }
+        return null;
     }
 
     public String bestTime() {
@@ -65,7 +68,7 @@ public class CompetitionMember extends Member {
         String[] datesToString = new String[4];
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
         for (int i = 0; i < bestTrainingTimeDates.length; i++) {
-            if(bestTrainingTimeDates[i] != null) {
+            if (bestTrainingTimeDates[i] != null) {
                 datesToString[i] = formatter.format(bestTrainingTimeDates[i]);
             }
         }

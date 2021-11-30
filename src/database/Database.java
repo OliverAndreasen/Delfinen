@@ -11,19 +11,29 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Database {
+
+    FileHandler fileHandler = new FileHandler();
     private int lastIdMember;
     private int lastIdCompetitionMember;
-    FileHandler fileHandler = new FileHandler();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Team> teams = new ArrayList<>();
     private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
     private ArrayList<Integer> competitiveMemberIdsJunior = new ArrayList<>();
     private ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
+
+    public Database() {
+        try {
+            loadMembers();
+            loadTeamMembers();
+            setMembersWithDebt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public ArrayList<Integer> getCompetitiveMemberIdsJunior() {
         return competitiveMemberIdsJunior;
@@ -31,16 +41,6 @@ public class Database {
 
     public ArrayList<Integer> getCompetitiveMemberIdsSenior() {
         return competitiveMemberIdsSenior;
-    }
-
-    public Database() {
-        try {
-             loadMembers();
-             loadTeamMembers();
-             setMembersWithDebt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void loadTeamMembers() throws FileNotFoundException {
@@ -113,7 +113,6 @@ public class Database {
                             e.printStackTrace();
                         }
                     }
-
                 }
                 CompetitionMember member = new CompetitionMember(memberId, name, age, activeStatus, teamType, paidThisYear);
                 member.setBestTrainingTimeDates(bestTrainingTimeDate);
@@ -123,14 +122,12 @@ public class Database {
                 Member member = new Member(memberId, name, age, activeStatus, teamType, paidThisYear);
                 members.add(member);
             }
-
             sc.nextLine();
         }
     }
 
 
-
-    public ArrayList<Integer> getMemberIdsWithDebt(){
+    public ArrayList<Integer> getMemberIdsWithDebt() {
         return memberIdsWithDebt;
     }
 
@@ -195,7 +192,6 @@ public class Database {
     }
 
     public void saveMemberIdWithDebt(Integer memberId) throws IOException {
-
         BufferedWriter writer = fileHandler.writer("data/Accounting.csv", false);
         String result = memberId + ";";
         writer.write(result);

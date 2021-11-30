@@ -8,11 +8,11 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
 
-    public String userInput(){
+    public String userInput() {
         return scanner.nextLine();
     }
 
-    public int userInputNumber(){
+    public int userInputNumber() {
         int input = scanner.nextInt();
         scanner.nextLine();
         return input;
@@ -36,7 +36,7 @@ public class UserInterface {
                 """);
     }
 
-    public void printChoseAgeGroup(){
+    public void printChoseAgeGroup() {
         System.out.println("""
                 vælg alders gruppe:
                     1. Junior

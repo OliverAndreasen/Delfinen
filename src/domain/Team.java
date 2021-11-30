@@ -2,17 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap; // import the HashMap class
-import java.util.Map;
 
 
 public class Team {
-    private String teamName;
-    private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
     ArrayList<TrainingResult> allButterFlyTimes = new ArrayList<>();
     ArrayList<TrainingResult> allCrawlTimes = new ArrayList<>();
     ArrayList<TrainingResult> allBackStrokeTimes = new ArrayList<>();
     ArrayList<TrainingResult> allBreastStrokeTimes = new ArrayList<>();
+    private String teamName;
+    private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
+
+    public Team(String teamName) {
+        this.teamName = teamName;
+    }
 
     public ArrayList<TrainingResult> getAllButterFlyTimes() {
         return allButterFlyTimes;
@@ -30,28 +32,24 @@ public class Team {
         return allBreastStrokeTimes;
     }
 
-    public void addBestButterFlyTime(Integer competitionMemberId, String bestTime){
+    public void addBestButterFlyTime(Integer competitionMemberId, String bestTime) {
         allButterFlyTimes.add(new TrainingResult(competitionMemberId, bestTime));
     }
 
-    public void addBestCrawlTime(Integer competitionMemberIds, String bestTime){
+    public void addBestCrawlTime(Integer competitionMemberIds, String bestTime) {
         allCrawlTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
-    public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime){
+    public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime) {
         allBackStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
-    public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime){
+    public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime) {
         allBreastStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
     }
 
     public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {
         this.competitionMemberIds = competitionMemberIds;
-    }
-
-    public Team(String teamName) {
-        this.teamName = teamName;
     }
 
     public ArrayList<Integer> getTeamMembersIds() {
@@ -84,7 +82,7 @@ public class Team {
 
     }*/
 
-    public void sortBestTrainingTimes(){
+    public void sortBestTrainingTimes() {
         Collections.sort(allButterFlyTimes);
         Collections.sort(allCrawlTimes);
         Collections.sort(allBackStrokeTimes);
@@ -92,5 +90,4 @@ public class Team {
     }
 
 }
-
 

@@ -19,11 +19,10 @@ public class TrainingResult implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if(o instanceof TrainingResult) {
+        if (o instanceof TrainingResult) {
             TrainingResult other = (TrainingResult) o;
             return trainingTime.compareTo(other.trainingTime);
-        }
-        else {
+        } else {
             return 0;
         }
     }

@@ -1,11 +1,6 @@
 package domain;
 
-import database.Database;
-
 import java.util.ArrayList;
-import java.util.HashMap; // import the HashMap class
-import java.util.Map;
-
 
 public class Coach {
     private String name;
@@ -20,20 +15,19 @@ public class Coach {
     private void addCompetitionMemberBestTime(CompetitionMember competitionMember) {
     }
 
-    public ArrayList<TrainingResult> getTop5FromDiscipline(ArrayList<TrainingResult> bestDisciplineTimes){
+    public ArrayList<TrainingResult> getTop5FromDiscipline(ArrayList<TrainingResult> bestDisciplineTimes) {
         ArrayList<TrainingResult> top5FromDisicpline = new ArrayList<>();
-        for (int i = 0; i < bestDisciplineTimes.size(); i++) {
-            if(top5FromDisicpline.size() < 5){
-                top5FromDisicpline.add((bestDisciplineTimes.get(i)));
-            }
-            else {
+        for (TrainingResult bestDisciplineTime : bestDisciplineTimes) {
+            if (top5FromDisicpline.size() < 5) {
+                top5FromDisicpline.add(bestDisciplineTime);
+            } else {
                 return top5FromDisicpline;
             }
         }
         return top5FromDisicpline;
     }
 
-    public String getTop5FromDisciplineToString(String memberName, String bestTime){
+    public String getTop5FromDisciplineToString(String memberName, String bestTime) {
         return "Konkurrencesvømmer " + memberName + " bedste tid: " + bestTime + "\n";
     }
 

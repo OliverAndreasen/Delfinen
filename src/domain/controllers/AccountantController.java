@@ -7,14 +7,12 @@ import ui.UserInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public class AccountantController {
+    private final boolean programIsRunning;
     private UserInterface ui;
     private Database db;
     private Accounting accountant;
-    private final boolean programIsRunning;
 
     public AccountantController(UserInterface ui, Database db, Accounting accountant, boolean programIsRunning) {
         this.ui = ui;
@@ -24,23 +22,23 @@ public class AccountantController {
     }
 
     public void start() {
-            while (programIsRunning) {
-                int input = ui.userInputNumber();
-                switch (input) {
-                    case 1 -> {
-                        // update this
-                        // int total = calculateTotalSubscription();
-                        //ui.printTotalSubscription(total);
-                        break;
-                    }
+        while (programIsRunning) {
+            int input = ui.userInputNumber();
+            switch (input) {
+                case 1 -> {
+                    // update this
+                    // int total = calculateTotalSubscription();
+                    //ui.printTotalSubscription(total);
+                    break;
+                }
 
-                    case 2 -> {
-                        // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
-                        ui.printMembersWithDebt(membersWithDebtToString());
-                        break;
-                    }
+                case 2 -> {
+                    // TODO Tjek medlemmer i restance. - mangler load fra accounting.txt
+                    ui.printMembersWithDebt(membersWithDebtToString());
+                    break;
+                }
 
-                    case 3 -> {
+                case 3 -> {
                     /*
                     ui.addMemberIdToDebtPrint();
 
@@ -50,28 +48,28 @@ public class AccountantController {
                     ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
 
                      */
-                    }
-
                 }
-                ui.printAccountantMenu();
 
             }
-        }
+            ui.printAccountantMenu();
 
-    public String membersWithDebtToString(){
-        String result = "";
-        for (Member member : getMembersWithDebt()) {
-            result +=  "Medlemsnavn: " + member.getName() + "\n";
-            result += "Resistance: " + accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()) + "\n";
         }
-        return result;
+    }
+
+    public String membersWithDebtToString() {
+        StringBuilder result = new StringBuilder();
+        for (Member member : getMembersWithDebt()) {
+            result.append("Medlemsnavn: ").append(member.getName()).append("\n");
+            result.append("Resistance: ").append(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge())).append("\n");
+        }
+        return result.toString();
     }
 
     public ArrayList<Member> getMembersWithDebt() {
         ArrayList<Integer> memberIdsWithDebt = db.getMemberIdsWithDebt();
         ArrayList<Member> membersWithDebt = new ArrayList<>();
-        for (int i = 0; i < memberIdsWithDebt.size(); i++) {
-            membersWithDebt.add(getMemberById(memberIdsWithDebt.get(i)));
+        for (Integer memberId : memberIdsWithDebt) {
+            membersWithDebt.add(getMemberById(memberId));
         }
         return membersWithDebt;
     }
@@ -84,7 +82,7 @@ public class AccountantController {
         accountant.setMemberIdsWithDebt(db.loadMemberIdsWithDebt());
     }
 
-    public int calculateSubscriptionFee(boolean activeStatus, int age){
+    public int calculateSubscriptionFee(boolean activeStatus, int age) {
         return accountant.calculateSubscriptionFee(activeStatus, age);
     }
 

@@ -84,6 +84,7 @@ public class ChairmanController {
             case 3 -> teamType = "Motionist";
             case 4 -> teamType = "Konkurrencesvømmer";
         }
+
         // create regular or competition member
         if (teamType.equals("Konkurrencesvømmer")) {
             nextId = db.nextIdCompetitionMember();

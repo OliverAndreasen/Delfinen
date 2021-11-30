@@ -4,11 +4,8 @@ import database.Database;
 import domain.Accounting;
 import domain.CompetitionMember;
 import domain.Member;
-import domain.Team;
 import ui.UserInterface;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Controller {
@@ -27,19 +24,16 @@ public class Controller {
                     ChairmanController chairmanController = new ChairmanController(ui, db, programIsRunning);
                     chairmanController.start();
                 }
-
                 case 2 -> {
                     ui.printAccountantMenu();
                     AccountantController accountantController = new AccountantController(ui, db, accountant, programIsRunning);
                     accountantController.start();
                 }
-
                 case 3 -> {
                     ui.printMemberMenu();
                     MemberController memberController = new MemberController(ui, db, programIsRunning);
                     memberController.start();
                 }
-
                 case 4 -> {
                     ui.printCoachMenu();
                     CoachController coachController = new CoachController(ui, db, programIsRunning);

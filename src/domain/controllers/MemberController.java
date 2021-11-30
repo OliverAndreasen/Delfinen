@@ -62,11 +62,6 @@ public class MemberController {
     }
 
     private void toggleMemberActiveStatus(Member member) {
-        if (member.getActiveStatus()) {
-            member.setActiveStatus(false);
-        } else {
-            member.setActiveStatus(true);
-        }
-
+        member.setActiveStatus(!member.getActiveStatus());
     }
 }

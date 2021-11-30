@@ -5,19 +5,22 @@ import domain.*;
 import ui.UserInterface;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 
 
 public class CoachController {
     private UserInterface ui;
     private Database db;
     private Coach coachJunior = new Coach("Søren", "Junior");
-    private Coach coachSenior = new Coach ("Slette Mette", "Senior");
+    private Coach coachSenior = new Coach("Slette Mette", "Senior");
     private boolean programIsRunning;
     private Team junior;
     private Team senior;
+
+    public CoachController(UserInterface ui, Database db, boolean programIsRunning) {
+        this.ui = ui;
+        this.db = db;
+        this.programIsRunning = programIsRunning;
+    }
 
     public Coach getCoachJunior() {
         return coachJunior;
@@ -31,22 +34,16 @@ public class CoachController {
         return junior;
     }
 
-    public Team getSenior() {
-        return senior;
-    }
-
     public void setJunior(Team junior) {
         this.junior = junior;
     }
 
-    public void setSenior(Team senior) {
-        this.senior = senior;
+    public Team getSenior() {
+        return senior;
     }
 
-    public CoachController(UserInterface ui, Database db, boolean programIsRunning) {
-        this.ui = ui;
-        this.db = db;
-        this.programIsRunning = programIsRunning;
+    public void setSenior(Team senior) {
+        this.senior = senior;
     }
 
     public void start() {
@@ -56,11 +53,9 @@ public class CoachController {
                 case 1 -> {
                     // TODO Tilføj konkurrencesvømmer til hold.
                 }
-
                 case 2 -> {
                     // TODO Tilføj konkurrencesvømmer bedste tid.
                 }
-
                 case 3 -> {
                     // TODO Vis top 5.
                     ui.printChoseAgeGroup();
@@ -70,16 +65,16 @@ public class CoachController {
         }
     }
 
-    public void choseAgeGroup(){
-        switch (ui.userInputNumber()){
-            case 1 ->{
+    public void choseAgeGroup() {
+        switch (ui.userInputNumber()) {
+            case 1 -> {
                 ui.printTop5Lists();
                 Team team = getJunior();
                 team.sortBestTrainingTimes();
                 Coach coach = getCoachJunior();
                 printOutTop5(team, coach);
             }
-            case 2 ->{
+            case 2 -> {
                 ui.printTop5Lists();
                 Team team = getSenior();
                 team.sortBestTrainingTimes();
@@ -92,17 +87,16 @@ public class CoachController {
     public void printOutTop5(Team team, Coach coach) {
         ArrayList<TrainingResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
         ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
-        for (int i = 0; i < top5FromDiscipline.size(); i++) {
-            Member member = db.getMemberById(top5FromDiscipline.get(i).getMemberId());
-            ui.printString(coach.getTop5FromDisciplineToString(member.getName(), top5FromDiscipline.get(i).getTrainingTime()));
+        for (TrainingResult CompetitiveMember : top5FromDiscipline) {
+            Member member = db.getMemberById(CompetitiveMember.getMemberId());
+            ui.printString(coach.getTop5FromDisciplineToString(member.getName(), CompetitiveMember.getTrainingTime()));
         }
     }
 
+    public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team) {
 
-    public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team){
-
-        switch (ui.userInputNumber()){
-            case 1 ->{
+        switch (ui.userInputNumber()) {
+            case 1 -> {
                 return team.getAllButterFlyTimes();
             }
             case 2 -> {
@@ -118,7 +112,8 @@ public class CoachController {
         return null;
     }
 
-    public void createTeams(){
+    public void createTeams() {
+
         Team junior = new Team("Junior");
         setJunior(junior);
         Team senior = new Team("Senior");
@@ -127,14 +122,16 @@ public class CoachController {
         senior.setCompetitionMemberIds(db.getCompetitiveMemberIdsSenior());
         setTeamBestTimes(junior);
         setTeamBestTimes(senior);
+
     }
 
     public void setTeamBestTimes(Team team) {
+
         for (int i = 0; i < team.getTeamMembersIds().size(); i++) {
             Integer competitiveId = team.getTeamMembersIds().get(i);
             Member member = db.getMemberById(competitiveId);
             for (int j = 0; j < 4; j++) {
-                if(member != null) {
+                if (member != null) {
                     String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(j);
                     setBestTrainingTimesByDiscipline(team, competitiveId, memberBestTime, j);
                 }
@@ -142,7 +139,7 @@ public class CoachController {
         }
     }
 
-    public void setBestTrainingTimesByDiscipline(Team team, Integer competitiveId, String memberBestTime, int discipline){
+    public void setBestTrainingTimesByDiscipline(Team team, Integer competitiveId, String memberBestTime, int discipline) {
         switch (discipline) {
             case 0 -> {
                 if (memberBestTime != null) {
