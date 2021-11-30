@@ -46,6 +46,7 @@ public class MemberController {
 
                 case 4 -> {
                     // TODO Tilmeld konkurrence.
+
                 }
 
             }
