@@ -1,10 +1,56 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap; // import the HashMap class
+import java.util.Map;
+
 
 public class Team {
     private String teamName;
     private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
+    HashMap<Integer, String> allButterFlyTimes = new HashMap<Integer, String>();
+    HashMap<Integer, String> allCrawlTimes = new HashMap<Integer, String>();
+    HashMap<Integer, String> allBackStrokeTimes = new HashMap<Integer, String>();
+    HashMap<Integer, String> allBreastStrokeTimes = new HashMap<Integer, String>();
+
+    public void addBestButterFlyTime(Integer competitionMemberIds, String bestTime){
+        allButterFlyTimes.put(competitionMemberIds, bestTime);
+    }
+
+    public void addBestCrawlTime(Integer competitionMemberIds, String bestTime){
+        allCrawlTimes.put(competitionMemberIds, bestTime);
+    }
+
+    public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime){
+        allBackStrokeTimes.put(competitionMemberIds, bestTime);
+    }
+
+    public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime){
+        allBreastStrokeTimes.put(competitionMemberIds, bestTime);
+    }
+
+    public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {
+        this.competitionMemberIds = competitionMemberIds;
+    }
+
+    public HashMap<Integer, String> getAllButterFlyTimes() {
+        return allButterFlyTimes;
+    }
+
+    public HashMap<Integer, String> getAllCrawlTimes() {
+        return allCrawlTimes;
+    }
+
+    public HashMap<Integer, String> getAllBackStrokeTimes() {
+        return allBackStrokeTimes;
+    }
+
+    public HashMap<Integer, String> getAllBreastStrokeTimes() {
+        return allBreastStrokeTimes;
+    }
+
+
 
     public Team(String teamName) {
         this.teamName = teamName;

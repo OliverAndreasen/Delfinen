@@ -25,9 +25,18 @@ public class Database {
     private ArrayList<Integer> competitiveMemberIdsJunior = new ArrayList<>();
     private ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
 
+    public ArrayList<Integer> getCompetitiveMemberIdsJunior() {
+        return competitiveMemberIdsJunior;
+    }
+
+    public ArrayList<Integer> getCompetitiveMemberIdsSenior() {
+        return competitiveMemberIdsSenior;
+    }
+
     public Database() {
         try {
              loadMembers();
+             loadTeamMembers();
              setMembersWithDebt();
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,20 +50,31 @@ public class Database {
         sc.useDelimiter(";");
         while (sc.hasNext()) {
             String teamName = sc.next();
+            //System.out.println(teamName);
             String[] competitiveIdsString = sc.next().split(",");
             int[] competitiveIds = new int[competitiveIdsString.length];
-            for(int i = 0; i < competitiveIdsString.length; i++) {
+            for (int i = 0; i < competitiveIdsString.length; i++) {
                 competitiveIds[i] = Integer.parseInt(competitiveIdsString[i]);
             }
-            for (int i = 0; i < competitiveIds.length; i++) {
-                if(teamName.equals("Junior")){
-                    competitiveMemberIdsJunior.add(competitiveIds[i]);
-                }else {
-                    competitiveMemberIdsSenior.add(competitiveIds[i]);
+            for (int competitiveId : competitiveIds) {
+                if (teamName.equals("Junior")) {
+                    competitiveMemberIdsJunior.add(competitiveId);
+                } else {
+                    competitiveMemberIdsSenior.add(competitiveId);
+                }
+            }
+
+            Team team = new Team(teamName);
+            if (team.getTeamName().equals("Junior")) {
+                for (Integer competitiveMemberIdJunior : competitiveMemberIdsJunior) {
+                    team.addTeamMember(competitiveMemberIdJunior);
+                }
+            } else {
+                for (Integer competitiveMemberIdSenior : competitiveMemberIdsSenior) {
+                    team.addTeamMember(competitiveMemberIdSenior);
                 }
             }
         }
-
     }
 
     public void loadMembers() throws IOException {

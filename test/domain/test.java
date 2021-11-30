@@ -5,6 +5,8 @@ import database.Database;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class test {
     public static void main(String[] args) throws IOException {
@@ -23,7 +25,7 @@ public class test {
         ArrayList<Integer> memberIdsWithDebt = db.loadMemberIdsWithDebt();
 
         System.out.println(Arrays.toString(new ArrayList[]{memberIdsWithDebt}));
-        ArrayList<Member>getMembersWithDebt = new ArrayList<>();
+        ArrayList<Member> getMembersWithDebt = new ArrayList<>();
         for (int i = 0; i < memberIdsWithDebt.size(); i++) {
             getMembersWithDebt.add(db.getMemberById(memberIdsWithDebt.get(i)));
         }
@@ -40,7 +42,11 @@ public class test {
         }*/
 
         System.out.println("Total debt: " + accounting.getTotaltDebt());
+
+
     }
 
-
 }
+
+
+

@@ -11,11 +11,11 @@ import java.util.Scanner;
 
 public class Teamtest {
     public static void main(String[] args) throws IOException {
+        /* Integrated <---------------------
         Database db = new Database();
         FileHandler fileHandler = new FileHandler();
         ArrayList<Integer> competitiveMemberIdsJunior = new ArrayList<>();
         ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
-
         db.loadMembers();
         Scanner sc = fileHandler.reader("data/Teams.txt");
         sc.useDelimiter(";");
@@ -46,6 +46,10 @@ public class Teamtest {
                 }
             }
 
+           Integrated <--------------------- */
+
+
+        /* Integrate this
             ArrayList<Integer> teamIds = team.getTeamMembersIds();
             ArrayList<String> bestButterFlyTimes = new ArrayList<>();
             for (Integer competitiveMemberId : teamIds) {
@@ -64,6 +68,8 @@ public class Teamtest {
             System.out.println("After sorting");
             System.out.println(bestButterFlyTimes);
         }
+
+         */
 
     }
 }

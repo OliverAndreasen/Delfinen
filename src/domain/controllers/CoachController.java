@@ -1,7 +1,16 @@
 package domain.controllers;
 
 import database.Database;
+import domain.Coach;
+import domain.CompetitionMember;
+import domain.Member;
+import domain.Team;
 import ui.UserInterface;
+
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
 
 public class CoachController {
     private UserInterface ui;

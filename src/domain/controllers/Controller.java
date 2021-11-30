@@ -4,6 +4,7 @@ import database.Database;
 import domain.Accounting;
 import domain.CompetitionMember;
 import domain.Member;
+import domain.Team;
 import ui.UserInterface;
 
 import java.io.IOException;
@@ -47,7 +48,6 @@ public class Controller {
             }
         }
     }
-
 
     public void test() {
         for (Member member : db.getAllMembers()) {
