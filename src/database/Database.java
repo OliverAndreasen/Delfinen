@@ -105,7 +105,6 @@ public class Database {
                 String[] test = dates.split(",");
 
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                    //System.out.println(test[i]);
                     if (!test[i].equals("null")) {
                         try {
                             bestTrainingTimeDate[i] = formatter.parse(test[i]);
@@ -125,7 +124,6 @@ public class Database {
             sc.nextLine();
         }
     }
-
 
     public ArrayList<Integer> getMemberIdsWithDebt() {
         return memberIdsWithDebt;
@@ -163,8 +161,6 @@ public class Database {
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
             Date date = new Date();
             String strDate = formatter.format(date);
-            //System.out.println(strDate);
-
             StringBuilder resultBestTrainingTimeDates = new StringBuilder();
             for (int i = 0; i < bestTrainingTimeDates.length; i++) {
                 if (i == 3) {
@@ -184,7 +180,6 @@ public class Database {
             result += resultBestTrainingTimeDates;
             result += ";";
         }
-
 
         writer.write(result);
         writer.newLine();
