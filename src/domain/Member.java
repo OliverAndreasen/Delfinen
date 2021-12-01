@@ -45,18 +45,6 @@ public class Member {
         return teamType;
     }
 
-    public void setTeamType(String teamType) {
-        this.teamType = teamType;
-    }
-
-    public void paySubscription() {
-
-    }
-
-    public void deleteAccount() {
-
-    }
-
     public String toString() {
         String result = "";
         result += "Medlemsid: " + getMemberId() + "\n";
@@ -66,6 +54,4 @@ public class Member {
         result += "Hold type: " + getTeamType() + "\n\n";
         return result;
     }
-
-
 }

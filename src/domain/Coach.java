@@ -5,14 +5,10 @@ import java.util.ArrayList;
 public class Coach {
     private String name;
     private String ageGroup;
-    private CompetitionMember competitionMember;
 
     public Coach(String name, String ageGroup) {
         this.name = name;
         this.ageGroup = ageGroup;
-    }
-
-    private void addCompetitionMemberBestTime(CompetitionMember competitionMember) {
     }
 
     public ArrayList<TrainingResult> getTop5FromDiscipline(ArrayList<TrainingResult> bestDisciplineTimes) {

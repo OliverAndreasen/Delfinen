@@ -51,7 +51,6 @@ public class Database {
         while (sc.hasNext()) {
 
             String teamName = sc.next();
-            //System.out.println(teamName);
             String[] competitiveIdsString = sc.next().split(",");
             int[] competitiveIds = new int[competitiveIdsString.length];
             for (int i = 0; i < competitiveIdsString.length; i++) {
@@ -102,12 +101,12 @@ public class Database {
                 String dates = sc.next();
                 Date[] bestTrainingTimeDate = new Date[4];
                 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-                String[] test = dates.split(",");
+                String[] rawDates = dates.split(",");
 
                 for (int i = 0; i < bestTrainingTimeDate.length; i++) {
-                    if (!test[i].equals("null")) {
+                    if (!rawDates[i].equals("null")) {
                         try {
-                            bestTrainingTimeDate[i] = formatter.parse(test[i]);
+                            bestTrainingTimeDate[i] = formatter.parse(rawDates[i]);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -159,8 +158,6 @@ public class Database {
         if (member instanceof CompetitionMember) {
             Date[] bestTrainingTimeDates = ((CompetitionMember) member).getBestTrainingTimeDates();
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-            Date date = new Date();
-            String strDate = formatter.format(date);
             StringBuilder resultBestTrainingTimeDates = new StringBuilder();
             for (int i = 0; i < bestTrainingTimeDates.length; i++) {
                 if (i == 3) {
@@ -256,10 +253,4 @@ public class Database {
             }
         }
     }
-
-
-    //public Member findMember(String firstName, String lastName);
-    //public ArrayList<Division> getAllDivisions();
-    //public Division getDivision(String divisionName);
-
 }

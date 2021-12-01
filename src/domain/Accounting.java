@@ -32,7 +32,6 @@ public class Accounting {
         this.subscriptionTotal = subscriptionTotal - memberFee;
     }
 
-    //@Author Oliver
     public int calculateSubscriptionFee(boolean activeStatus, int age) {
         int result;
         if (activeStatus) {
@@ -58,24 +57,4 @@ public class Accounting {
     public void setMemberIdsWithDebt(ArrayList<Integer> membersWithDebt) {
         this.memberIdsWithDebt = membersWithDebt;
     }
-
-
-    /*
-    // @Author Oliver
-    public String getMembersWithDebtToString() {
-        StringBuilder result = new StringBuilder();
-        if (!memberIdsWithDebt.isEmpty()) {
-            for (Integer memberIds : memberIdsWithDebt) {
-                result.append("Navn: ");
-                result.append(member.getName());
-                result.append("\nResistance: ");
-                result.append(calculateSubscriptionFee(member));
-                result.append(" kr.\n");
-            }
-        } else {
-            result = new StringBuilder("Ingen medlemmer med resistance");
-        }
-        return result.toString();
-    }
-     */
 }

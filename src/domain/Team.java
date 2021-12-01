@@ -5,12 +5,12 @@ import java.util.Collections;
 
 
 public class Team {
+    private String teamName;
+    private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
     ArrayList<TrainingResult> allButterFlyTimes = new ArrayList<>();
     ArrayList<TrainingResult> allCrawlTimes = new ArrayList<>();
     ArrayList<TrainingResult> allBackStrokeTimes = new ArrayList<>();
     ArrayList<TrainingResult> allBreastStrokeTimes = new ArrayList<>();
-    private String teamName;
-    private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
 
     public Team(String teamName) {
         this.teamName = teamName;

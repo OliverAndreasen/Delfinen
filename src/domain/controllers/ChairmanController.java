@@ -1,10 +1,7 @@
 package domain.controllers;
 
-import database.Database;
 import domain.CompetitionMember;
 import domain.Member;
-import ui.UserInterface;
-
 import java.io.IOException;
 
 public class ChairmanController extends Controller {
@@ -25,7 +22,7 @@ public class ChairmanController extends Controller {
                 case 2 -> {
                     ui.printChairManDeleteMember();
                     try {
-                        String nameToBeDeleted = findAndDeleteMember();
+                        String nameToBeDeleted = getMemberByIdAndDelete();
                         ui.printMemberDeleted(nameToBeDeleted);
                     } catch (Exception e) {
                         ui.printErrorMessage();
@@ -43,12 +40,12 @@ public class ChairmanController extends Controller {
         }
     }
 
-    private String findAndDeleteMember() {
+    private String getMemberByIdAndDelete() {
         int memberId = ui.userInputNumber();
-        Member memberExists = checkIfMemberExists(memberId);
-        if (memberExists != null) {
-            deleteMember(memberExists);
-            return memberExists.getName();
+        Member member = getMemberById(memberId);
+        if (member != null) {
+            deleteMember(member);
+            return member.getName();
         }
         return null;
     }
@@ -90,7 +87,7 @@ public class ChairmanController extends Controller {
         db.deleteMember(member);
     }
 
-    public Member checkIfMemberExists(int memberId) {
+    public Member getMemberById(int memberId) {
         for (Member member : db.getAllMembers()) {
             if (memberId == member.getMemberId()) {
                 return member;

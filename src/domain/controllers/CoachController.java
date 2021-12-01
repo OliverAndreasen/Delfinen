@@ -1,8 +1,6 @@
 package domain.controllers;
 
-import database.Database;
 import domain.*;
-import ui.UserInterface;
 import java.util.ArrayList;
 
 

@@ -1,22 +1,11 @@
 package domain.controllers;
 
-import database.Database;
-import domain.Accounting;
 import domain.Member;
-import ui.UserInterface;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class AccountantController extends Controller{
 
-    public void calculateSubscriptionTotal() {
-        ArrayList<Member> allMembers = db.getAllMembers();
-        for (Member member : allMembers) {
-            addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
-
-        }
-    }
     public void startAccounting()  {
         ui.printAccountantMenu();
         while (programIsRunning) {
@@ -24,6 +13,7 @@ public class AccountantController extends Controller{
             switch (input) {
                 case 1 -> {
                     // TODO: Fix bliver printet før menuen kommer ud.
+                    calculateSubscriptionTotal();
                     ui.printTotalSubscription(accountant.getSubscriptionTotal());
                     break;
                 }
@@ -94,17 +84,12 @@ public class AccountantController extends Controller{
         return db.getMemberById(memberIdToGet);
     }
 
-    /* Update this
-    public int calculateTotalSubscription() {
-        return accountant.projectedSubscriptionTotal(db.getAllMembers());
-    }
-    */
+    public void calculateSubscriptionTotal() {
+        ArrayList<Member> allMembers = db.getAllMembers();
+        for (Member member : allMembers) {
+            addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
 
-    /*  Update this
-    public void addMemberToDebtList(Member member) {
-        accountant.addMemberWithDebt(member);
-        db.saveMemberToDebtList(member);
+        }
     }
-    */
 }
 

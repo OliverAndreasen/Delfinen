@@ -1,8 +1,6 @@
 package domain.controllers;
 
-import database.Database;
 import domain.Member;
-import ui.UserInterface;
 
 public class MemberController extends Controller{
 

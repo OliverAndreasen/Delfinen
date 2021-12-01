@@ -51,11 +51,6 @@ public class CompetitionMember extends Member {
         return null;
     }
 
-    public String bestTime() {
-        // TODO: make best time function
-        return "LOL";
-    }
-
     public Date[] getBestTrainingTimeDates() {
         return bestTrainingTimeDates;
     }
@@ -75,7 +70,7 @@ public class CompetitionMember extends Member {
         return datesToString;
     }
 
-    public String getDateById(int index) {
+    public String getBestTrainingDateById(int index) {
         String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
         String[] datesplit = swimmingDiscipline.split("/");
         String day = datesplit[0];
@@ -85,34 +80,12 @@ public class CompetitionMember extends Member {
         String seconds = datesplit[4];
         return day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + minutes + ":" + seconds;
     }
-    // smid i ui
-    public void setDateBySwimmingStyle(String swimmingStyle) {
-        String result = "";
-        switch (swimmingStyle) {
-            case "butterfly":
-                /*setDateById(0);*/
-                break;
-            case "crawl":
-                getDateById(1);
-                break;
-            case "rygcrawl":
-                getDateById(2);
-                break;
-            case "brystsvømning":
-                getDateById(3);
-                break;
-            default:
-                // code block
-        }
-    }
 
     public Date convertStringDateToDate(String stringDate) {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
         Date date = new Date();
         try {
-            //System.out.println("dato " + stringDate);
             date = formatter.parse(stringDate);
-            //System.out.println("dato efter format " + date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
