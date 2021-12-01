@@ -8,19 +8,8 @@ import ui.UserInterface;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AccountantController {
-    private final boolean programIsRunning;
-    private UserInterface ui;
-    private Database db;
-    private Accounting accountant;
+public class AccountantController extends Controller{
 
-    public AccountantController(UserInterface ui, Database db, Accounting accountant, boolean programIsRunning) {
-        this.ui = ui;
-        this.db = db;
-        this.accountant = accountant;
-        this.programIsRunning = programIsRunning;
-        calculateSubscriptionTotal();
-    }
     public void calculateSubscriptionTotal() {
         ArrayList<Member> allMembers = db.getAllMembers();
         for (Member member : allMembers) {
@@ -28,7 +17,8 @@ public class AccountantController {
 
         }
     }
-    public void start() throws IOException {
+    public void startAccounting()  {
+        ui.printAccountantMenu();
         while (programIsRunning) {
             int input = ui.userInputNumber();
             switch (input) {
@@ -48,6 +38,16 @@ public class AccountantController {
                     addMemberToDebtList(memberToAddToDebt);
                     ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
                      */
+                }
+
+                case 0 ->{
+                    start();
+                }
+
+                default -> {
+                    int min = 0;
+                    int max = 3;
+                    ui.printInvalidNumber(min, max);
                 }
             }
             ui.printAccountantMenu();

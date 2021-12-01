@@ -33,6 +33,7 @@ public class UserInterface {
                 1. Tilføj konkurrencesvømmer til hold.
                 2. Tilføj konkurrencesvømmer bedste tid.
                 3. Vis top 5.
+                0. Tilbage til start menuen.
                 """);
     }
 
@@ -41,6 +42,7 @@ public class UserInterface {
                 vælg alders gruppe:
                     1. Junior
                     2. Senior
+                    0. <----
                     """);
     }
 
@@ -60,6 +62,7 @@ public class UserInterface {
                 2. Skift medlemsstatus.
                 3. Afslut medlemskab.
                 4. Tilmeld konkurrence.
+                0. Tilbage til start menuen.
                 """);
     }
 
@@ -68,6 +71,7 @@ public class UserInterface {
                 1. Tjek forventet kontingent indkomst.
                 2. Tjek medlemmer i restance.
                 3. Tilføj restance til medlem.
+                0. Tilbage til start menuen.
                 """);
     }
 
@@ -101,6 +105,7 @@ public class UserInterface {
         System.out.println("""
                 1. Tilføj nyt medlem.
                 2. Slet medlem.
+                0. Tilbage til start menuen.
                 """);
     }
 
@@ -134,6 +139,9 @@ public class UserInterface {
         System.out.println("Noget gik galt.");
     }
 
+    public void printInvalidNumber(int min, int max){
+        System.out.printf("indtast et tal mellem %d og %d", min, max);
+    }
 }
 
 

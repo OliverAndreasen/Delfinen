@@ -4,18 +4,10 @@ import database.Database;
 import domain.Member;
 import ui.UserInterface;
 
-public class MemberController {
-    private UserInterface ui;
-    private Database db;
-    private boolean programIsRunning;
+public class MemberController extends Controller{
 
-    public MemberController(UserInterface ui, Database db, boolean programIsRunning) {
-        this.ui = ui;
-        this.db = db;
-        this.programIsRunning = programIsRunning;
-    }
-
-    public void start() {
+    public void startMember() {
+        ui.printMemberMenu();
         while (programIsRunning) {
             switch (ui.userInputNumber()) {
                 case 1 -> {

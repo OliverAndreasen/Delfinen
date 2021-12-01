@@ -11,15 +11,8 @@ public class CoachController {
     private Database db;
     private Coach coachJunior = new Coach("Søren", "Junior");
     private Coach coachSenior = new Coach("Slette Mette", "Senior");
-    private boolean programIsRunning;
     private Team junior;
     private Team senior;
-
-    public CoachController(UserInterface ui, Database db, boolean programIsRunning) {
-        this.ui = ui;
-        this.db = db;
-        this.programIsRunning = programIsRunning;
-    }
 
     public Coach getCoachJunior() {
         return coachJunior;
@@ -45,7 +38,8 @@ public class CoachController {
         this.senior = senior;
     }
 
-    public void start() {
+    public void startChoach() {
+        ui.printCoachMenu();
         createTeams();
         while (programIsRunning) {
             switch (ui.userInputNumber()) {
@@ -79,6 +73,9 @@ public class CoachController {
                 team.sortBestTrainingTimes();
                 Coach coach = getCoachSenior();
                 printOutTop5(team, coach);
+            }
+            case 0 ->{
+                startChoach();
             }
         }
     }

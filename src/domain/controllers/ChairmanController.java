@@ -7,18 +7,10 @@ import ui.UserInterface;
 
 import java.io.IOException;
 
-public class ChairmanController {
-    private UserInterface ui;
-    private Database db;
-    private boolean programIsRunning;
+public class ChairmanController extends Controller {
 
-    public ChairmanController(UserInterface ui, Database db, boolean programIsRunning) {
-        this.ui = ui;
-        this.db = db;
-        this.programIsRunning = programIsRunning;
-    }
-
-    public void start() {
+    public void startChairman() {
+        ui.printChairmanMenu();
         while (programIsRunning) {
             switch (ui.userInputNumber()) {
                 case 1 -> {

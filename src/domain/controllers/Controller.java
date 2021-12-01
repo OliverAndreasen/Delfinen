@@ -6,45 +6,46 @@ import domain.CompetitionMember;
 import domain.Member;
 import ui.UserInterface;
 
-import java.io.IOException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class Controller {
-    private UserInterface ui = new UserInterface();
-    private Database db = new Database();
-    private boolean programIsRunning = true;
-    private Accounting accountant = new Accounting();
+    protected UserInterface ui = new UserInterface();
+    protected Database db = new Database();
+    protected boolean programIsRunning = true;
+    protected Accounting accountant = new Accounting();
 
     public void start() {
         ui.start();
         // Fetch members from database
-        while (programIsRunning) {
-            switch (ui.userInputNumber()) {
-                case 1 -> {
-                    ui.printChairmanMenu();
-                    ChairmanController chairmanController = new ChairmanController(ui, db, programIsRunning);
-                    chairmanController.start();
-                }
-                case 2 -> {
-                    ui.printAccountantMenu();
-                    AccountantController accountantController = new AccountantController(ui, db, accountant, programIsRunning);
-                    try{
-                        accountantController.start();
-                    } catch (IOException error){
-                        System.out.println("error");
+        try {
+            while (programIsRunning) {
+                switch (ui.userInputNumber()) {
+                    case 1 -> {
+                        ChairmanController chairmanController = new ChairmanController();
+                        chairmanController.startChairman();
+                    }
+                    case 2 -> {
+                        AccountantController accountantController = new AccountantController();
+                        accountantController.startAccounting();
+                    }
+                    case 3 -> {
+                        MemberController memberController = new MemberController();
+                        memberController.startMember();
+                    }
+                    case 4 -> {
+                        CoachController coachController = new CoachController();
+                        coachController.startChoach();
+                    }
+                    default -> {
+                        int min = 0;
+                        int max = 4;
+                        ui.printInvalidNumber(min, max);
                     }
                 }
-                case 3 -> {
-                    ui.printMemberMenu();
-                    MemberController memberController = new MemberController(ui, db, programIsRunning);
-                    memberController.start();
-                }
-                case 4 -> {
-                    ui.printCoachMenu();
-                    CoachController coachController = new CoachController(ui, db, programIsRunning);
-                    coachController.start();
-                }
             }
+        } catch (InputMismatchException e){
+            System.out.println("indtast en gyldig værdi");
         }
     }
 
