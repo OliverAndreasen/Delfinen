@@ -31,6 +31,14 @@ public class ChairmanController extends Controller {
                         ui.printErrorMessage();
                     }
                 }
+                case 0 -> {
+                    start();
+                }
+                default -> {
+                    int min = 0;
+                    int max = 2;
+                    ui.printInvalidNumber(min, max);
+                }
             }
         }
     }

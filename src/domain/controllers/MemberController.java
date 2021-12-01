@@ -33,7 +33,14 @@ public class MemberController extends Controller{
                 case 4 -> {
                     // TODO Tilmeld konkurrence.
                 }
-
+                case 0 -> {
+                    start();
+                }
+                default -> {
+                    int min = 0;
+                    int max = 4;
+                    ui.printInvalidNumber(min, max);
+                }
             }
         }
     }

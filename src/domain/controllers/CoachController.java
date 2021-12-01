@@ -6,9 +6,7 @@ import ui.UserInterface;
 import java.util.ArrayList;
 
 
-public class CoachController {
-    private UserInterface ui;
-    private Database db;
+public class CoachController extends Controller {
     private Coach coachJunior = new Coach("Søren", "Junior");
     private Coach coachSenior = new Coach("Slette Mette", "Senior");
     private Team junior;
@@ -53,6 +51,14 @@ public class CoachController {
                     // TODO Vis top 5.
                     ui.printChoseAgeGroup();
                     choseAgeGroup();
+                }
+                case 0 -> {
+                   start();
+                }
+                default -> {
+                    int min = 0;
+                    int max = 3;
+                    ui.printInvalidNumber(min, max);
                 }
             }
         }
