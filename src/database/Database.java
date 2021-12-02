@@ -1,8 +1,6 @@
 package database;
 
-import domain.CompetitionMember;
-import domain.Member;
-import domain.Team;
+import domain.*;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

@@ -3,6 +3,7 @@ package domain.controllers;
 import database.Database;
 import domain.Accounting;
 import domain.CompetitionMember;
+import domain.DisciplineTimes;
 import domain.Member;
 import ui.UserInterface;
 

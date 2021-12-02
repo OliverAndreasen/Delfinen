@@ -2,7 +2,7 @@ package domain;
 
 public class CompetitionMemberResult implements Comparable {
     Integer memberId;
-    String trainingTime;
+    String resultTime;
 
     public CompetitionMemberResult(Integer memberId, String resultTime) {
         this.memberId = memberId;
@@ -13,8 +13,8 @@ public class CompetitionMemberResult implements Comparable {
         return memberId;
     }
 
-    public String getTrainingTime() {
-        return trainingTime;
+    public String getResultTime() {
+        return resultTime;
     }
 
     @Override

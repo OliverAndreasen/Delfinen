@@ -35,6 +35,22 @@ public class Team {
         disciplineTimes.sortBestTimes();
     }
 
+    public void addBestButterFlyTime(Integer competitionMemberId, String bestTime) {
+        disciplineTimes.allButterFlyTimes.add(new CompetitionMemberResult(competitionMemberId, bestTime));
+    }
+
+    public void addBestCrawlTime(Integer competitionMemberIds, String bestTime) {
+        disciplineTimes.allCrawlTimes.add(new CompetitionMemberResult(competitionMemberIds, bestTime));
+    }
+
+    public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime) {
+        disciplineTimes.allBackStrokeTimes.add(new CompetitionMemberResult(competitionMemberIds, bestTime));
+    }
+
+    public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime) {
+        disciplineTimes.allBreastStrokeTimes.add(new CompetitionMemberResult(competitionMemberIds, bestTime));
+    }
+
     public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {
         this.competitionMemberIds = competitionMemberIds;
     }

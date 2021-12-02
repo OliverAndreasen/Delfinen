@@ -96,13 +96,13 @@ public class CoachController extends Controller {
     public ArrayList<CompetitionMemberResult> chooseBestDisciplineTimes(Team team) {
         switch (ui.userInputNumber()) {
             case 1 -> {
-                return team.getAllButterFlyTimes();
+                return team.getAllButterflyTimes();
             }
             case 2 -> {
                 return team.getALlCrawlTimes();
             }
             case 3 -> {
-                return team.getAllBackStrokeTimes();
+                return team.getALlBackStrokeTimes();
             }
             case 4 -> {
                 return team.getAllBreastStrokeTimes();
