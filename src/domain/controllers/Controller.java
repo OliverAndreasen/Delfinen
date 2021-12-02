@@ -17,6 +17,11 @@ public class Controller {
 
     public void start() {
         ui.start();
+
+        CompetitionController competitionController = new CompetitionController();
+        DisciplineTimes disciplineTimes = new DisciplineTimes();
+        disciplineTimes.sortBestTimes();
+        System.out.println(competitionController.competitionsToSTring());
         // Fetch members from database
         try {
             while (programIsRunning) {
@@ -38,7 +43,7 @@ public class Controller {
                         coachController.startChoach();
                     }
                     default -> {
-                        int min = 0;
+                        int min = 1;
                         int max = 4;
                         ui.printInvalidNumber(min, max);
                     }

@@ -11,12 +11,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Database {
 
-    FileHandler fileHandler = new FileHandler();
+    private FileHandler fileHandler = new FileHandler();
     private int lastIdMember;
     private int lastIdCompetitionMember;
     private ArrayList<Member> members = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Database {
     private ArrayList<Integer> memberIdsWithDebt = new ArrayList<>();
     private ArrayList<Integer> competitiveMemberIdsJunior = new ArrayList<>();
     private ArrayList<Integer> competitiveMemberIdsSenior = new ArrayList<>();
+    private ArrayList<Competition> competitions = new ArrayList<>();
 
     public Database() {
         try {
@@ -34,6 +36,12 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+
+    public ArrayList<Competition> getCompetitions() {
+        return competitions;
+    }
+
 
     public ArrayList<Integer> getCompetitiveMemberIdsJunior() {
         return competitiveMemberIdsJunior;
@@ -123,6 +131,85 @@ public class Database {
             sc.nextLine();
         }
     }
+
+    public void loadCompetitions() throws FileNotFoundException {
+        Scanner sc = fileHandler.reader("data/Competitions.csv");
+        sc.useDelimiter(";");
+        int nextDiscipline = -1;
+        String teamName = "";
+        Competition competition = null;
+        while (sc.hasNext()) {
+            String competitionName = sc.next();
+            if (!competitionName.equals("Senior")) {
+                try {
+                    nextDiscipline = Integer.parseInt(competitionName);
+                } catch (NumberFormatException e) {
+
+                }
+                if (!competitionName.equals("Junior") || !competitionName.equals("Senior")) {
+                    if (nextDiscipline == -1) {
+                        int competitionId = Integer.parseInt(sc.next());
+                        String competitionDateString = sc.next();
+                        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+                        Date competitionDate = new Date();
+                        try {
+                            competitionDate = formatter.parse(competitionDateString);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        competition = new Competition(competitionId, competitionName, competitionDate);
+                        competitions.add(competition);
+                        teamName = sc.next();
+                    }
+                }
+            }else {
+                teamName = "Senior";
+            }
+            int disciplineIndex;
+            if(nextDiscipline != -1){
+                disciplineIndex = nextDiscipline;
+                nextDiscipline = -1;
+            }else {
+                disciplineIndex = Integer.parseInt(sc.next());
+            }
+            String competitionMemberIdAndTimes = sc.next();
+
+            if (teamName.equals("Junior")) {
+                loadDisicplineTime(competition, competitionMemberIdAndTimes, disciplineIndex);
+            } else if (teamName.equals("Senior")) {
+                loadDisicplineTime(competition, competitionMemberIdAndTimes, disciplineIndex);
+            }
+
+            /*
+            String[] competitiveIdsString = sc.next().split(",");
+            int[] competitiveIds = new int[competitiveIdsString.length];
+            for (int i = 0; i < competitiveIdsString.length; i++) {
+                competitiveIds[i] = Integer.parseInt(competitiveIdsString[i]);
+            }
+
+            for (int competitiveId : competitiveIds) {
+                if (teamName.equals("Junior")) {
+                    competitiveMemberIdsJunior.add(competitiveId);
+                } else {
+                    competitiveMemberIdsSenior.add(competitiveId);
+                }
+            }
+
+            Team team = new Team(teamName);
+            if (team.getTeamName().equals("Junior")) {
+                for (Integer competitiveMemberIdJunior : competitiveMemberIdsJunior) {
+                    team.addTeamMember(competitiveMemberIdJunior);
+                }
+            } else {
+                for (Integer competitiveMemberIdSenior : competitiveMemberIdsSenior) {
+                    team.addTeamMember(competitiveMemberIdSenior);
+                }
+            }
+             */
+        }
+    }
+
 
     public ArrayList<Integer> getMemberIdsWithDebt() {
         return memberIdsWithDebt;
@@ -253,4 +340,57 @@ public class Database {
             }
         }
     }
+
+
+    public void loadDisicplineTime(Competition competition, String competitionMemberIdAndTimes, int disciplineIndex) {
+        String[] competitionMemberIdAndTime = competitionMemberIdAndTimes.split(",");
+        switch (disciplineIndex) {
+            //butterfly
+            case 0:
+                for (int i = 0; i < competitionMemberIdAndTime.length; i++) {
+                    int competitionMemberId = Integer.parseInt(competitionMemberIdAndTime[i].substring(0, 3));
+                    String competitionMemberTime = competitionMemberIdAndTime[i].substring(4);
+                    competition.addBestButterFlyTime(competitionMemberId, competitionMemberTime);
+                }
+                break;
+            //crawl
+            case 1:
+                for (int i = 0; i < competitionMemberIdAndTime.length; i++) {
+                    int competitionMemberId = Integer.parseInt(competitionMemberIdAndTime[i].substring(0, 3));
+                    String competitionMemberTime = competitionMemberIdAndTime[i].substring(4);
+                    competition.addBestCrawlTime(competitionMemberId, competitionMemberTime);
+                }
+                break;
+            //backstroke
+            case 2:
+                for (int i = 0; i < competitionMemberIdAndTime.length; i++) {
+                    int competitionMemberId = Integer.parseInt(competitionMemberIdAndTime[i].substring(0, 3));
+                    String competitionMemberTime = competitionMemberIdAndTime[i].substring(4);
+                    competition.addBestBackStrokeTime(competitionMemberId, competitionMemberTime);
+                }
+                break;
+            //breaststroke
+            case 3:
+                for (int i = 0; i < competitionMemberIdAndTime.length; i++) {
+                    int competitionMemberId = Integer.parseInt(competitionMemberIdAndTime[i].substring(0, 3));
+                    String competitionMemberTime = competitionMemberIdAndTime[i].substring(4);
+                    competition.addBestBreastStrokeTime(competitionMemberId, competitionMemberTime);
+                }
+                break;
+            default:
+                System.out.println("Wrong number!");
+        }
+    }
+    /*
+    public void loopCompetitionMemberAndTime(String[] competitionMemberIdAndTime, Competition competetion) {
+        for (int i = 0; i < competitionMemberIdAndTime.length; i++) {
+            int competitionMemberId = Integer.parseInt(competitionMemberIdAndTime[i].substring(0, 3));
+            String competitionMemberTime = competitionMemberIdAndTime[i].substring(4);
+            switch ()
+            competetion.addBestButterFlyTime(competitionMemberId, competitionMemberTime);
+        }
+
+
+    }*/
+
 }

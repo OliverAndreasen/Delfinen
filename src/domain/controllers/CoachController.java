@@ -67,14 +67,14 @@ public class CoachController extends Controller {
             case 1 -> {
                 ui.printTop5Lists();
                 Team team = getJunior();
-                team.sortBestTrainingTimes();
+                team.sortAllTimes();
                 Coach coach = getCoachJunior();
                 printOutTop5(team, coach);
             }
             case 2 -> {
                 ui.printTop5Lists();
                 Team team = getSenior();
-                team.sortBestTrainingTimes();
+                team.sortAllTimes();
                 Coach coach = getCoachSenior();
                 printOutTop5(team, coach);
             }
@@ -85,21 +85,21 @@ public class CoachController extends Controller {
     }
 
     public void printOutTop5(Team team, Coach coach) {
-        ArrayList<TrainingResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
-        ArrayList<TrainingResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
-        for (TrainingResult CompetitiveMember : top5FromDiscipline) {
+        ArrayList<CompetitionMemberResult> disciplineBestTimes = chooseBestDisciplineTimes(team);
+        ArrayList<CompetitionMemberResult> top5FromDiscipline = coach.getTop5FromDiscipline(disciplineBestTimes);
+        for (CompetitionMemberResult CompetitiveMember : top5FromDiscipline) {
             Member member = db.getMemberById(CompetitiveMember.getMemberId());
-            ui.printString(coach.getTop5FromDisciplineToString(member.getName(), CompetitiveMember.getTrainingTime()));
+            ui.printString(coach.getTop5FromDisciplineToString(member.getName(), CompetitiveMember.getResultTime()));
         }
     }
 
-    public ArrayList<TrainingResult> chooseBestDisciplineTimes(Team team) {
+    public ArrayList<CompetitionMemberResult> chooseBestDisciplineTimes(Team team) {
         switch (ui.userInputNumber()) {
             case 1 -> {
                 return team.getAllButterFlyTimes();
             }
             case 2 -> {
-                return team.getAllCrawlTimes();
+                return team.getALlCrawlTimes();
             }
             case 3 -> {
                 return team.getAllBackStrokeTimes();

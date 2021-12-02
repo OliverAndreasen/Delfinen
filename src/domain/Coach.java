@@ -11,9 +11,9 @@ public class Coach {
         this.ageGroup = ageGroup;
     }
 
-    public ArrayList<TrainingResult> getTop5FromDiscipline(ArrayList<TrainingResult> bestDisciplineTimes) {
-        ArrayList<TrainingResult> top5FromDisicpline = new ArrayList<>();
-        for (TrainingResult bestDisciplineTime : bestDisciplineTimes) {
+    public ArrayList<CompetitionMemberResult> getTop5FromDiscipline(ArrayList<CompetitionMemberResult> bestDisciplineTimes) {
+        ArrayList<CompetitionMemberResult> top5FromDisicpline = new ArrayList<>();
+        for (CompetitionMemberResult bestDisciplineTime : bestDisciplineTimes) {
             if (top5FromDisicpline.size() < 5) {
                 top5FromDisicpline.add(bestDisciplineTime);
             } else {

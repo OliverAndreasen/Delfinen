@@ -42,7 +42,7 @@ public class UserInterface {
                 vælg alders gruppe:
                     1. Junior
                     2. Senior
-                    0. <----
+                    0. Tilbage til forrige menu.
                     """);
     }
 

@@ -6,46 +6,33 @@ import java.util.Collections;
 
 public class Team {
     private String teamName;
+    DisciplineTimes disciplineTimes = new DisciplineTimes();
+
     private ArrayList<Integer> competitionMemberIds = new ArrayList<>();
-    ArrayList<TrainingResult> allButterFlyTimes = new ArrayList<>();
-    ArrayList<TrainingResult> allCrawlTimes = new ArrayList<>();
-    ArrayList<TrainingResult> allBackStrokeTimes = new ArrayList<>();
-    ArrayList<TrainingResult> allBreastStrokeTimes = new ArrayList<>();
+
 
     public Team(String teamName) {
         this.teamName = teamName;
     }
 
-    public ArrayList<TrainingResult> getAllButterFlyTimes() {
-        return allButterFlyTimes;
+    public ArrayList<CompetitionMemberResult> getAllButterflyTimes() {
+        return disciplineTimes.getAllButterFlyTimes();
     }
 
-    public ArrayList<TrainingResult> getAllCrawlTimes() {
-        return allCrawlTimes;
+    public ArrayList<CompetitionMemberResult> getALlCrawlTimes() {
+        return disciplineTimes.getAllCrawlTimes();
     }
 
-    public ArrayList<TrainingResult> getAllBackStrokeTimes() {
-        return allBackStrokeTimes;
+    public ArrayList<CompetitionMemberResult> getALlBackStrokeTimes() {
+        return disciplineTimes.getAllBackStrokeTimes();
     }
 
-    public ArrayList<TrainingResult> getAllBreastStrokeTimes() {
-        return allBreastStrokeTimes;
+    public ArrayList<CompetitionMemberResult> getAllBreastStrokeTimes() {
+        return disciplineTimes.getAllBreastStrokeTimes();
     }
 
-    public void addBestButterFlyTime(Integer competitionMemberId, String bestTime) {
-        allButterFlyTimes.add(new TrainingResult(competitionMemberId, bestTime));
-    }
-
-    public void addBestCrawlTime(Integer competitionMemberIds, String bestTime) {
-        allCrawlTimes.add(new TrainingResult(competitionMemberIds, bestTime));
-    }
-
-    public void addBestBackStrokeTime(Integer competitionMemberIds, String bestTime) {
-        allBackStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
-    }
-
-    public void addBestBreastStrokeTime(Integer competitionMemberIds, String bestTime) {
-        allBreastStrokeTimes.add(new TrainingResult(competitionMemberIds, bestTime));
+    public void sortAllTimes()  {
+        disciplineTimes.sortBestTimes();
     }
 
     public void setCompetitionMemberIds(ArrayList<Integer> competitionMemberIds) {
@@ -81,13 +68,6 @@ public class Team {
         }
 
     }*/
-
-    public void sortBestTrainingTimes() {
-        Collections.sort(allButterFlyTimes);
-        Collections.sort(allCrawlTimes);
-        Collections.sort(allBackStrokeTimes);
-        Collections.sort(allBreastStrokeTimes);
-    }
 
 }
 
