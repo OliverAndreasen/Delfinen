@@ -61,9 +61,11 @@ public class AccountantController extends Controller{
         StringBuilder result = new StringBuilder();
         int totalResistance = 0;
         for (Member member : getMembersWithDebt()) {
+            if (member != null) {
             result.append("Medlemsnavn: ").append(member.getName()).append("\n");
             result.append("Resistance: ").append(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge())).append(" kr.\n");
             totalResistance += accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge());
+            }
         }
         result.append("Total resistance: " + totalResistance + "\n");
         return result.toString();
@@ -86,10 +88,6 @@ public class AccountantController extends Controller{
         return accountant.calculateSubscriptionFee(activeStatus, age);
     }
 
-    public void addSubscriptionTotal(int memberFee) {
-        accountant.addSubscriptionTotal(memberFee);
-    }
-
     public Member getMemberToAddToDebt() {
         int memberIdToGet = ui.userInputNumber();
         return db.getMemberById(memberIdToGet);
@@ -98,7 +96,7 @@ public class AccountantController extends Controller{
     public void calculateSubscriptionTotal() {
         ArrayList<Member> allMembers = db.getAllMembers();
         for (Member member : allMembers) {
-            addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
+            accountant.addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
         }
     }
 }
