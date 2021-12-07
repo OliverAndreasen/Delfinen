@@ -21,7 +21,13 @@ public class ChairmanController extends Controller {
                 }
                 case 2 -> {
                     ui.printChangeActiveStatus();
-                    changeActiveStatus();
+                    ui.printString("MedlemsID: ");
+                    try {
+                        changeActiveStatus();
+                        ui.printString("Status ændret.");
+                    } catch (Exception e) {
+                        ui.printErrorMessage();
+                    }
 
                 }
                 case 3 -> {
