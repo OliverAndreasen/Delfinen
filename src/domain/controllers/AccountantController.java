@@ -8,11 +8,17 @@ public class AccountantController extends Controller{
 
     public void startAccounting()  {
         ui.printAccountantMenu();
+
+        try {
+        db.loadMemberIdsWithDebt();
+        }
+        catch (IOException e){
+
+        }
         while (programIsRunning) {
             int input = ui.userInputNumber();
             switch (input) {
                 case 1 -> {
-                    // TODO: Fix bliver printet før menuen kommer ud.
                     calculateSubscriptionTotal();
                     ui.printTotalSubscription(accountant.getSubscriptionTotal());
                     break;
@@ -22,18 +28,14 @@ public class AccountantController extends Controller{
                     break;
                 }
                 case 3 -> {
-                    /*
                     ui.addMemberIdToDebtPrint();
                     Member memberToAddToDebt = getMemberToAddToDebt();
                     addMemberToDebtList(memberToAddToDebt);
                     ui.memberAddedToDebtPrint(memberToAddToDebt.getName());
-                     */
                 }
-
                 case 0 ->{
                     start();
                 }
-
                 default -> {
                     int min = 0;
                     int max = 3;
@@ -44,12 +46,26 @@ public class AccountantController extends Controller{
         }
     }
 
+    private void addMemberToDebtList(Member memberToAddToDebt) {
+        int memberId = memberToAddToDebt.getMemberId();
+        db.addMemberIdToDebt(memberId);
+
+        try {
+            db.saveMemberIdWithDebt(memberId);
+        } catch (IOException e) {
+
+        }
+    }
+
     public String membersWithDebtToString() {
         StringBuilder result = new StringBuilder();
+        int totalResistance = 0;
         for (Member member : getMembersWithDebt()) {
             result.append("Medlemsnavn: ").append(member.getName()).append("\n");
             result.append("Resistance: ").append(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge())).append(" kr.\n");
+            totalResistance += accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge());
         }
+        result.append("Total resistance: " + totalResistance + "\n");
         return result.toString();
     }
 
@@ -74,9 +90,8 @@ public class AccountantController extends Controller{
         return accountant.calculateSubscriptionFee(activeStatus, age);
     }
 
-    public int addSubscriptionTotal(int memberFee) {
+    public void addSubscriptionTotal(int memberFee) {
         accountant.addSubscriptionTotal(memberFee);
-        return accountant.getSubscriptionTotal();
     }
 
     public Member getMemberToAddToDebt() {
@@ -88,7 +103,6 @@ public class AccountantController extends Controller{
         ArrayList<Member> allMembers = db.getAllMembers();
         for (Member member : allMembers) {
             addSubscriptionTotal(calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
-
         }
     }
 }

@@ -1,14 +1,19 @@
 package domain.controllers;
 
 import domain.*;
-import java.util.ArrayList;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.SortedMap;
 
 public class CoachController extends Controller {
+
     private Coach coachJunior = new Coach("Søren", "Junior");
     private Coach coachSenior = new Coach("Slette Mette", "Senior");
     private Team junior;
     private Team senior;
+    private CompetitionController competitionController = new CompetitionController();
+    private DisciplineTimes disciplineTimes = new DisciplineTimes();
 
     public Coach getCoachJunior() {
         return coachJunior;
@@ -46,39 +51,81 @@ public class CoachController extends Controller {
                     // TODO Tilføj konkurrencesvømmer bedste tid.
                 }
                 case 3 -> {
-                    // TODO Vis top 5.
-                    ui.printChoseAgeGroup();
                     choseAgeGroup();
+                }
+                case 4 -> {
+                    try {
+                        db.loadCompetitions();
+                    }catch (IOException e){
+                        ui.printString("kunne ikke loade nogen konkurencer");
+                    }
+                    disciplineTimes.sortBestTimes();
+                    printCompetitions();
+
+                    String competitionTimeByDiscipline = chooseDiscipline();
+                    ui.printString(competitionTimeByDiscipline);
                 }
                 case 0 -> {
                    start();
                 }
                 default -> {
                     int min = 0;
-                    int max = 3;
+                    int max = 4;
                     ui.printInvalidNumber(min, max);
                 }
             }
         }
     }
 
+    private String chooseDiscipline() {
+        ui.printChooseDisciplines();
+        int disciplineId = ui.userInputNumber();
+
+        switch (disciplineId) {
+            case 1 -> {return competitionController.CompetitionButterFlyToString();}
+            case 2 -> {return competitionController.competitionCrawlToString();}
+            case 3 -> {return competitionController.competitionBackStrokeToString();}
+            case 4 -> {return competitionController.competitionBreastStrokeToString();}
+        }
+        return null;
+    }
+
+    private void printCompetitions() {
+        for (Competition competition: db.getCompetitions()) {
+            ui.printString(competition.getName());
+        }
+    }
+
     public void choseAgeGroup() {
+        ui.printChoseAgeGroup();
         switch (ui.userInputNumber()) {
             case 1 -> {
-                ui.printTop5Lists();
+                ui.printChooseDisciplines();
                 Team team = getJunior();
                 team.sortAllTimes();
                 Coach coach = getCoachJunior();
                 printOutTop5(team, coach);
+                /*System.out.println();
+                ui.printBackToCoachMenu();
+                ui.userInputNumber();
+                if (ui.userInputNumber() == 0){
+                    startChoach();
+                }*/
             }
             case 2 -> {
-                ui.printTop5Lists();
+                ui.printChooseDisciplines();
                 Team team = getSenior();
                 team.sortAllTimes();
                 Coach coach = getCoachSenior();
                 printOutTop5(team, coach);
+                /*System.out.println();
+                ui.printBackToCoachMenu();
+                ui.userInputNumber();
+                if (ui.userInputNumber() == 0){
+                    startChoach();
+                }*/
             }
-            case 0 ->{
+            case 0 -> {
                 startChoach();
             }
         }
