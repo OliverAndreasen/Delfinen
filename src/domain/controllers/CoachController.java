@@ -4,11 +4,10 @@ import domain.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.SortedMap;
 
 public class CoachController extends Controller {
 
-    private Coach coachJunior = new Coach("Søren", "Junior");
+    private Coach coachJunior = new Coach("Søren Brostrøm", "Junior");
     private Coach coachSenior = new Coach("Slette Mette", "Senior");
     private Team junior;
     private Team senior;
@@ -39,7 +38,7 @@ public class CoachController extends Controller {
         this.senior = senior;
     }
 
-    public void startChoach() {
+    public void startCoach() {
         ui.printCoachMenu();
         createTeams();
         while (programIsRunning) {
@@ -48,6 +47,9 @@ public class CoachController extends Controller {
                     // TODO Tilføj konkurrencesvømmer til hold.
                 }
                 case 2 -> {
+                    // TODO: fjern konkurrencesvømmer fra hold
+                }
+                case 3 -> {
                     // TODO Tilføj konkurrencesvømmer bedste tid.
                 }
                 case 4 -> {
@@ -105,12 +107,6 @@ public class CoachController extends Controller {
                 team.sortAllTimes();
                 Coach coach = getCoachJunior();
                 printOutTop5(team, coach);
-                /*System.out.println();
-                ui.printBackToCoachMenu();
-                ui.userInputNumber();
-                if (ui.userInputNumber() == 0){
-                    startChoach();
-                }*/
             }
             case 2 -> {
                 ui.printChooseDisciplines();
@@ -118,15 +114,9 @@ public class CoachController extends Controller {
                 team.sortAllTimes();
                 Coach coach = getCoachSenior();
                 printOutTop5(team, coach);
-                /*System.out.println();
-                ui.printBackToCoachMenu();
-                ui.userInputNumber();
-                if (ui.userInputNumber() == 0){
-                    startChoach();
-                }*/
             }
             case 0 -> {
-                startChoach();
+                startCoach();
             }
         }
     }

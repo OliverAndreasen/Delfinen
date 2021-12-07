@@ -82,10 +82,6 @@ public class AccountantController extends Controller{
         return db.getMemberById(memberId);
     }
 
-    public void setMembersWithDebt() throws IOException {
-        accountant.setMemberIdsWithDebt(db.loadMemberIdsWithDebt());
-    }
-
     public int calculateSubscriptionFee(boolean activeStatus, int age) {
         return accountant.calculateSubscriptionFee(activeStatus, age);
     }

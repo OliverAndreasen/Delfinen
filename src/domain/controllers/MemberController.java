@@ -10,7 +10,6 @@ public class MemberController extends Controller{
             switch (ui.userInputNumber()) {
                 case 1 -> {
                     // TODO Betal kontingent.
-                    /*test();*/
                 }
                 case 2 -> {
                     // TODO Skift medlemsstatus.
@@ -22,8 +21,6 @@ public class MemberController extends Controller{
                     } catch (Exception e) {
                         ui.printErrorMessage();
                     }
-                    /*CompetitionMember member = new CompetitionMember(110, "Kristian", 69, true, "Konkurrencesvømmer", true);
-                    member.convertStringDateToDate(ui.userInput());*/
                 }
                 case 3 -> {
                     // TODO Afslut medlemskab.

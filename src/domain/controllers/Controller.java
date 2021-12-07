@@ -41,7 +41,7 @@ public class Controller {
                     }
                     case 4 -> {
                         CoachController coachController = new CoachController();
-                        coachController.startChoach();
+                        coachController.startCoach();
                     }
                     default -> {
                         int min = 1;

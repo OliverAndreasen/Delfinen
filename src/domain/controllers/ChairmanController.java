@@ -91,6 +91,7 @@ public class ChairmanController extends Controller {
 
     public void deleteMember(Member member) {
         db.deleteMember(member);
+
     }
 
     private void changeActiveStatus() {

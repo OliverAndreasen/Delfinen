@@ -1,8 +1,5 @@
 package ui;
 
-import domain.Member;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -59,10 +56,9 @@ public class UserInterface {
 
     public void printMemberMenu() {
         System.out.println("""
-                1. Betal kontingent.
-                2. Skift medlemsstatus.
-                3. Afslut medlemskab.
-                4. Tilmeld konkurrence.
+                1. Skift medlemsstatus.
+                2. Afslut medlemskab.
+                3. Tilmeld konkurrence.
                 0. Tilbage til start menuen.
                 """);
     }
@@ -78,12 +74,6 @@ public class UserInterface {
 
     public void printMembersWithDebt(String membersWithDebt) {
         System.out.println(membersWithDebt);
-    }
-
-    public void printDebtList(ArrayList<Member> membersWithDebt) {
-        for (Member member : membersWithDebt) {
-            System.out.println(member);
-        }
     }
 
     public void printChangeActiveStatus() {

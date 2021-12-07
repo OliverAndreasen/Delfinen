@@ -12,15 +12,15 @@ public class Coach {
     }
 
     public ArrayList<CompetitionMemberResult> getTop5FromDiscipline(ArrayList<CompetitionMemberResult> bestDisciplineTimes) {
-        ArrayList<CompetitionMemberResult> top5FromDisicpline = new ArrayList<>();
+        ArrayList<CompetitionMemberResult> top5FromDiscipline = new ArrayList<>();
         for (CompetitionMemberResult bestDisciplineTime : bestDisciplineTimes) {
-            if (top5FromDisicpline.size() < 5) {
-                top5FromDisicpline.add(bestDisciplineTime);
+            if (top5FromDiscipline.size() < 5) {
+                top5FromDiscipline.add(bestDisciplineTime);
             } else {
-                return top5FromDisicpline;
+                return top5FromDiscipline;
             }
         }
-        return top5FromDisicpline;
+        return top5FromDiscipline;
     }
 
     public String getTop5FromDisciplineToString(String memberName, String bestTime) {

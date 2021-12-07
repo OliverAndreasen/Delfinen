@@ -1,7 +1,6 @@
 package domain;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,34 +20,30 @@ public class CompetitionMember extends Member {
     public void setBestTrainingTimes(int index) {
         if (bestTrainingTimeDatesToString()[index] != null) {
             String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
-            String[] datesplit = swimmingDiscipline.split("/");
-            for (int i = 0; i < datesplit.length; i++) {
-                String minutes = datesplit[3];
-                String seconds = datesplit[4];
+            String[] dateSplit = swimmingDiscipline.split("/");
+            for (int i = 0; i < dateSplit.length; i++) {
+                String minutes = dateSplit[3];
+                String seconds = dateSplit[4];
                 String result = minutes + seconds;
                 bestTrainingTimes[index] = result;
             }
         }
     }
 
-    public void loadBestTraingTimes() {
+    public void loadBestTrainingTimes() {
         for (int i = 0; i < bestTrainingTimeDates.length; i++) {
             setBestTrainingTimes(i);
         }
     }
 
     public String getBestTrainingTimeByDiscipline(int index) {
-        switch (index) {
-            case 0:
-                return getBestTrainingTimes()[0];
-            case 1:
-                return getBestTrainingTimes()[1];
-            case 2:
-                return getBestTrainingTimes()[2];
-            case 3:
-                return getBestTrainingTimes()[3];
-        }
-        return null;
+        return switch (index) {
+            case 0 -> getBestTrainingTimes()[0];
+            case 1 -> getBestTrainingTimes()[1];
+            case 2 -> getBestTrainingTimes()[2];
+            case 3 -> getBestTrainingTimes()[3];
+            default -> null;
+        };
     }
 
     public Date[] getBestTrainingTimeDates() {
@@ -72,27 +67,12 @@ public class CompetitionMember extends Member {
 
     public String getBestTrainingDateById(int index) {
         String swimmingDiscipline = bestTrainingTimeDatesToString()[index];
-        String[] datesplit = swimmingDiscipline.split("/");
-        String day = datesplit[0];
-        String month = datesplit[1];
-        String year = datesplit[2];
-        String minutes = datesplit[3];
-        String seconds = datesplit[4];
+        String[] dateSplit = swimmingDiscipline.split("/");
+        String day = dateSplit[0];
+        String month = dateSplit[1];
+        String year = dateSplit[2];
+        String minutes = dateSplit[3];
+        String seconds = dateSplit[4];
         return day + "/" + month + "/" + "/" + year + "\n" + "Best time: " + minutes + ":" + seconds;
-    }
-
-    public Date convertStringDateToDate(String stringDate) {
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/mm/ss");
-        Date date = new Date();
-        try {
-            date = formatter.parse(stringDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
-
-    private void setDateById(int disciplineIndex, String bestTrainingTimeDateString) {
-        bestTrainingTimeDates[disciplineIndex] = convertStringDateToDate(bestTrainingTimeDateString);
     }
 }

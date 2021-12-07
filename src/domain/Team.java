@@ -70,20 +70,5 @@ public class Team {
     public String getTeamName() {
         return teamName;
     }
-
-   /* public void setAllTimes() {
-        for (Integer competitiveMemberId : competitionMemberIds) {
-            //System.out.println(team.getTeamName());
-            Member member = db.getMemberById(competitiveMemberId);
-            String memberBestTime = ((CompetitionMember) member).getBestTrainingTimeByDiscipline(1);
-            //System.out.println(member.getName());
-            //System.out.println(memberBestTime);
-            if (memberBestTime != null) {
-                bestButterFlyTimes.add(memberBestTime);
-            }
-        }
-
-    }*/
-
 }
 

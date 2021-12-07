@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-
 public class Accounting {
     private int subscriptionTotal;
     private int totaltDebt;
@@ -47,13 +45,5 @@ public class Accounting {
             result = 500;
         }
         return result;
-    }
-
-    public ArrayList<Integer> getMemberIdsWithDebt() {
-        return memberIdsWithDebt;
-    }
-
-    public void setMemberIdsWithDebt(ArrayList<Integer> membersWithDebt) {
-        this.memberIdsWithDebt = membersWithDebt;
     }
 }

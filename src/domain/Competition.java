@@ -49,22 +49,7 @@ public class Competition {
         disciplineTimes.allBreastStrokeTimes.add(new CompetitionMemberResult(competitionMemberIds, bestTime));
     }
 
-
-    public void sortAllTimes()  {
-        disciplineTimes.sortBestTimes();
-    }
-
-    public int getCompetitionId() {
-        return CompetitionId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     public String getName() {
         return name;
     }
-
-
 }
