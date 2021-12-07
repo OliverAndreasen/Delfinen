@@ -47,7 +47,6 @@ public class CompetitionController extends Controller{
             result += butterFlyJunior;
             result += "\nSenior:\n";
             result += butterFlySenior;
-
         }
         return result;
     }
@@ -74,7 +73,6 @@ public class CompetitionController extends Controller{
                 }
             }
 
-
             result += "\nCrawl Resultater:\n";
             result += "Junior:\n";
             result += crawlJunior;
@@ -87,7 +85,6 @@ public class CompetitionController extends Controller{
     public String competitionBackStrokeToString(){
         String result = "";
         for (Competition competition : competitions) {
-
             ArrayList<CompetitionMemberResult> backStrokeResults = competition.getALlBackStrokeTimes();
 
 
@@ -110,7 +107,6 @@ public class CompetitionController extends Controller{
                     backStrokeSenior += "\t" + competitionMember.getName() + " Tid: " + time + "\n";
                 }
             }
-
             result += "\nRygcrawl Resultater:\n";
             result += "Junior:\n";
             result += backStrokeJunior;
@@ -123,15 +119,11 @@ public class CompetitionController extends Controller{
     public String competitionBreastStrokeToString(){
         String result = "";
         for (Competition competition : competitions) {
-
             ArrayList<CompetitionMemberResult> breastStrokeResults = competition.getAllBreastStrokeTimes();
-
             Collections.sort(breastStrokeResults);
-
 
             result += competition.getName();
             result += "\n\n";
-
 
             String breastStrokeJunior = "";
             String breastStrokeSenior = "";

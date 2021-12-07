@@ -31,8 +31,9 @@ public class UserInterface {
     public void printCoachMenu() {
         System.out.println("""
                 1. Tilføj konkurrencesvømmer til hold.
-                2. Tilføj konkurrencesvømmer bedste tid.
-                3. Vis top 5.
+                2. Fjern konkurrencesvømmer fra hold
+                3. Tilføj konkurrencesvømmer bedste tid.
+                4. Vis top 5.
                 0. Tilbage til start menuen.
                 """);
     }
@@ -104,7 +105,8 @@ public class UserInterface {
     public void printChairmanMenu() {
         System.out.println("""
                 1. Tilføj nyt medlem.
-                2. Slet medlem.
+                2. Ændre medlemsstatus.
+                3. Slet medlem.
                 0. Tilbage til start menuen.
                 """);
     }

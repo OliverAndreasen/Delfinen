@@ -20,6 +20,11 @@ public class ChairmanController extends Controller {
                     }
                 }
                 case 2 -> {
+                    ui.printChangeActiveStatus();
+                    changeActiveStatus();
+
+                }
+                case 3 -> {
                     ui.printChairManDeleteMember();
                     try {
                         String nameToBeDeleted = getMemberByIdAndDelete();
@@ -85,6 +90,17 @@ public class ChairmanController extends Controller {
 
     public void deleteMember(Member member) {
         db.deleteMember(member);
+    }
+
+    private void changeActiveStatus() {
+        int memberId = ui.userInputNumber();
+        Member member = db.getMemberById(memberId);
+        toggleMemberActiveStatus(member);
+        db.overWriteAndSaveFile();
+    }
+
+    private void toggleMemberActiveStatus(Member member) {
+        member.setActiveStatus(!member.getActiveStatus());
     }
 
     public Member getMemberById(int memberId) {

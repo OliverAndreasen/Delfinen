@@ -50,10 +50,10 @@ public class CoachController extends Controller {
                 case 2 -> {
                     // TODO Tilføj konkurrencesvømmer bedste tid.
                 }
-                case 3 -> {
+                case 4 -> {
                     choseAgeGroup();
                 }
-                case 4 -> {
+                case 5 -> {
                     try {
                         db.loadCompetitions();
                     }catch (IOException e){
@@ -70,7 +70,7 @@ public class CoachController extends Controller {
                 }
                 default -> {
                     int min = 0;
-                    int max = 4;
+                    int max = 5;
                     ui.printInvalidNumber(min, max);
                 }
             }
