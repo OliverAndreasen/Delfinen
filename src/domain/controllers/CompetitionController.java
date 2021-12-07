@@ -20,6 +20,7 @@ public class CompetitionController extends Controller{
 
     }
 
+    /*** følgende skal optimeres, hvis der er tid ***/
     public String CompetitionButterFlyToString(){
         String result = "";
         for (Competition competition : competitions) {

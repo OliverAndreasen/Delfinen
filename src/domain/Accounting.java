@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Accounting {
     private int subscriptionTotal;
     private int totaltDebt;
-    private ArrayList<Integer> memberIdsWithDebt;
 
     public Accounting() {
         this.subscriptionTotal = 0;

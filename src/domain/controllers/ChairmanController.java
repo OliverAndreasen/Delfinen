@@ -50,6 +50,7 @@ public class ChairmanController extends Controller {
         Member member = getMemberById(memberId);
         if (member != null) {
             deleteMember(member);
+            accountant.subtractSubscriptionTotal(accountant.calculateSubscriptionFee(member.getActiveStatus(), member.getAge()));
             return member.getName();
         }
         return null;

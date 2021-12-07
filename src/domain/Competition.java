@@ -17,7 +17,6 @@ public class Competition {
         this.date = date;
     }
 
-
     public ArrayList<CompetitionMemberResult> getAllButterflyTimes() {
         return disciplineTimes.getAllButterFlyTimes();
     }

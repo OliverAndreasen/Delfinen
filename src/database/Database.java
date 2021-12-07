@@ -35,11 +35,11 @@ public class Database {
         }
     }
 
+    /************* Getters *************/
 
     public ArrayList<Competition> getCompetitions() {
         return competitions;
     }
-
 
     public ArrayList<Integer> getCompetitiveMemberIdsJunior() {
         return competitiveMemberIdsJunior;
@@ -310,6 +310,14 @@ public class Database {
     /***** Load & Save from accounting *****/
     public void loadMembersFromDebtList() {
 
+    }
+
+    public void saveMemberIdWithDebt(Integer memberId) throws IOException {
+        BufferedWriter writer = fileHandler.writer("data/Accounting.csv", false);
+        String result = memberId + ";";
+        writer.write(result);
+        writer.close();
+        System.out.println("Saved");
     }
 
     public void setMembersWithDebt() {
