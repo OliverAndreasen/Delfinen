@@ -46,7 +46,7 @@ public class UserInterface {
                     """);
     }
 
-    public void printTop5Lists() {
+    public void printChooseDisciplines() {
         System.out.println("""
                 Vælg en disciplin:
                     1. Butterfly.
