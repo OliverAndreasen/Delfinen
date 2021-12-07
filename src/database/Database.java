@@ -379,6 +379,10 @@ public class Database {
                 System.out.println("Wrong number!");
         }
     }
+
+    public void addMemberIdToDebt(int memberId) {
+        memberIdsWithDebt.add(memberId);
+    }
     /*
     public void loopCompetitionMemberAndTime(String[] competitionMemberIdAndTime, Competition competetion) {
         for (int i = 0; i < competitionMemberIdAndTime.length; i++) {

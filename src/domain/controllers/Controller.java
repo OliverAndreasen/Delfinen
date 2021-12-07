@@ -22,7 +22,7 @@ public class Controller {
         CompetitionController competitionController = new CompetitionController();
         DisciplineTimes disciplineTimes = new DisciplineTimes();
         disciplineTimes.sortBestTimes();
-        System.out.println(competitionController.competitionsToSTring());
+        /*System.out.println(competitionController.competitionsToSTring());*/
         // Fetch members from database
         try {
             while (programIsRunning) {
